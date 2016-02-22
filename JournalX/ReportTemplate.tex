@@ -1,0 +1,199 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage{multicol} % Used for the two-column layout of the document
+\pdfpagewidth=8.5truein
+\pdfpageheight=11truein
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{times}
+\usepackage{url}
+\usepackage{hyperref}
+
+%Include whatever packages/commands you need
+
+%Project Title
+\title{Privacy Preserving Personalized Medicine Models}
+%Your Name
+\author{Hasini Gunasinghe}
+\date{12/18/2015} 
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+With advancement of whole genome sequencing, personalized medicine procedures have been improved to diognose genetic diseases and predict treatment dosages 
+according to one's genetic makeup. Despite its significant impact on the advancement of the medical field, these personalized medicine procedures come 
+with privacy concerns which can not be taken lightly. Privacy preserving personalized medicine protocols that have been proposed previously suffer from
+several common issues. The goal of this project was to design a new privacy preserving personalized medicine protocol using existing privacy enhancing 
+techniques as building blocks, in order to address such issues and to evaluate its security. I propose two protocols using garbling scheme and oblivious 
+transfer as building blocks of the protocol design. Then I propose a concrete instantiation of the desinged protocols, using specific existing instantiations 
+of a garbling scheme and a oblivious transfer protocol, to achieve the set of identified security properties in the personalized medicine protocol 
+settings. I plan to implement the proposed protocols and evaluate their performance as future work.
+\end{abstract}
+
+\begin{multicols}{2} % Two-column layout throughout the main article text 
+
+%Include your sections here. Introduction and Conclusion are necessary.
+\section{Introduction}
+Personalized medicine is an emerging area in which a patient's susceptibility to certain diseases is tested as well as treatment dosages are determined 
+based on the patient's genetic information. This has led to advancement in diagnosis, preventive medicine and medical treatments in general. 
+
+There are certain privacys concerns associated with such schemes. Firstly, the genetic information is unique to an individual which not only reveals various 
+information (such as ethnic heritage, phenotypes, potential susceptibility to genetic diseases etc.) about the individual him/herself, but also reveals such
+information about his/her relatives. As of present, the key issue in genetic information of an individual being in the wrong hands is that it can lead to 
+discrimination in employment and health insurance. Therefore, patients might want to conduct personalized medicine procedures while
+protecting their genome privacy. Although there exits policies such as Genetic Information Non-discrimination Act (GINA), policies alone 
+can not enforce genome privacy without proper technical solutions in place. 
+
+Secondly, the personalized medicine models are the outcome of extensive research carried out for many years and they might become intellectual property of 
+certain medical services such as pharmaceutical companies, which might want to offer the service of personalized medicine procedures without revealing 
+information about the models.
+
+We can identify two main settings in which the personalized medicine procedures are carried out, as illustrated in figure~\ref{prot1} and figure~\ref{prot2}.
+In setting 1, the patient himself/herself directly consumes the service of the medical service provider (MSP). In setting 2, the patient performs it at a 
+health care provider (HCP) (such as a physician or hospital laboratory), who consumes the service of the MSP.
+\begin{figure}[H]
+\label{prot1}
+\centering
+\includegraphics[height=2in,width=2.5in]{setting1}
+\caption{Personalized Medicine Protocol Setting 1}
+\end{figure}
+
+\begin{figure}[H]
+\label{prot2}
+\centering
+\includegraphics[height=2in,width=2.5in]{setting2}
+\caption{Personalized Medicine Protocol Setting 2}
+\end{figure}
+
+Key goals in a privacy preserving solution for such personalized medicine procedures are:
+\begin{enumerate}
+ \item Patient's genetic information is not revealed either to the HCP or to MSP.
+ \item Personalized medicine model is not revealed either to the HCP or to the patient.
+ \item Result of the test is only known to the patient.
+ \item HCP can not produce a valid looking fake result.
+\end{enumerate}
+
+\section{Related Work}
+Current state-of-the-art solutions for privacy preserving personalized medicine methods are found in~\cite{Ayday, Cristofaro, Djatmiko}. The work by 
+Ayday et. al~\cite{Ayday} has laid the foundation on top of which the latter two parallel works are built. In \cite{Ayday}, authors have proposed a privacy 
+preserving solution for SNP (single nucleotide polymorphisms)~\cite{SNP} based disease risk susceptibility tests which improves storage efficiency over 
+having to analyze the whole genome. The authors have used a variation of Pailler additive homomorphic encryption~\cite{BCP} and proxy re-encryption to 
+achive the privacy goals mentoned in Section 1. 
+
+The authors of~\cite{Cristofaro} point out several limitations of the previous work such as high storage and computation complexity due to the
+way the SNPs are represented, high computation complexity due to the choice of the encryption scheme and revealing of which and how many SNPs are used.
+Going further, they have introduced a new efficient encoding of SNPs and have utilized additively homomorphic elleptic curve based ElGamal cryptosystem in
+their approach which have helped to overcome the drawbacks they have identified in the previous work. Both of the above work have presented a general
+solution without considering any specific case study. 
+
+On the other hand, the authors of~\cite{Djatmiko} have built a concrete solution for privacy preserving evaluation of the popular pharmacogenomic model for 
+personalized Warfarin dosing~\cite{Warfarin} based on the work by Ayday et. al~\cite{Ayday}. They have utilized private information retrieval to help the 
+medical unit to select the patient's information to be used in the model evaluation in a privacy preserving manner. However, their work also suffer from 
+the issue of revealing how  many attributes are involved in the model and in addition, the patient learns which non-genomic attributes are used in the model.
+
+In general, I identified that all the aforementioned previous work suffer from three main common issues:
+\begin{enumerate}
+ \item They need to store the state of all SNP positions of human genome which is around 40 million where as an individual only carries 4 million SNPs 
+ on average. 
+ The reasons for above works to store the states all SNP positions is to make sure that actual SNP positions of an individual are not revealed during 
+ protocol execution, which is not storage efficient. 
+ \item They can be applied only to linear models. However, there can be personalized medicine models which are not linear, as they are based on 
+ machine learning models.
+ \item They involve several interactions back and forth in order to carry out the protocol.
+ \item Each of them address either setting 1 or setting 2, not both.
+\end{enumerate}
+
+\section{Preliminaries}
+In this section, I introduce the notation used in the protocol designs. Particularly, figure~\ref{gc}, illustrates the key components of a garbling scheme.
+\begin{figure}[H]
+\label{gc}
+\centering
+\includegraphics[height=1.5in,width=3.0in]{garbled_circuit}
+\caption{Key components of a garbling scheme}
+\end{figure}
+ 
+\section{Abstract Solution Design}
+In this section, I present the designs of the two privacy preserving personalized medicine protocols for the two different protocol settings discussed in 
+Section 1. 
+\begin{figure*}
+\label{prot11}
+\centering
+\includegraphics[height=3in,width=\textwidth]{prot1}
+\caption{Design of privacy preserving personalized medicine protocol 1, for the personalized medicine prototocl setting shown in ~\ref{prot1}}
+\end{figure*}
+
+\begin{figure*}
+\label{prot22}
+\centering
+\includegraphics[height=3in,width=\textwidth]{prot2}
+\caption{Design of privacy preserving personalized medicine protocol 1, for the personalized medicine prototocl setting shown in ~\ref{prot1}}
+\end{figure*}
+
+Since we have the requirement of protecting the privacy of both the inputs from the patient and the function of the MSP, above two protocols are 
+inherited from the private function evaluation (PFE) protocol design in general. 
+
+\section{Concrete Solution Design}
+In the actual implementation of the above protocol design, the garbling scheme will be implemented with the dual-key cipher based Garble-2 scheme presented 
+in ~\cite{FoundationsGC} and the oblivious transfer protocol will be implemented with the one presented in~\cite{OT}.
+The reasons for using the above schemes:
+\begin{enumerate}
+ \item Garble 2 is the only garbling scheme that achieves all three properties of: privacy, obliviousness and authenticity. Please refer to the proof of 
+ those properties of Garble-2 in~\cite{FoundationsGC}.
+ \item The oblivious transfer protocol presented in~\cite{OT} is a simple and efficient protocol with a publicly available implementation.
+\end{enumerate}
+
+\subsection{Why not using an existing garble circuit framework?}
+I looked into the garble circuit framework provided in ObliVM~\cite{ObliVM}, to see if it can be directly used to implement the solution, rather than 
+designing and implementing a protocol using separate building blocks. However, it seemed that the ObliVM is focused on the support of garbling scheme
+for secure function evaluation (SFE) (in which the function is assumed to be private and only the privacy of the inputs and outputs need to be protected.)
+where as our requirement is using garbling scheme for private function evaluation (PFE). As mentioned above, Garble-2 in ~\cite{FoundationsGC} is the
+only garbling scheme that I found to satisfy all three secrity properties that are required. However, Garble-2 is only provides a garbling scheme and
+does not come with an oblivious transfer protocol. Hence, I selected the aforementioned instance of oblivious transfer for the concrete instantiation
+of the two protocols.
+
+
+\section{Analysis}
+
+The concrete instantiation of the two proposed protocols satisfy privacy, obliviousness and authenticity properties which are inherited from the
+building block of Garble-2 garbling scheme. The definition of these three security properties and which requirements identified in the section 1 are 
+addressed by each of them, is mentioned below:
+\begin{enumerate}
+ \item Privacy: A party acquiring $<F, X, d>$ should not learn anything beyond the final output $y$ and what is revealed from the side information 
+ function. This addresses requirements 1 and 3 identified in section 1. 
+ \item Obliviousness: A party acquiring $<F, X>$, but not $d$, should not learn anything about $f, x$ and $y$ beyond what is revealed from the side information 
+ function. This addresses requirement 2 identified in section 1.
+ \item Authenticity: A party acquiring $<F, X>$ should not be able to produce $Y'$ different from $F(X)$ that seems to be valid. 
+ This addresses requirement 4 identified in section 1.
+\end{enumerate} 
+
+Advantages of the proposed protocols over previous work are: they present a generic solution that address requirements of both the protocol settings 
+discussed in section 1, they can be applied for non-linear models and the user does not have to store all SNP positions in these protocols.
+
+Drawbacks of the proposed protocols can be viewed as: oblivious transfer step being a bottleneck as a communication overhead, circuit size 
+(number of truth tables to be transferred) being a communication overhead and the user learning the function parameters.
+
+
+\section{Conclusion}
+In this project, I selected genome privacy as the area to explore, which was a new and exciting topic to me. After reading several survey papers in genome
+privacy, I opted to investigate on privacy of personalized medicine protocols as I noticed that there are several common issues in the existing privacy
+preserving solutions which are built based on homomorphic encryption schemes. I decided to design a solution based on garbling schemes which was also 
+new to me. I made that choice, because they cater security requirements of private function evalution (PFE) and they are identified to be among the fastest 
+secure multi-party computation techniques in the literature~\cite{ObliVM}. The protocols that I have designed achieves privacy, obliviousness and authenticity with the 
+specific instantiations of the garbling scheme and oblivious transfer protocol that I plan to use. 
+Poposed protocols address the issues identified in the previous solutions. I have provided an informal analysis of the protocols. As future work, I plan to 
+formally analyze the protocols and evaluate the performance of a real implementation of these proposed protocols.
+
+{\raggedright
+\small
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,IEEEexample}
+}
+\appendix
+%If you want to include something in appendix
+\end{multicols}	
+\end{document}

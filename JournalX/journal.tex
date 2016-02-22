@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{float}
+\setlength\parindent{0pt}
+
+\title{
+\vspace{-20.mm}
+My Journal for Biometrics Work}
+\author{Hasini Gunasinghe (huralali@purdue.edu)}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Wed Jan 20}
+I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/
+However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. 
+Then this was the solution: http://stackoverflow.com/questions/28804863/android-studio-how-to-install-android-platform-tools-on-ubuntu-14-04-64-bit
+It was because Android needs 32 bit libs and I have a 64 bit Ubuntu.
+Here are some tips I found to make the emulator fast:
+http://developer.android.com/tools/devices/emulator.html\#vm-linux
+
+\section*{Feb 19}
+Today I am back to my biometrics research work. I was away coz I worked on the SACMAT paper, was sick and was catching up with Programming
+Languages course.\\
+\textbf{IDEA:}
+- I got an idea yesterday that I could use the same method of obtaining a circuit from IDP for authentication verification later.\\ 
+But the circuits can be used only once, which is a problem.\\
+\textbf{QUESTION:}\\
+- Good question I can ask in the summer school: are garbled circuits re-usable?
+
+\subsection*{Android Dev:}
+Emulator runs Android in a kind of virtual machine, as an Android phone with an Intel processor. This is faster than emulating an ARM processor on 
+your PC.
+
+\subsection*{Literature Survey:}
+Today, I was just searching zero knowledge biometrics authentication for remote services. I got a bunch of results - papers and a commercial
+product.\\
+\textbf{Sedicii}\\
+This commercial product : sedicii (https://www.sedicii.com), seem to be doing exactly what I have done: ZKP based identity verification/authorization.
+They say that they do credit card authorization as well as biometrics authorization in ZKP - exactly my two works.
+They have not described how they do biometrics authentication in ZKP, however, it should be similar to their website loging scenario:
+I have written how their credit card authorization is comparable to ours in my RahasNym journal.
+
+\subsection*{Brain Storming:}
+Lot of biometrics based authentication mechanisms are defined for authenticating to devices. Once authenticated into the device, different services 
+that the user accesses are already logged in with username/password security. In such cases, critical remote services are relying on the device 
+biometric authentication, which is not usually strong.\\
+\textbf{TODO:} \\ See how device biometrics authentication works in Android and Apple.\\
+Also, if a malware is installed by some mistake by the user, client of the remore service is at risk (password can be stolen, session stolen etv.).\\ 
+\textbf{TODO:}\\
+See how bank apps work in mobile devices.\\
+
+This shows the requirement for remote services to have their own authentication of user to make sure that the genuine user invokes some request, with 
+strong verification, beyond usernam/password, and without relying on device autentication.\\
+
+This should be a standard mechanism, that any app resides in user's device-communicating with the remote service can integrate easiliy.\\
+\textbf{TODO:}\\
+See this could be developed as a service in Android which could be invoked by other apps.\\
+
+\textbf{IDEA:}\\
+I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
+
+\textbf{Contributions of our work:}
+\begin{itemize}
+ \item Secure protocol for remote authentication using biometrics. Preserves good properties of biometrics (i.e: uniqueness). Avoids non-desirable 
+properties of biomertics (i.e: non-repeatability, non-revocability).
+ \item Prototype implementation that is a proof of concept. That can be integrated to any app.
+ \item Security Analysis and Performance Analysis.
+\end{itemize}
+
+
+\section*{Feb 22:}
+I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
+down different aspects.\\
+
+After lunch, I worked on the mobile app dev. I am still at the very very beginning. Followed first app tutorial till end, and got a problem when 
+running in the emulator. Emulator needs KVM \textit{emulator: ERROR: x86 emulation currently requires hardware acceleration!
+Please ensure KVM is properly installed and usable.
+CPU acceleration status: KVM is not installed on this machine (/dev/kvm is missing).} 
+
+Then I tried to install KVM based on this tutorial:\\
+https://software.intel.com/blogs/2012/03/12/how-to-start-intel-hardware-assisted-virtualization-hypervisor-on-linux-to-speed-up-intel-android-x86-emul
+ator
+
+However, there seems to be problems. \\
+1. When I ran the command at the beginning of that tutorial to check if the CPU supports KVM extensions, I get 
+the output as NO. However, since the error from Android studio shows some hope, I tried to install it.
+
+2. Then the install command given in the tutorial doesn't work. Then I tried this: whose command works. 
+https://www.howtoforge.com/tutorial/kvm-on-ubuntu-14.04/
+
+It seems that now I need to relogin to enable KVM for my user accounts. 
+\end{document}
