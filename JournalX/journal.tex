@@ -17,16 +17,17 @@ My Journal for Biometrics Work}
 \maketitle
 
 \section*{Wed Jan 20}
-I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/
-However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. 
+I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
+However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. \\
 Then this was the solution: http://stackoverflow.com/questions/28804863/android-studio-how-to-install-android-platform-tools-on-ubuntu-14-04-64-bit
-It was because Android needs 32 bit libs and I have a 64 bit Ubuntu.
+It was because Android needs 32 bit libs and I have a 64 bit Ubuntu.\\
 Here are some tips I found to make the emulator fast:
 http://developer.android.com/tools/devices/emulator.html\#vm-linux
 
 \section*{Feb 19}
 Today I am back to my biometrics research work. I was away coz I worked on the SACMAT paper, was sick and was catching up with Programming
 Languages course.\\
+
 \textbf{IDEA:}
 - I got an idea yesterday that I could use the same method of obtaining a circuit from IDP for authentication verification later.\\ 
 But the circuits can be used only once, which is a problem.\\
@@ -57,6 +58,8 @@ See how bank apps work in mobile devices.\\
 
 This shows the requirement for remote services to have their own authentication of user to make sure that the genuine user invokes some request, with 
 strong verification, beyond usernam/password, and without relying on device autentication.\\
+ZKP is a good candidate. There are some previous works, suffers from some drawbacks.\\ Main issue is identity is not static.\\
+The works differ by the approach they address this non-static nature of the biometrics.\\
 
 This should be a standard mechanism, that any app resides in user's device-communicating with the remote service can integrate easiliy.\\
 \textbf{TODO:}\\
@@ -78,10 +81,11 @@ properties of biomertics (i.e: non-repeatability, non-revocability).
 I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
 down different aspects.\\
 
+\subsection*{Android Dev:}
 After lunch, I worked on the mobile app dev. I am still at the very very beginning. Followed first app tutorial till end, and got a problem when 
 running in the emulator. Emulator needs KVM \textit{emulator: ERROR: x86 emulation currently requires hardware acceleration!
 Please ensure KVM is properly installed and usable.
-CPU acceleration status: KVM is not installed on this machine (/dev/kvm is missing).} 
+CPU acceleration status: KVM is not installed on this machine (/dev/kvm is missing).} \\
 
 Then I tried to install KVM based on this tutorial:\\
 https://software.intel.com/blogs/2012/03/12/how-to-start-intel-hardware-assisted-virtualization-hypervisor-on-linux-to-speed-up-intel-android-x86-emul
@@ -95,4 +99,70 @@ the output as NO. However, since the error from Android studio shows some hope, 
 https://www.howtoforge.com/tutorial/kvm-on-ubuntu-14.04/
 
 It seems that now I need to relogin to enable KVM for my user accounts. 
+
+\section*{Feb 23:}
+I worked on the research the whole afternoon after lunch - but on an apparently useless one. I tried to comeup with a fuzzy zero-knowledge protocol 
+based on the ideas from fuzzy identity based encryption. But I had no luck.
+
+\section*{Feb 24:}
+\subsection*{Android Dev:}
+Since I had issues in running the hello world app in the emulator due to KVM enabling issue, I thought f checking my bios to see if KVM is enabled.\\
+Before accessing the bios, I needed to backup my important files in bitbucket. Therefore, I spent sometime backing up my files.\\
+Then I spent some fair amount time accessing the bios. First I tried F2 key as mentioned in many online articles which didn't work. Then F12 worked. 
+Intel VT is enabled in the bios.\\
+Then I checked the VMWare settings. So the problem was VT was not enabled in VMWare. When I enabled it, the emulator ran. But it was damn slow.\\
+
+I searched about how to make the android studio fast. I got some answers:\\
+1. http://www.viralandroid.com/2015/08/how-to-make-android-studio-fast.html\\
+This suggested either to test in real device or in genymotion emulator: https://www.genymotion.com/download/\\
+
+\subsubsection*{Option 1: } I tried to install genymotion emulator, but it requires VirtualBox to run. Hmmmm. VirtualBox on VMWare!. So I thought of 
+first running in the real device and see because I anyway have to install it in a real device.
+
+\subsubsection*{Option 2: } Option 2 is to install genymotion+virtual box on windows, compile the project in Linux and run it in the genymotion 
+running in Windows. https://dzone.com/articles/genymotion-simply-best-android \\
+
+I tried to install it in my phone (I upgraded my phone too for this reason. My phone is running Android 4.4.2). But somehow it didn't get installed.
+I was so tired by then and went to sleep.\\
+
+\subsection*{TODO:}
+Read how to make android studio faster:\\
+1. https://dzone.com/articles/how-speed-android-studio\\
+2. http://www.codeproject.com/Articles/803935/How-To-Make-Android-Studio-Really-Fast-On-A-Window\\
+
+\section*{Feb 25:}
+\subsection*{Android Dev:}
+I continued my attempt in installing in the real device. But I still couldn't.
+I found that there is no apk built when I run the project. So the studio complains that no local path exists. So I need to understand what the heck 
+is going through the Android build process. See how slow my progress is! :(\\
+
+Oh... Android studio integrated gradle build is a crap!. It didn't even complain that the build was not successful. That is why there was no apk 
+local path existed.\\
+
+I ran gradle build from command line according to this tutorial: http://developer.android.com/training/basics/firstapp/running-app.html\\
+Steps: \\
+1. invoke the assembleDebug build task using the Gradle wrapper script (gradlew assembleRelease).\\
+chmod +x gradlew\\
+./gradlew assembleDebug\\
+
+I got an error when running ./gradlew: ``libz.so.1: cannot open shared object file'', followed by: ``Exception in thread "png-cruncher_4" 
+java.lang.RuntimeException: Timed out while waiting for slave aapt process, try setting environment variable SLAVE\_AAPT\_TIMEOUT to a value bigger 
+than 5 seconds''.\\
+It seemed that both errors are due to not installing the library: zlib1g as mentioned in: 
+http://stackoverflow.com/questions/21256866/libz-so-1-cannot-open-shared-object-file\\
+After doing: sudo apt-get install zlib1g:i386, the gradle gave me: BUILD SUCCESSFUL Total time: 1 mins 16.537 secs. :)\\
+
+2. Then I wanted to deploy the app in my phone also from the command line (mentioned in the same above tutorial).\\
+Added android-sdk/platform-tools to PATH and ran: adb install app/build/outputs/apk/app-debug.apk\\
+Yeyyy... I got my first android app installed on my phone! :) Now the floor is mine to do cool stuff.\\
+
+Command line worked so smooth compared to crappy android studio. \\
+
+I went step further, I editted my app and tried to run again in my app. First I failed because it was already installed. Solution was to install it 
+with the -r option. :)
+
+\subsection*{Meeting with Professor:}
+I spent more than hour in the morning noting down which things I will discuss with the professor.
+
+
 \end{document}

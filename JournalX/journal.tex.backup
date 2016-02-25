@@ -17,16 +17,17 @@ My Journal for Biometrics Work}
 \maketitle
 
 \section*{Wed Jan 20}
-I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/
-However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. 
+I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
+However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. \\
 Then this was the solution: http://stackoverflow.com/questions/28804863/android-studio-how-to-install-android-platform-tools-on-ubuntu-14-04-64-bit
-It was because Android needs 32 bit libs and I have a 64 bit Ubuntu.
+It was because Android needs 32 bit libs and I have a 64 bit Ubuntu.\\
 Here are some tips I found to make the emulator fast:
 http://developer.android.com/tools/devices/emulator.html\#vm-linux
 
 \section*{Feb 19}
 Today I am back to my biometrics research work. I was away coz I worked on the SACMAT paper, was sick and was catching up with Programming
 Languages course.\\
+
 \textbf{IDEA:}
 - I got an idea yesterday that I could use the same method of obtaining a circuit from IDP for authentication verification later.\\ 
 But the circuits can be used only once, which is a problem.\\
@@ -57,10 +58,86 @@ See how bank apps work in mobile devices.\\
 
 This shows the requirement for remote services to have their own authentication of user to make sure that the genuine user invokes some request, with 
 strong verification, beyond usernam/password, and without relying on device autentication.\\
+ZKP is a good candidate. There are some previous works, suffers from some drawbacks.\\ Main issue is identity is not static.\\
+The works differ by the approach they address this non-static nature of the biometrics.\\
 
-This should be a standard mechanism, tha any app resides in user's device-communicating with the remote service can integrate easiliy.\\
+This should be a standard mechanism, that any app resides in user's device-communicating with the remote service can integrate easiliy.\\
 \textbf{TODO:}\\
-See this could be developed as a 
+See this could be developed as a service in Android which could be invoked by other apps.\\
+
+\textbf{IDEA:}\\
+I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
+
+\textbf{Contributions of our work:}
+\begin{itemize}
+ \item Secure protocol for remote authentication using biometrics. Preserves good properties of biometrics (i.e: uniqueness). Avoids non-desirable 
+properties of biomertics (i.e: non-repeatability, non-revocability).
+ \item Prototype implementation that is a proof of concept. That can be integrated to any app.
+ \item Security Analysis and Performance Analysis.
+\end{itemize}
+
+
+\section*{Feb 22:}
+I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
+down different aspects.\\
+
+\subsection*{Android Dev:}
+After lunch, I worked on the mobile app dev. I am still at the very very beginning. Followed first app tutorial till end, and got a problem when 
+running in the emulator. Emulator needs KVM \textit{emulator: ERROR: x86 emulation currently requires hardware acceleration!
+Please ensure KVM is properly installed and usable.
+CPU acceleration status: KVM is not installed on this machine (/dev/kvm is missing).} \\
+
+Then I tried to install KVM based on this tutorial:\\
+https://software.intel.com/blogs/2012/03/12/how-to-start-intel-hardware-assisted-virtualization-hypervisor-on-linux-to-speed-up-intel-android-x86-emul
+ator
+
+However, there seems to be problems. \\
+1. When I ran the command at the beginning of that tutorial to check if the CPU supports KVM extensions, I get 
+the output as NO. However, since the error from Android studio shows some hope, I tried to install it.
+
+2. Then the install command given in the tutorial doesn't work. Then I tried this: whose command works. 
+https://www.howtoforge.com/tutorial/kvm-on-ubuntu-14.04/
+
+It seems that now I need to relogin to enable KVM for my user accounts. 
+
+\section*{Feb 23:}
+I worked on the research the whole afternoon after lunch - but on an apparently useless one. I tried to comeup with a fuzzy zero-knowledge protocol 
+based on the ideas from fuzzy identity based encryption. But I had no luck.
+
+\section*{Feb 24:}
+\subsection*{Android Dev:}
+Since I had issues in running the hello world app in the emulator due to KVM enabling issue, I thought f checking my bios to see if KVM is enabled.\\
+Before accessing the bios, I needed to backup my important files in bitbucket. Therefore, I spent sometime backing up my files.\\
+Then I spent some fair amount time accessing the bios. First I tried F2 key as mentioned in many online articles which didn't work. Then F12 worked. 
+Intel VT is enabled in the bios.\\
+Then I checked the VMWare settings. So the problem was VT was not enabled in VMWare. When I enabled it, the emulator ran. But it was damn slow.\\
+
+I searched about how to make the android studio fast. I got some answers:\\
+1. http://www.viralandroid.com/2015/08/how-to-make-android-studio-fast.html\\
+This suggested either to test in real device or in genymotion emulator: https://www.genymotion.com/download/\\
+
+\subsubsection*{Option 1: } I tried to install genymotion emulator, but it requires VirtualBox to run. Hmmmm. VirtualBox on VMWare!. So I thought of 
+first running in the real device and see because I anyway have to install it in a real device.
+
+\subsubsection*{Option 2: } Option 2 is to install genymotion+virtual box on windows, compile the project in Linux and run it in the genymotion 
+running in Windows.\\
+
+I tried to install it in my phone (I upgraded my phone too for this reason. My phone is running Android 4.4.2). But somehow it didn't get installed.
+I was so tired by then and went to sleep.\\
+
+\subsection*{TODO:}
+Read how to make android studio faster:\\
+1. https://dzone.com/articles/how-speed-android-studio\\
+2. 
+
+\section*{Feb 25:}
+\subsection*{Android Dev:}
+I continued my attempt in installing in the real device. But I still couldn't.
+I found that there is no apk built when I run the project. So the studio complains that no local path existis. So I need to understand what the heck 
+is going through the Android build process. See how slow my progress is! :(
+
+\subsection*{Meeting with Professor:}
+I spent more than hour in the morning noting down which things I will discuss with the professor.
 
 
 \end{document}

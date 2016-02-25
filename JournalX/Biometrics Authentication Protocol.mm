@@ -1,6 +1,6 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1456155830770" ID="ID_965301578" MODIFIED="1456160224775" TEXT="PrivBioMTAuth">
+<node CREATED="1456155830770" ID="ID_965301578" MODIFIED="1456416143204" TEXT="PrivBioMTAuth">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -13,7 +13,7 @@
       Privacy Preserving Biometrics based Authentication Protocl for Authenticating to Remote Services from Mobile Devices.
     </p>
     <p>
-      This could be one project (PrivBioMTAuth) under PrivBioAuth. The other could be: PrivBioGeneAuth.
+      This could be one project (PrivBioMTAuth) under PrivBioAuth. The other could be: PrivBioGeneAuth. See how to use genomics for privacy preserving authentication - discuss this with professor in a later meeting.
     </p>
     <p>
       
@@ -74,8 +74,7 @@
       See this could be developed as a service in Android which could be invoked by other apps.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font NAME="SansSerif" SIZE="12"/>
 </node>
 <node CREATED="1456156500646" ID="ID_584417830" MODIFIED="1456156510450" TEXT="Address threats in mobile device"/>
@@ -84,6 +83,9 @@
 </node>
 <node CREATED="1456159832503" ID="ID_797834982" MODIFIED="1456159850587" TEXT="See how bank apps work in mobile devices">
 <icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1456350821263" ID="ID_1350930906" MODIFIED="1456350876094" TEXT="Implement TrustZone usage">
+<icon BUILTIN="help"/>
 </node>
 </node>
 <node CREATED="1456156412610" ID="ID_705595909" MODIFIED="1456156808388" TEXT="Address threats in remote auth"/>
@@ -99,12 +101,11 @@
       In other words, how to make biometrics repeatable, while preserving uniqueness.s
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1456157494600" ID="ID_831000120" MODIFIED="1456157875206" TEXT="Fuzzy Zero Knowledge">
 <icon BUILTIN="idea"/>
 </node>
-<node CREATED="1456157512611" ID="ID_952294155" MODIFIED="1456160328394" TEXT="Machine Learning">
+<node CREATED="1456157512611" ID="ID_952294155" MODIFIED="1456416263419" TEXT="Machine Learning">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -112,6 +113,18 @@
   <body>
     <p>
       Do we need to send the classifier file? Isn't it sufficient to send the equation, parameters?
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Try to use at least two predictive models and compare them in terms of performance and the artifacts needed to re-predict at authentication.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Also, compare and contrast the usage of binary classifier vs multi class classifier in terms of accuracy, performance, security and work for IDP (coz binary classifer requires IDP to create classifier for each individual).
     </p>
   </body>
 </html>
@@ -122,26 +135,46 @@
 </node>
 </node>
 <node CREATED="1456157614774" ID="ID_945181756" MODIFIED="1456157628592" POSITION="right" TEXT="Canceleble Biometrics"/>
-<node CREATED="1456157941831" ID="ID_312794241" MODIFIED="1456157952381" POSITION="left" TEXT="Related Work">
+<node CREATED="1456157941831" ID="ID_312794241" MODIFIED="1456350895007" POSITION="left" TEXT="Related Work">
 <node CREATED="1456157956152" ID="ID_33469545" LINK="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5634541&amp;tag=1" MODIFIED="1456158524137" TEXT="Practical multi-factor Biometric Remote Authenication">
 <node CREATED="1456158559455" ID="ID_932932892" LINK="http://cosec.bit.uni-bonn.de/fileadmin/user_upload/publications/pubs/sar10d.pdf" MODIFIED="1456158578262" TEXT="another link"/>
 </node>
-</node>
-<node CREATED="1456159680463" ID="ID_884844264" MODIFIED="1456159687319" POSITION="right" TEXT="Analysis">
-<node CREATED="1456159691398" ID="ID_1446140659" MODIFIED="1456160246957" TEXT="Security">
+<node CREATED="1456350907073" ID="ID_1713100324" MODIFIED="1456351269362" TEXT="Efficient Privacy Preserving Biometrics Identification - Yan Huang">
 <richcontent TYPE="NOTE"><html>
   <head>
     
   </head>
   <body>
     <p>
+      Another way of biometrics remote authentication is: homomorphic encryption.
+    </p>
+    <p>
+      I should compare the performance of Zero Knowledge with Homomorphic Encryption.
+    </p>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1456159680463" ID="ID_884844264" MODIFIED="1456159687319" POSITION="right" TEXT="Analysis">
+<node CREATED="1456159691398" ID="ID_1446140659" MODIFIED="1456351386024" TEXT="Security">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Key difference in ours is that we do not store the biometrics anywhere (at the server side).
+    </p>
+    <p>
+      
+    </p>
+    <p>
       Analyze threats at all components and counter measures.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
-<node CREATED="1456159714200" ID="ID_1694651911" MODIFIED="1456160279344" TEXT="Performance">
+<node CREATED="1456159714200" ID="ID_1694651911" MODIFIED="1456351582327" TEXT="Performance">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -162,10 +195,20 @@
     <p>
       Accuracy - compare with any original mechanism before applying security.
     </p>
+    <p>
+      
+    </p>
+    <p>
+      Need to find good dataset and good feature extraction mechanism.
+    </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
+</node>
+<node CREATED="1456351505527" ID="ID_656795243" MODIFIED="1456351603697" POSITION="left" TEXT="Multi Model Biometrics">
+<node CREATED="1456351591864" ID="ID_1074983215" MODIFIED="1456351600263" TEXT="Data Sets and Modalities"/>
+<node CREATED="1456351608517" ID="ID_365387344" MODIFIED="1456351616080" TEXT="Fusion Criteria"/>
+<node CREATED="1456351632211" ID="ID_864242775" MODIFIED="1456351646797" TEXT="How to integrate to ZKP"/>
 </node>
 </node>
 </map>
