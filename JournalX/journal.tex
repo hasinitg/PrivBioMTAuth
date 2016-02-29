@@ -9,14 +9,21 @@
 
 \title{
 \vspace{-20.mm}
-My Journal for Biometrics Work}
+My Journal on My Research Work}
 \author{Hasini Gunasinghe (huralali@purdue.edu)}
 \date{}
 
 \begin{document}
 \maketitle
 
-\section*{Wed Jan 20}
+\section*{RahasNym}
+Until 12th Feb, I mostly worked on improving the paper to be submitted to SACMAT.
+
+\pagebreak
+
+\section*{Biometrics Research Work}
+\subsection*{Android Development:}
+\subsubsection*{Wed Jan 20}
 I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
 However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. \\
 Then this was the solution: http://stackoverflow.com/questions/28804863/android-studio-how-to-install-android-platform-tools-on-ubuntu-14-04-64-bit
@@ -24,64 +31,11 @@ It was because Android needs 32 bit libs and I have a 64 bit Ubuntu.\\
 Here are some tips I found to make the emulator fast:
 http://developer.android.com/tools/devices/emulator.html\#vm-linux
 
-\section*{Feb 19}
-Today I am back to my biometrics research work. I was away coz I worked on the SACMAT paper, was sick and was catching up with Programming
-Languages course.\\
-
-\textbf{IDEA:}
-- I got an idea yesterday that I could use the same method of obtaining a circuit from IDP for authentication verification later.\\ 
-But the circuits can be used only once, which is a problem.\\
-\textbf{QUESTION:}\\
-- Good question I can ask in the summer school: are garbled circuits re-usable?
-
-\subsection*{Android Dev:}
+\subsubsection*{Feb 19}
 Emulator runs Android in a kind of virtual machine, as an Android phone with an Intel processor. This is faster than emulating an ARM processor on 
 your PC.
 
-\subsection*{Literature Survey:}
-Today, I was just searching zero knowledge biometrics authentication for remote services. I got a bunch of results - papers and a commercial
-product.\\
-\textbf{Sedicii}\\
-This commercial product : sedicii (https://www.sedicii.com), seem to be doing exactly what I have done: ZKP based identity verification/authorization.
-They say that they do credit card authorization as well as biometrics authorization in ZKP - exactly my two works.
-They have not described how they do biometrics authentication in ZKP, however, it should be similar to their website loging scenario:
-I have written how their credit card authorization is comparable to ours in my RahasNym journal.
-
-\subsection*{Brain Storming:}
-Lot of biometrics based authentication mechanisms are defined for authenticating to devices. Once authenticated into the device, different services 
-that the user accesses are already logged in with username/password security. In such cases, critical remote services are relying on the device 
-biometric authentication, which is not usually strong.\\
-\textbf{TODO:} \\ See how device biometrics authentication works in Android and Apple.\\
-Also, if a malware is installed by some mistake by the user, client of the remore service is at risk (password can be stolen, session stolen etv.).\\ 
-\textbf{TODO:}\\
-See how bank apps work in mobile devices.\\
-
-This shows the requirement for remote services to have their own authentication of user to make sure that the genuine user invokes some request, with 
-strong verification, beyond usernam/password, and without relying on device autentication.\\
-ZKP is a good candidate. There are some previous works, suffers from some drawbacks.\\ Main issue is identity is not static.\\
-The works differ by the approach they address this non-static nature of the biometrics.\\
-
-This should be a standard mechanism, that any app resides in user's device-communicating with the remote service can integrate easiliy.\\
-\textbf{TODO:}\\
-See this could be developed as a service in Android which could be invoked by other apps.\\
-
-\textbf{IDEA:}\\
-I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
-
-\textbf{Contributions of our work:}
-\begin{itemize}
- \item Secure protocol for remote authentication using biometrics. Preserves good properties of biometrics (i.e: uniqueness). Avoids non-desirable 
-properties of biomertics (i.e: non-repeatability, non-revocability).
- \item Prototype implementation that is a proof of concept. That can be integrated to any app.
- \item Security Analysis and Performance Analysis.
-\end{itemize}
-
-
-\section*{Feb 22:}
-I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
-down different aspects.\\
-
-\subsection*{Android Dev:}
+\subsubsection*{Feb 22}
 After lunch, I worked on the mobile app dev. I am still at the very very beginning. Followed first app tutorial till end, and got a problem when 
 running in the emulator. Emulator needs KVM \textit{emulator: ERROR: x86 emulation currently requires hardware acceleration!
 Please ensure KVM is properly installed and usable.
@@ -100,12 +54,7 @@ https://www.howtoforge.com/tutorial/kvm-on-ubuntu-14.04/
 
 It seems that now I need to relogin to enable KVM for my user accounts. 
 
-\section*{Feb 23:}
-I worked on the research the whole afternoon after lunch - but on an apparently useless one. I tried to comeup with a fuzzy zero-knowledge protocol 
-based on the ideas from fuzzy identity based encryption. But I had no luck.
-
-\section*{Feb 24:}
-\subsection*{Android Dev:}
+\subsubsection*{Feb 24:}
 Since I had issues in running the hello world app in the emulator due to KVM enabling issue, I thought f checking my bios to see if KVM is enabled.\\
 Before accessing the bios, I needed to backup my important files in bitbucket. Therefore, I spent sometime backing up my files.\\
 Then I spent some fair amount time accessing the bios. First I tried F2 key as mentioned in many online articles which didn't work. Then F12 worked. 
@@ -116,22 +65,22 @@ I searched about how to make the android studio fast. I got some answers:\\
 1. http://www.viralandroid.com/2015/08/how-to-make-android-studio-fast.html\\
 This suggested either to test in real device or in genymotion emulator: https://www.genymotion.com/download/\\
 
-\subsubsection*{Option 1: } I tried to install genymotion emulator, but it requires VirtualBox to run. Hmmmm. VirtualBox on VMWare!. So I thought of 
+\textbf{Option 1: } I tried to install genymotion emulator, but it requires VirtualBox to run. Hmmmm. VirtualBox on VMWare!. So I thought of 
 first running in the real device and see because I anyway have to install it in a real device.
 
-\subsubsection*{Option 2: } Option 2 is to install genymotion+virtual box on windows, compile the project in Linux and run it in the genymotion 
+\textbf{Option 2: } Option 2 is to install genymotion+virtual box on windows, compile the project in Linux and run it in the genymotion 
 running in Windows. https://dzone.com/articles/genymotion-simply-best-android \\
 
 I tried to install it in my phone (I upgraded my phone too for this reason. My phone is running Android 4.4.2). But somehow it didn't get installed.
 I was so tired by then and went to sleep.\\
 
-\subsection*{TODO:}
+\textbf{TODO:}
 Read how to make android studio faster:\\
 1. https://dzone.com/articles/how-speed-android-studio\\
 2. http://www.codeproject.com/Articles/803935/How-To-Make-Android-Studio-Really-Fast-On-A-Window\\
 
-\section*{Feb 25:}
-\subsection*{Android Dev:}
+
+\subsubsection*{Feb 25:}
 I continued my attempt in installing in the real device. But I still couldn't.
 I found that there is no apk built when I run the project. So the studio complains that no local path exists. So I need to understand what the heck 
 is going through the Android build process. See how slow my progress is! :(\\
@@ -145,7 +94,7 @@ Steps: \\
 chmod +x gradlew\\
 ./gradlew assembleDebug\\
 
-I got an error when running ./gradlew: ``libz.so.1: cannot open shared object file'', followed by: ``Exception in thread "png-cruncher_4" 
+I got an error when running ./gradlew: ``libz.so.1: cannot open shared object file'', followed by: ``Exception in thread "png-cruncher\_4" 
 java.lang.RuntimeException: Timed out while waiting for slave aapt process, try setting environment variable SLAVE\_AAPT\_TIMEOUT to a value bigger 
 than 5 seconds''.\\
 It seemed that both errors are due to not installing the library: zlib1g as mentioned in: 
@@ -161,8 +110,99 @@ Command line worked so smooth compared to crappy android studio. \\
 I went step further, I editted my app and tried to run again in my app. First I failed because it was already installed. Solution was to install it 
 with the -r option. :)
 
-\subsection*{Meeting with Professor:}
-I spent more than hour in the morning noting down which things I will discuss with the professor.
+\pagebreak
+\subsection*{To Dos:}
+\begin{enumerate}
+ \item Study the mobile phone's security architecture and find about the latest work in the secure architecture/trust zone.
+ \item Discuss the attack surface/vulnerability window and argue that it is very small.
+ \item Look at Daniel's journal paper to see how to prepare a journal paper.
+\end{enumerate}
 
+\subsection*{Literature Survey:}
+\subsubsection*{Feb 19}
+Today, I was just searching zero knowledge biometrics authentication for remote services. I got a bunch of results - papers and a commercial
+product.\\
+\textbf{Sedicii}\\
+This commercial product : sedicii (https://www.sedicii.com), seem to be doing exactly what I have done: ZKP based identity verification/authorization.
+They say that they do credit card authorization as well as biometrics authorization in ZKP - exactly my two works.
+They have not described how they do biometrics authentication in ZKP, however, it should be similar to their website loging scenario:
+I have written how their credit card authorization is comparable to ours in my RahasNym journal.
+
+\subsection*{Brain Storming:}
+\subsubsection*{Feb 19}
+Lot of biometrics based authentication mechanisms are defined for authenticating to devices. Once authenticated into the device, different services 
+that the user accesses are already logged in with username/password security. In such cases, critical remote services are relying on the device 
+biometric authentication, which is not usually strong.\\
+\textbf{TODO:} \\ See how device biometrics authentication works in Android and Apple.\\
+Also, if a malware is installed by some mistake by the user, client of the remore service is at risk (password can be stolen, session stolen etv.).\\ 
+\textbf{TODO:}\\
+See how bank apps work in mobile devices.\\
+
+This shows the requirement for remote services to have their own authentication of user to make sure that the genuine user invokes some request, with 
+strong verification, beyond usernam/password, and without relying on device autentication.\\
+ZKP is a good candidate. There are some previous works, suffers from some drawbacks.\\ Main issue is identity is not static.\\
+The works differ by the approach they address this non-static nature of the biometrics.\\
+
+This should be a standard mechanism, that any app resides in user's device-communicating with the remote service can integrate easiliy.\\
+\textbf{TODO:}\\
+See this could be developed as a service in Android which could be invoked by other apps.\\
+
+\textbf{Contributions of our work:}
+\begin{itemize}
+ \item Secure protocol for remote authentication using biometrics. Preserves good properties of biometrics (i.e: uniqueness). Avoids non-desirable 
+properties of biomertics (i.e: non-repeatability, non-revocability).
+ \item Prototype implementation that is a proof of concept. That can be integrated to any app.
+ \item Security Analysis and Performance Analysis.
+\end{itemize}
+
+\subsubsection*{Feb 20}
+I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
+down different aspects.\\
+
+
+\pagebreak
+\section*{New Ideas:}
+\subsection*{PrivBioAuh and PrivBioGeneAuth}
+I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
+
+\subsection*{How to address the security issues in health care data collected from IoT devices using biometrics.}
+Professor suggests to see how to generate keys from biometrics to protect the medical data.
+
+\subsection*{Fuzzy Zero Knowledge Scheme:}
+\subsubsection*{Feb 23:}
+I worked on the research the whole afternoon after lunch - but on an apparently useless one. I tried to comeup with a fuzzy zero-knowledge protocol 
+based on the ideas from fuzzy identity based encryption. But I had no luck.
+
+I need to look at fuzzy commitment and fuzzy vault before talking about this with anyone else.\\
+Professor mentioned we can talk with Professor Atallah or Italian professors.\\
+
+\subsection*{Storing the machine learning model by encoding it in a garbled circuit}
+\subsubsection*{Feb 19}
+- I got an idea yesterday that I could use the same method of obtaining a circuit from IDP for authentication verification later.\\ 
+But the circuits can be used only once, which is a problem.\\
+\textbf{QUESTION:}\\
+- Good question I can ask in the summer school: are garbled circuits re-usable?\\
+
+\textbf{REFERENCES:}\\
+This is a very nice project website - a resovair of resources. http://www.mightbeevil.org/ and http://www.mightbeevil.org/mobile/
+
+
+\pagebreak
+\section*{Meetings with the advisor:}
+\subsection*{Feb 25:}
+\begin{itemize}
+ \item I spent lot of time getting ready for the meeting - how I explain what I did, and my ideas to the Professor. At the beginning, she was not in 
+a very good mood. But the end was very good.
+\item It is ok to have 35\% overlap with the conference paper. If I could get the implementation on the mobile phone and do the Performance 
+evaluation, that would be an excellent extension for the journal paper. Need to get it by the end of this semester. Usually we do not submit new work 
+for journals. Only extensions.
+\item I need to look at Daniel's journal to see how I can prepare my journal paper.
+\item I need to study the mobile phone android security architecture and write about it.
+\item Professor mentioned about the new idea of protecting the medical data.
+\item Professor was interested in two of my new ideas. Professor mentioned we can ask Prof. Atallah or her Italian collaborators. She said it is a 
+very specialized area.
+\item Professor gave me the two recommendations for the communication requirement and the travel grant application.
+
+\end{itemize}
 
 \end{document}
