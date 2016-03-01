@@ -1,6 +1,6 @@
 <map version="0.9.0">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1456155830770" ID="ID_965301578" MODIFIED="1456416143204" TEXT="PrivBioMTAuth">
+<node CREATED="1456155830770" ID="ID_965301578" MODIFIED="1456787267329" TEXT="PrivBioMTAuth">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -54,8 +54,7 @@
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1456156008271" ID="ID_1168541077" MODIFIED="1456157601170" POSITION="right" TEXT="Remote Authentication">
 <node CREATED="1456156322597" ID="ID_471105895" MODIFIED="1456156756357" TEXT="From Mobile Device">
 <node CREATED="1456156335312" ID="ID_1853598149" MODIFIED="1456159231099" STYLE="fork" TEXT="Standard Mechanim">
@@ -127,15 +126,25 @@
       Also, compare and contrast the usage of binary classifier vs multi class classifier in terms of accuracy, performance, security and work for IDP (coz binary classifer requires IDP to create classifier for each individual).
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1456157884434" ID="ID_108906632" MODIFIED="1456157894066" TEXT="Fuzzy Commitment"/>
 <node CREATED="1456157898617" ID="ID_1077940242" MODIFIED="1456157903231" TEXT="Fuzzy Vault"/>
 </node>
 </node>
 <node CREATED="1456157614774" ID="ID_945181756" MODIFIED="1456157628592" POSITION="right" TEXT="Canceleble Biometrics"/>
-<node CREATED="1456157941831" ID="ID_312794241" MODIFIED="1456350895007" POSITION="left" TEXT="Related Work">
+<node CREATED="1456157941831" ID="ID_312794241" MODIFIED="1456849938354" POSITION="left" TEXT="Related Work">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      In the past paper, only compared with Abilasha's work. This involves more comparisons.
+    </p>
+  </body>
+</html>
+</richcontent>
 <node CREATED="1456157956152" ID="ID_33469545" LINK="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5634541&amp;tag=1" MODIFIED="1456158524137" TEXT="Practical multi-factor Biometric Remote Authenication">
 <node CREATED="1456158559455" ID="ID_932932892" LINK="http://cosec.bit.uni-bonn.de/fileadmin/user_upload/publications/pubs/sar10d.pdf" MODIFIED="1456158578262" TEXT="another link"/>
 </node>
@@ -209,6 +218,21 @@
 <node CREATED="1456351591864" ID="ID_1074983215" MODIFIED="1456351600263" TEXT="Data Sets and Modalities"/>
 <node CREATED="1456351608517" ID="ID_365387344" MODIFIED="1456351616080" TEXT="Fusion Criteria"/>
 <node CREATED="1456351632211" ID="ID_864242775" MODIFIED="1456351646797" TEXT="How to integrate to ZKP"/>
+</node>
+<node CREATED="1456849840963" ID="ID_1205911810" MODIFIED="1456849850651" POSITION="right" TEXT="Implementation">
+<node CREATED="1456849860474" ID="ID_559514596" MODIFIED="1456849892931" TEXT="Architecture">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      This will be a new section that was not in the paper.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 </node>
 </map>

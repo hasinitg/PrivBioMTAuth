@@ -23,6 +23,30 @@ Until 12th Feb, I mostly worked on improving the paper to be submitted to SACMAT
 
 \section*{Biometrics Research Work}
 \subsection*{Android Development:}
+
+\subsubsection*{Some useful links for study android dev:}
+\begin{enumerate}
+ \item Starting another activity: http://developer.android.com/training/basics/firstapp/starting-activity.html
+ \item Intents and intent filters: http://developer.android.com/guide/components/intents-filters.html
+ \item Interactions between apps: http://developer.android.com/training/basics/intents/index.html
+ \item Layouts: http://developer.android.com/guide/topics/ui/declaring-layout.html
+ \item Build System: http://developer.android.com/sdk/installing/studio-build.html, 
+http://developer.android.com/tools/building/configuring-gradle.html
+\end{enumerate}
+
+\subsubsection*{RoadMap:}
+\begin{enumerate}
+ \item Get two activities in an app communicate. DONE. 1st March.
+ \item Get two apps communicate and return result.
+ \item Get an app to communicate with a remote REST service.
+ \item Integrate ZKP.
+ \item Run perf test for ZKP with a remote party with static identity.
+ \item How to access TrustZone.
+ \item Biometrics work follow.
+\end{enumerate}
+
+
+
 \subsubsection*{Wed Jan 20}
 I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
 However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. \\
@@ -106,9 +130,33 @@ Added android-sdk/platform-tools to PATH and ran: adb install app/build/outputs/
 Yeyyy... I got my first android app installed on my phone! :) Now the floor is mine to do cool stuff.\\
 
 Command line worked so smooth compared to crappy android studio. \\
+\textbf{Commands to build and run in the phone:}\\
+./gradlew assembleDebug\\
+adb install -r app/build/outputs/apk/app-debug.apk\\
 
 I went step further, I editted my app and tried to run again in my app. First I failed because it was already installed. Solution was to install it 
 with the -r option. :)
+
+\subsubsection*{29th Feb:}
+I didn't do much. I re-organized my research journal and went to apt with the hope of working more. But I was so tired and went to sleep.
+
+\subsubsection*{1st March:}
+Learned many new things. At the end of the day, I have an app running in my phone with two activities linked 
+(http://developer.android.com/training/basics/firstapp/starting-activity.html).
+\begin{enumerate}
+ \item How to add a new activity and what are the other parts of an android project related with an activity: AndroidManifest.xml, the activity.xml 
+under the res/layout folder, strings.xml file.
+ \item How to change the layout of an activity and use layout weight. 
+ \item How layouts are related with parent-layout (as indicated in the activity\_layout.xml and AndroidManifest.xml).
+ \item View and ViewGroups.
+ \item How to add a method for a view to be responsive. Method should satisfy following:\\
+ Be public. Have a void return value. Have a View as the only parameter.
+ \item Intent: create Intent : newIntent(), add name-value pairs to it: intent.putExtra(name, value), start activity passing the intent: 
+startActivity(intent), receive data sent thru an intent: getIntent(), getStringExtra(name). 
+ \item Accessing View elements of an activity through findViewById(R.id.<id\_name>) method.
+\end{enumerate}
+
+\textbf{Next step:} getting two apps to communicate. I might want to understand intents and intent filters properly before that.
 
 \pagebreak
 \subsection*{To Dos:}

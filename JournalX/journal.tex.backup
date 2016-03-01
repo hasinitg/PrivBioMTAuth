@@ -19,9 +19,9 @@ My Journal on My Research Work}
 \section*{RahasNym}
 Until 12th Feb, I mostly worked on improving the paper to be submitted to SACMAT.
 
+\pagebreak
+
 \section*{Biometrics Research Work}
-
-
 \subsection*{Android Development:}
 \subsubsection*{Wed Jan 20}
 I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
@@ -54,6 +54,86 @@ https://www.howtoforge.com/tutorial/kvm-on-ubuntu-14.04/
 
 It seems that now I need to relogin to enable KVM for my user accounts. 
 
+\subsubsection*{Feb 24:}
+Since I had issues in running the hello world app in the emulator due to KVM enabling issue, I thought f checking my bios to see if KVM is enabled.\\
+Before accessing the bios, I needed to backup my important files in bitbucket. Therefore, I spent sometime backing up my files.\\
+Then I spent some fair amount time accessing the bios. First I tried F2 key as mentioned in many online articles which didn't work. Then F12 worked. 
+Intel VT is enabled in the bios.\\
+Then I checked the VMWare settings. So the problem was VT was not enabled in VMWare. When I enabled it, the emulator ran. But it was damn slow.\\
+
+I searched about how to make the android studio fast. I got some answers:\\
+1. http://www.viralandroid.com/2015/08/how-to-make-android-studio-fast.html\\
+This suggested either to test in real device or in genymotion emulator: https://www.genymotion.com/download/\\
+
+\textbf{Option 1: } I tried to install genymotion emulator, but it requires VirtualBox to run. Hmmmm. VirtualBox on VMWare!. So I thought of 
+first running in the real device and see because I anyway have to install it in a real device.
+
+\textbf{Option 2: } Option 2 is to install genymotion+virtual box on windows, compile the project in Linux and run it in the genymotion 
+running in Windows. https://dzone.com/articles/genymotion-simply-best-android \\
+
+I tried to install it in my phone (I upgraded my phone too for this reason. My phone is running Android 4.4.2). But somehow it didn't get installed.
+I was so tired by then and went to sleep.\\
+
+\textbf{TODO:}
+Read how to make android studio faster:\\
+1. https://dzone.com/articles/how-speed-android-studio\\
+2. http://www.codeproject.com/Articles/803935/How-To-Make-Android-Studio-Really-Fast-On-A-Window\\
+
+
+\subsubsection*{Feb 25:}
+I continued my attempt in installing in the real device. But I still couldn't.
+I found that there is no apk built when I run the project. So the studio complains that no local path exists. So I need to understand what the heck 
+is going through the Android build process. See how slow my progress is! :(\\
+
+Oh... Android studio integrated gradle build is a crap!. It didn't even complain that the build was not successful. That is why there was no apk 
+local path existed.\\
+
+I ran gradle build from command line according to this tutorial: http://developer.android.com/training/basics/firstapp/running-app.html\\
+Steps: \\
+1. invoke the assembleDebug build task using the Gradle wrapper script (gradlew assembleRelease).\\
+chmod +x gradlew\\
+./gradlew assembleDebug\\
+
+I got an error when running ./gradlew: ``libz.so.1: cannot open shared object file'', followed by: ``Exception in thread "png-cruncher\_4" 
+java.lang.RuntimeException: Timed out while waiting for slave aapt process, try setting environment variable SLAVE\_AAPT\_TIMEOUT to a value bigger 
+than 5 seconds''.\\
+It seemed that both errors are due to not installing the library: zlib1g as mentioned in: 
+http://stackoverflow.com/questions/21256866/libz-so-1-cannot-open-shared-object-file\\
+After doing: sudo apt-get install zlib1g:i386, the gradle gave me: BUILD SUCCESSFUL Total time: 1 mins 16.537 secs. :)\\
+
+2. Then I wanted to deploy the app in my phone also from the command line (mentioned in the same above tutorial).\\
+Added android-sdk/platform-tools to PATH and ran: adb install app/build/outputs/apk/app-debug.apk\\
+Yeyyy... I got my first android app installed on my phone! :) Now the floor is mine to do cool stuff.\\
+
+Command line worked so smooth compared to crappy android studio. \\
+\textbf{Commands to build and run in the phone:}\\
+./gradlew assembleDebug\\
+adb install -r app/build/outputs/apk/app-debug.apk\\
+
+I went step further, I editted my app and tried to run again in my app. First I failed because it was already installed. Solution was to install it 
+with the -r option. :)
+
+\subsubsection*{29th Feb:}
+I didn't do much. I re-organized my research journal and went to apt with the hope of working more. But I was so tired and went to sleep.
+
+\subsubsection*{1st March:}
+Learned many new things. At the end of the day, I have an app running in my phone with two activities linked.\\
+\begin{enumerate}
+ \item How to add a new activity and what are the other parts of an android project related with an activity: AndroidManifest.xml, the activity.xml 
+under the res/layout folder, strings.xml file.
+ \item How to change the layout of an activity and use layout weight. 
+ \item How layouts are related with parent-layout (as indicated in the activity_layout.xml and AndroidManifest.xml).
+ \item View and ViewGroups.
+ \item How to add a method for a view to be responsive. Method should satisfy following:\\
+ Be public. Have a void return value. Have a View as the only parameter.
+ \item Intent: create Intent : newIntent(), add name-value pairs to it: intent.putExtras(name, value), 
+ \item How to start an activity from one activity, send data to that activity and display that data by accessing View elements through 
+findViewById method which uses: R.id.<id_name>.
+\end{enumerate}
+
+\textbf{Next step:} getting two apps to communicate.
+
+\pagebreak
 \subsection*{To Dos:}
 \begin{enumerate}
  \item Study the mobile phone's security architecture and find about the latest work in the secure architecture/trust zone.
@@ -90,9 +170,6 @@ This should be a standard mechanism, that any app resides in user's device-commu
 \textbf{TODO:}\\
 See this could be developed as a service in Android which could be invoked by other apps.\\
 
-\textbf{IDEA:}\\
-I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
-
 \textbf{Contributions of our work:}
 \begin{itemize}
  \item Secure protocol for remote authentication using biometrics. Preserves good properties of biometrics (i.e: uniqueness). Avoids non-desirable 
@@ -105,11 +182,20 @@ properties of biomertics (i.e: non-repeatability, non-revocability).
 I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
 down different aspects.\\
 
+
+\pagebreak
 \section*{New Ideas:}
+\subsection*{PrivBioAuh and PrivBioGeneAuth}
+I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
+
 \subsection*{How to address the security issues in health care data collected from IoT devices using biometrics.}
 Professor suggests to see how to generate keys from biometrics to protect the medical data.
 
 \subsection*{Fuzzy Zero Knowledge Scheme:}
+\subsubsection*{Feb 23:}
+I worked on the research the whole afternoon after lunch - but on an apparently useless one. I tried to comeup with a fuzzy zero-knowledge protocol 
+based on the ideas from fuzzy identity based encryption. But I had no luck.
+
 I need to look at fuzzy commitment and fuzzy vault before talking about this with anyone else.\\
 Professor mentioned we can talk with Professor Atallah or Italian professors.\\
 
@@ -123,6 +209,8 @@ But the circuits can be used only once, which is a problem.\\
 \textbf{REFERENCES:}\\
 This is a very nice project website - a resovair of resources. http://www.mightbeevil.org/ and http://www.mightbeevil.org/mobile/
 
+
+\pagebreak
 \section*{Meetings with the advisor:}
 \subsection*{Feb 25:}
 \begin{itemize}
@@ -139,70 +227,5 @@ very specialized area.
 \item Professor gave me the two recommendations for the communication requirement and the travel grant application.
 
 \end{itemize}
-
-\section*{Feb 23:}
-I worked on the research the whole afternoon after lunch - but on an apparently useless one. I tried to comeup with a fuzzy zero-knowledge protocol 
-based on the ideas from fuzzy identity based encryption. But I had no luck.
-
-\section*{Feb 24:}
-\subsection*{Android Dev:}
-Since I had issues in running the hello world app in the emulator due to KVM enabling issue, I thought f checking my bios to see if KVM is enabled.\\
-Before accessing the bios, I needed to backup my important files in bitbucket. Therefore, I spent sometime backing up my files.\\
-Then I spent some fair amount time accessing the bios. First I tried F2 key as mentioned in many online articles which didn't work. Then F12 worked. 
-Intel VT is enabled in the bios.\\
-Then I checked the VMWare settings. So the problem was VT was not enabled in VMWare. When I enabled it, the emulator ran. But it was damn slow.\\
-
-I searched about how to make the android studio fast. I got some answers:\\
-1. http://www.viralandroid.com/2015/08/how-to-make-android-studio-fast.html\\
-This suggested either to test in real device or in genymotion emulator: https://www.genymotion.com/download/\\
-
-\subsubsection*{Option 1: } I tried to install genymotion emulator, but it requires VirtualBox to run. Hmmmm. VirtualBox on VMWare!. So I thought of 
-first running in the real device and see because I anyway have to install it in a real device.
-
-\subsubsection*{Option 2: } Option 2 is to install genymotion+virtual box on windows, compile the project in Linux and run it in the genymotion 
-running in Windows. https://dzone.com/articles/genymotion-simply-best-android \\
-
-I tried to install it in my phone (I upgraded my phone too for this reason. My phone is running Android 4.4.2). But somehow it didn't get installed.
-I was so tired by then and went to sleep.\\
-
-\subsection*{TODO:}
-Read how to make android studio faster:\\
-1. https://dzone.com/articles/how-speed-android-studio\\
-2. http://www.codeproject.com/Articles/803935/How-To-Make-Android-Studio-Really-Fast-On-A-Window\\
-
-\section*{Feb 25:}
-\subsection*{Android Dev:}
-I continued my attempt in installing in the real device. But I still couldn't.
-I found that there is no apk built when I run the project. So the studio complains that no local path exists. So I need to understand what the heck 
-is going through the Android build process. See how slow my progress is! :(\\
-
-Oh... Android studio integrated gradle build is a crap!. It didn't even complain that the build was not successful. That is why there was no apk 
-local path existed.\\
-
-I ran gradle build from command line according to this tutorial: http://developer.android.com/training/basics/firstapp/running-app.html\\
-Steps: \\
-1. invoke the assembleDebug build task using the Gradle wrapper script (gradlew assembleRelease).\\
-chmod +x gradlew\\
-./gradlew assembleDebug\\
-
-I got an error when running ./gradlew: ``libz.so.1: cannot open shared object file'', followed by: ``Exception in thread "png-cruncher_4" 
-java.lang.RuntimeException: Timed out while waiting for slave aapt process, try setting environment variable SLAVE\_AAPT\_TIMEOUT to a value bigger 
-than 5 seconds''.\\
-It seemed that both errors are due to not installing the library: zlib1g as mentioned in: 
-http://stackoverflow.com/questions/21256866/libz-so-1-cannot-open-shared-object-file\\
-After doing: sudo apt-get install zlib1g:i386, the gradle gave me: BUILD SUCCESSFUL Total time: 1 mins 16.537 secs. :)\\
-
-2. Then I wanted to deploy the app in my phone also from the command line (mentioned in the same above tutorial).\\
-Added android-sdk/platform-tools to PATH and ran: adb install app/build/outputs/apk/app-debug.apk\\
-Yeyyy... I got my first android app installed on my phone! :) Now the floor is mine to do cool stuff.\\
-
-Command line worked so smooth compared to crappy android studio. \\
-
-I went step further, I editted my app and tried to run again in my app. First I failed because it was already installed. Solution was to install it 
-with the -r option. :)
-
-\subsection*{Meeting with Professor:}
-I spent more than hour in the morning noting down which things I will discuss with the professor.
-
 
 \end{document}
