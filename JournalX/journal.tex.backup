@@ -40,15 +40,15 @@ http://developer.android.com/tools/building/configuring-gradle.html
 \begin{enumerate}
  \item Get two activities in an app communicate. DONE. 1st March.
  \item Get two apps communicate and return result. DONE. 14th March.
- \item Get an app to communicate with a remote REST service.
+ \item Get an app to communicate with a remote REST service. DONE. 17th March.
  \item Integrate ZKP.
  \item Run perf test for ZKP with a remote party with static identity.
+ \item Look at the new trend in replacing passwords with FRT and re-write the introduction of the journal.
+ \item Send the update to Prof: Perf results + introduction re-written.
  \item How to access TrustZone.
  \item Look at secure coding of android applications (downloaded).
  \item Biometrics work follow.
 \end{enumerate}
-
-
 
 \subsubsection*{Wed Jan 20}
 I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
@@ -189,11 +189,15 @@ a target by name (implicit intents) can activate a component only if it can pass
 
 \subsubsection*{14thMarch:}
 - I created a new project with two app-modules : authapp and clientapp and started adding the basic logic to it.\\
-- I made the client app to invoke the auth app, by passing the SP URL to it.\\
-Auth app printed the passed infor and returned the session id to the client app which the client app printed in a toast.
+Actually, even this simple thing took me several hours to get right. Thing is, when I create a new android  project, the app in that project is named 
+just 'app', and doesn't hold the name that I give at the creation time. Although I tried renaming etc, didn't work. So, what I did was: create the 
+android project, leave the default app that gets created, and create two new modules for my use with the names that I want.\\
+
+- I made the client app to invoke the auth app, passing the SP URL to it.\\
+Auth app printed the passed infor and returned the session id to the client app which the client app printed in a toast.\\
  \textbf{Troubles:}\\
  First the app crashed because the name of the method written for the button didn't match.\\
- Then I learned to debug the app while it running in the phone.\\
+ Then I learned to debug the app while it is running in the phone.\\
  Then I couldn't invoke the second app because the way I have declared the data field in the intent filter didn't match.\\
  Everything worked after I removed the data field from the intent filter.
  
@@ -228,8 +232,8 @@ I followed these tutorials to learn. It was very easy. You only need web.xml.\\
 \end{itemize}
 
 \textbf{Troubles:}\\
-I got an issue of not being able to access the REST service. It was due to the fact that in servlet folter pattern, we need to specify the path 
-ignoring the path Until the webapp's name.\\
+I got an issue of not being able to access the REST service. It was due to the fact that in servlet filter pattern, we need to specify the path 
+ignoring the path until the webapp's name.\\
 
 Oh god, now I have basic REST service written in jersey to play around with.\\
 
@@ -238,14 +242,96 @@ This article gives a very good history: https://packetzoom.com/blog/which-androi
 But it doesn't mention about async http client. Also, the quora thread doesn't mention about it: 
 https://www.quora.com/What-is-the-best-library-to-make-HTTP-calls-from-Java-Android
 
-From the first article abobe, it seems that OkHttp is promising, but it seems that it requires some additional things to get REST, json, images etc 
+From the first article above, it seems that OkHttp is promising, but it seems that it requires some additional things to get REST, json, images etc 
 working such as Retrofit..\\
 
-The reason I didn't go with Volley (although it is from google) is that it has very few number of threads as per the first article above. But the 
-plus point is that it is said to work with all types of devices including low power devices.\\
+The reason I didn't go with Volley: https://developer.android.com/training/volley/index.html (although it is from google) is that it has very few 
+number of threads as per the first article above. But the plus point is that it is said to work with all types of devices including low power 
+devices.\\
 
 I thought of going with async http client as it is based on Apache HTTP client, but the only problem is that it says it is compatible with Android 
-API 23 and higher. Let's see. 
+API 23 and higher. Let's see. If problematic, I will switch to OkHttp or Volley.\\
+
+\textbf{HTTPS clients with Async Client:}\\
+http://stackoverflow.com/questions/21833804/how-to-make-https-calls-using-asynchttpclient\\
+
+\textbf{Troubles and Solutions:}
+\begin{enumerate}
+ \item The first problem I got was: the dependency for the async http client was not resolved by Android studio, although I could build the project 
+using command line gradle. I tried several things: File->Invalidate Cache and Restart etc. Only thing which worked was: moving the entry for async 
+http client one entry up in the gradle script. It was this stackoverflow thread which helped me: 
+http://stackoverflow.com/questions/19508649/android-studio-says-cannot-resolve-symbol-but-project-compiles\\
+
+ \item There was another wired issue: I couldn't assign response's values to local variable defined in onAuthButtonClicked method of AuthActivity of 
+AuthApp, because the response received in the onSuccess method of an inner class of async http client. I had to declare the variable as final and had 
+to make it an array too. Related stackoverflow thread: 
+http://stackoverflow.com/questions/27558425/local-variable-access-to-inner-class-needs-to-be-declared-final
+
+ \item So, finally, I was able to build the mobile app with async http client. But I wanted to return the response as JSON. Actually, Jersy has very 
+good support for object to json conversion. This tutorial is a good starter: 
+http://www.mkyong.com/webservices/jax-rs/json-example-with-jersey-jackson/.
+
+\item Troubles continues: I couldn't invoke the rest service from the mobile app. I left Hicks undergrad, after my first try. \\
+Came home, did exercise, cooked, ate, talked with amma, thaththa and Thil and tried again.\\
+
+I could access the service through host (windows) browser, but not from android. I debuged, and got the exception as: connection time out. Actually, 
+in order to debug, I had to avoid the normal route of client app invoking the auth app, and implement AuthActivity invocation from the mainactivity 
+of the Auth app itself,
+Silly me 
+didn't realize that the IP of VM is not visible to outside. I went to sleep thinking it might be the reason that async HTTP client is said to be 
+compatible only higher than API 23 or something\\
+
+\textbf{Opportunity:} Prof. asked me to write a proposal for PRF. I would like to write it. I need to steal some good time from my busy schedule to 
+write down one of my ideas for the proposal. I am thinking of writing the GC idea for biometrics authentication which could avoid some of the 
+drawbacks in our current method. I need to read the previous (NDSS paper) and get an idea where things stand today. May be I should spend the 
+research three days of next week for writing the proposal (Sunday, Tuesday and Thursday).
+
+\subsubsection*{17th March}
+Today morning I got up at 7.15 and thought that I will do only PL, cause I spent whole day yesterday on research proj. But I missed the bus at 8am so 
+I thought I will try to connect mobile app to phone till next bus. \\
+
+The journey:\\
+\begin{enumerate}
+ \item First I tried to access the tomcat home page from phone and ipad browsers, which failed.
+ \item From this thread (http://stackoverflow.com/questions/9887621/accessing-localhost-of-pc-from-usb-connected-android-mobile-device), I tried to 
+make a hotspot in phone and tried to connect to it from laptop. But, as soon as the hotspot is made, the normal internet connection in phone goes 
+off. Seems like it should be made using the data connection in the phone. So that option is out.
+\item From some other reading, I realized that firewall may be blocking. Then I tried to disable the firewall and tried to access the tomcat home of 
+server in VM Ubuntu, from phone-no hope. Silly me didn't try to first access a server in host OS and see at least if it works.
+\item Then I added an inbound rule in firewall to allow connections on port 8080, since I am scared of disabling firewall. It didn't work either.
+\item I installed tomcat on windows and tried to access its home page from phone browser. It worked only after disabling the firewall. But still no 
+luck accessing the tomcata in Ubuntu VM.
+\item Then my understanding improved and I checked VM settings. The networking is enabled through NAT, which doesn't make VM visible to outside, that 
+is why the phone couldn't access the tomcat running in VM. Hmmmmmmmmmmmmmmmmmmmmmmmmm.
+\item The solution was to make VM settings such that network mode is: bridge. But so so badly, for some mysterious reason, all the real network 
+adaptors are not made available to VM Ware settings. I do not know if it is done by Windows 8 or if it is due to some other reason.\\
+
+I should check : just like enabling virtualization for CPU, whether I need to enable something from bios. But bridging for VMs seems to be something 
+that trivially work for others, but not for me.\\
+
+Following are some links that I found useful when searching to get over this issue:\\
+- Good article: https://pibytes.wordpress.com/2012/11/16/vmware-workstation-networking-basics/\\
+- Threads: http://askubuntu.com/questions/629457/i-cant-connect-to-virtual-ubuntu-server-from-smartphone, 
+http://askubuntu.com/questions/237461/how-do-i-access-ubuntu-server-running-in-virtualbox-from-outside\\
+
+As this thread (http://superuser.com/questions/810097/vmware-player-bridged-networking-no-longer-works-host-win8-1-guest-mint-17-l) says: lot of 
+Virtual Box related adaptors are made available, which I unchecked in Bride settings, but still no luck.\\
+
+As this thread (http://stackoverflow.com/questions/4601762/how-to-connect-wireless-network-adapter-to-vmware-workstation) suggests, I also tried 
+making a loop back, as described here: (https://4sysops.com/archives/how-to-install-loopback-adapter-in-windows-8/). Still no luck.\\
+
+\item My final fall back was to use same old NAT for VM and use port forwarding, as suggested in this thread: 
+http://stackoverflow.com/questions/10355702/connecting-to-apache-web-server-that-is-running-on-a-vmware-from-any-device-in-t
+
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+ 
+
 
 \pagebreak
 \subsection*{To Dos:}
@@ -295,6 +381,18 @@ properties of biomertics (i.e: non-repeatability, non-revocability).
 \subsubsection*{Feb 20}
 I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
 down different aspects.\\
+
+\subsubsection*{16th March}
+I found these articles which talks about Amazon, Alibaba and Google adopting selfies or FRT to make payments instead of password. But I think it is 
+bad. Coz now, instead of passwords, you store templates to pattern match, which has higher risk than passwords, coz passwords can change and you can 
+use different passwords at different SPs unlike your frt template.\\
+
+\begin{enumerate}
+ \item https://thestack.com/security/2016/03/15/amazon-wants-to-replace-passwords-with-selfies-and-videos/
+ \item https://thestack.com/cloud/2016/03/03/google-hands-free-facial-recognition-trial-san-francisco/
+ \item https://thestack.com/security/2015/03/16/alibaba-demonstrates-facial-recognition-payment-system-at-cebit/
+
+\end{enumerate}
 
 
 \pagebreak
