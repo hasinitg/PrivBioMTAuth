@@ -1,9 +1,15 @@
 package org.biomt.auth.authapp;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,5 +39,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onMainAuthButtonClicked(View v){
+        Intent authIntent = new Intent(this, AuthActivity.class);
+        authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://192.168.211.153:8080/abcbank/account");
+
+        startActivityForResult(authIntent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String sessionId = data.getStringExtra("Session_Id");
+
+        Toast myToast = Toast.makeText(getApplicationContext(),
+                "Auth Success_"+sessionId, Toast.LENGTH_LONG);
+        myToast.show();
     }
 }

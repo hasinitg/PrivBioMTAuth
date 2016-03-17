@@ -9,17 +9,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-public class AuthActivity extends AppCompatActivity {
+import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+
+
+public class AuthActivity extends AppCompatActivity {
+    private  String spURL = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
         Intent authRequest = getIntent();
-        String SP_URL = authRequest.getStringExtra(AuthConstants.SP_URL_NAME);
+        spURL = authRequest.getStringExtra(AuthConstants.SP_URL_NAME);
+
         EditText identityText = (EditText) findViewById(R.id.identityText);
-        identityText.setText(SP_URL);
+        identityText.setText(spURL);
 
         //perform ZKP with SP.
 
@@ -48,9 +57,32 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     public void onAuthButtonClicked(View v){
-        Intent resultIntent = new Intent(AuthConstants.RESULT_AUTH_ZKP);
-        resultIntent.putExtra("Session_Id", "1223456hgdfgh");
-        setResult(Activity.RESULT_OK,resultIntent);
-        finish();
+        AuthRESTClient client = new AuthRESTClient();
+        final String[] sessionId = {null};
+        client.get(spURL, null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                //super.onSuccess(statusCode, headers, response);
+                try {
+                    sessionId[0] = (String) response.get("sessionId");
+                    Intent resultIntent = new Intent(AuthConstants.RESULT_AUTH_ZKP);
+                    resultIntent.putExtra("Session_Id", sessionId[0]);
+                    setResult(Activity.RESULT_OK, resultIntent);
+                    finish();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Intent resultIntent = new Intent(AuthConstants.RESULT_AUTH_ZKP);
+                resultIntent.putExtra("Session_Id", "Error");
+                setResult(Activity.RESULT_OK,resultIntent);
+                finish();
+            }
+        });
+
     }
 }
