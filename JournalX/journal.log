@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  3 MAR 2016 08:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  16 MAR 2016 16:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -299,59 +299,66 @@ Overfull \hbox (250.66052pt too wide) in paragraph at lines 33--35
  []
 
 
-Overfull \hbox (35.41925pt too wide) in paragraph at lines 51--57
+Overfull \hbox (15.93462pt too wide) in paragraph at lines 35--36
+[]\OT1/cmr/m/n/10.95 Intent Class spec: http://developer.android.com/reference/
+android/content/Intent.html 
+ []
+
+
+Overfull \hbox (23.05225pt too wide) in paragraph at lines 36--37
+[]\OT1/cmr/m/n/10.95 Android Se-cu-rity Tips: http://developer.android.com/trai
+ning/articles/security-tips.html 
+ []
+
+
+Overfull \hbox (35.41925pt too wide) in paragraph at lines 54--60
 \OT1/cmr/m/n/10.95 I in-stalled An-droid stu-dio. I ref-er-enced this good tu-t
 o-rial: http://www.androidauthority.com/first-
  []
 
 
-Overfull \hbox (1.09122pt too wide) in paragraph at lines 51--57
+Overfull \hbox (1.09122pt too wide) in paragraph at lines 54--60
 \OT1/cmr/m/n/10.95 how-to-install-android-platform-tools-on-ubuntu-14-04-64-bit
  It was be-cause An-droid needs
  []
 
 
-Overfull \hbox (130.75655pt too wide) in paragraph at lines 51--57
+Overfull \hbox (130.75655pt too wide) in paragraph at lines 54--60
 \OT1/cmr/m/n/10.95 Here are some tips I found to make the em-u-la-tor fast: htt
 p://developer.android.com/tools/devices/emulator.html#vm-
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 63--67
+Underfull \hbox (badness 10000) in paragraph at lines 66--70
 
  []
 
 
-Overfull \hbox (33.21126pt too wide) in paragraph at lines 68--71
+Overfull \hbox (33.21126pt too wide) in paragraph at lines 71--74
 \OT1/cmr/m/n/10.95 https://software.intel.com/blogs/2012/03/12/how-to-start-int
 el-hardware-assisted-virtualization-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--87
+Underfull \hbox (badness 10000) in paragraph at lines 85--90
 
  []
 
 
-Overfull \hbox (98.4552pt too wide) in paragraph at lines 88--91
+Overfull \hbox (98.4552pt too wide) in paragraph at lines 91--94
 \OT1/cmr/m/n/10.95 This sug-gested ei-ther to test in real de-vice or in geny-m
 o-tion em-u-la-tor: https://www.genymotion.com/download/ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--91
+Underfull \hbox (badness 10000) in paragraph at lines 91--94
 
  []
 
 [3]
-Overfull \hbox (42.3871pt too wide) in paragraph at lines 95--97
+Overfull \hbox (42.3871pt too wide) in paragraph at lines 98--100
 \OT1/cmr/m/n/10.95 in Linux and run it in the geny-mo-tion run-ning in Win-dows
 . https://dzone.com/articles/genymotion-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 95--97
-
  []
 
 
@@ -360,138 +367,263 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--100
  []
 
 
-Overfull \hbox (14.19067pt too wide) in paragraph at lines 101--105
+Underfull \hbox (badness 10000) in paragraph at lines 101--103
+
+ []
+
+
+Overfull \hbox (14.19067pt too wide) in paragraph at lines 104--108
 \OT1/cmr/m/n/10.95 2. http://www.codeproject.com/Articles/803935/How-To-Make-An
 droid-Studio-Really-Fast-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--105
+Underfull \hbox (badness 10000) in paragraph at lines 104--108
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--111
+Underfull \hbox (badness 10000) in paragraph at lines 111--114
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
+Underfull \hbox (badness 10000) in paragraph at lines 115--117
 
  []
 
 
-Overfull \hbox (176.44249pt too wide) in paragraph at lines 115--120
+Overfull \hbox (176.44249pt too wide) in paragraph at lines 118--123
 []\OT1/cmr/m/n/10.95 I ran gra-dle build from com-mand line ac-cord-ing to this
  tu-to-rial: http://developer.android.com/training/basics/firstapp/running-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--120
+Underfull \hbox (badness 10000) in paragraph at lines 118--123
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--127
+Underfull \hbox (badness 10000) in paragraph at lines 124--130
 
  []
 
 [4]
-Overfull \hbox (14.26059pt too wide) in paragraph at lines 128--131
+Overfull \hbox (14.26059pt too wide) in paragraph at lines 131--134
 \OT1/cmr/m/n/10.95 Added android-sdk/platform-tools to PATH and ran: adb in-sta
 ll app/build/outputs/apk/app-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--131
+Underfull \hbox (badness 10000) in paragraph at lines 131--134
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--136
+Underfull \hbox (badness 10000) in paragraph at lines 135--139
 
  []
 
 
-Overfull \hbox (44.95227pt too wide) in paragraph at lines 144--147
+Overfull \hbox (44.95227pt too wide) in paragraph at lines 147--150
 \OT1/cmr/m/n/10.95 two ac-tiv-i-ties linked (http://developer.android.com/train
 ing/basics/firstapp/starting-activity.html). 
  []
 
-
-Overfull \hbox (1.54756pt too wide) in paragraph at lines 154--156
-[]\OT1/cmr/m/n/10.95 Intent: cre-ate In-tent : newIn-tent(), add name-value pai
-rs to it: in-tent.putExtra(name,
- []
-
-
-Overfull \hbox (6.0676pt too wide) in paragraph at lines 156--157
-[]\OT1/cmr/m/n/10.95 Accessing View el-e-ments of an ac-tiv-ity through find-Vi
-ew-ById(R.id.<id[]name>) method. 
- []
-
-[5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 181--188
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 170--173
 
  []
 
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ” in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--193
+Overfull \hbox (33.21135pt too wide) in paragraph at lines 174--179
+\OT1/cmr/m/n/10.95 - Fol-low-ing is from: http://developer.android.com/guide/to
+pics/manifest/manifest-intro.html#ifs 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--179
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 194--197
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--182
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 200.
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ” in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ” in font cmr10!
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 200.
+Underfull \hbox (badness 10000) in paragraph at lines 183--186
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Overfull \hbox (30.96461pt too wide) in paragraph at lines 205--206
+[]\OT1/cmr/bx/n/10.95 Then I found this good and com-plete tu-to-rial (http://p
+rogrammerguru.com/android-
+ []
+
+
+Overfull \hbox (40.08037pt too wide) in paragraph at lines 205--206
+\OT1/cmr/bx/n/10.95 tutorial/android-restful-webservice-tutorial-how-to-call-re
+stful-webservice-in-android-
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 207--209
 
  []
 
-[8]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 210.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 210.
+
 Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 227--229
+Underfull \hbox (badness 10000) in paragraph at lines 219--221
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--236
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
-[9] [10] (./journal.aux) ) 
+[7]
+Overfull \hbox (123.49632pt too wide) in paragraph at lines 226--227
+[]\OT1/cmr/m/n/10.95 (Not so good, but it has client code.) http://www.vogella.
+com/tutorials/REST/article.html#installation[]jersey 
+ []
+
+
+Overfull \hbox (32.05557pt too wide) in paragraph at lines 227--228
+[]\OT1/cmr/m/n/10.95 (Jersey mod-ules and de-pen-den-cies:) https://jersey.java
+.net/documentation/latest/modules-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--233
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
+
+ []
+
+
+Overfull \hbox (7.44833pt too wide) in paragraph at lines 236--240
+\OT1/cmr/m/n/10.95 about it: https://www.quora.com/What-is-the-best-library-to-
+make-HTTP-calls-from-Java-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--243
+
+ []
+
+
+Overfull \hbox (14.6256pt too wide) in paragraph at lines 244--247
+[]\OT1/cmr/m/n/10.95 The rea-son I didn't go with Vol-ley: https://developer.an
+droid.com/training/volley/index.html
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--250
+
+ []
+
+
+Overfull \hbox (13.31868pt too wide) in paragraph at lines 251--253
+\OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/21833804/how-to-make-http
+s-calls-using-asynchttpclient 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--253
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 277--284
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 285--289
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 290--293
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 303--305
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 313--314
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 323--325
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 328--332
+
+ []
+
+[11] [12] (./journal.aux) ) 
 Here is how much of TeX's memory you used:
  2945 strings out of 495028
  39435 string characters out of 6181498
- 102675 words of memory out of 5000000
+ 103675 words of memory out of 5000000
  6110 multiletter control sequences out of 15000+600000
  10707 words of font info for 40 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,6n,26p,248b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on journal.pdf (10 pages, 118467 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on journal.pdf (12 pages, 126466 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

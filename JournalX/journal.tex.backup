@@ -23,6 +23,33 @@ Until 12th Feb, I mostly worked on improving the paper to be submitted to SACMAT
 
 \section*{Biometrics Research Work}
 \subsection*{Android Development:}
+
+\subsubsection*{Some useful links for study android dev:}
+\begin{enumerate}
+ \item Starting another activity: http://developer.android.com/training/basics/firstapp/starting-activity.html
+ \item Intents and intent filters: http://developer.android.com/guide/components/intents-filters.html
+ \item Interactions between apps: http://developer.android.com/training/basics/intents/index.html
+ \item Layouts: http://developer.android.com/guide/topics/ui/declaring-layout.html
+ \item Build System: http://developer.android.com/sdk/installing/studio-build.html, 
+http://developer.android.com/tools/building/configuring-gradle.html
+ \item Intent Class spec: http://developer.android.com/reference/android/content/Intent.html
+ \item Android Security Tips: http://developer.android.com/training/articles/security-tips.html
+\end{enumerate}
+
+\subsubsection*{RoadMap:}
+\begin{enumerate}
+ \item Get two activities in an app communicate. DONE. 1st March.
+ \item Get two apps communicate and return result. DONE. 14th March.
+ \item Get an app to communicate with a remote REST service.
+ \item Integrate ZKP.
+ \item Run perf test for ZKP with a remote party with static identity.
+ \item How to access TrustZone.
+ \item Look at secure coding of android applications (downloaded).
+ \item Biometrics work follow.
+\end{enumerate}
+
+
+
 \subsubsection*{Wed Jan 20}
 I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
 However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. \\
@@ -117,21 +144,108 @@ with the -r option. :)
 I didn't do much. I re-organized my research journal and went to apt with the hope of working more. But I was so tired and went to sleep.
 
 \subsubsection*{1st March:}
-Learned many new things. At the end of the day, I have an app running in my phone with two activities linked.\\
+Learned many new things. At the end of the day, I have an app running in my phone with two activities linked 
+(http://developer.android.com/training/basics/firstapp/starting-activity.html).
 \begin{enumerate}
  \item How to add a new activity and what are the other parts of an android project related with an activity: AndroidManifest.xml, the activity.xml 
 under the res/layout folder, strings.xml file.
  \item How to change the layout of an activity and use layout weight. 
- \item How layouts are related with parent-layout (as indicated in the activity_layout.xml and AndroidManifest.xml).
+ \item How layouts are related with parent-layout (as indicated in the activity\_layout.xml and AndroidManifest.xml).
  \item View and ViewGroups.
  \item How to add a method for a view to be responsive. Method should satisfy following:\\
  Be public. Have a void return value. Have a View as the only parameter.
- \item Intent: create Intent : newIntent(), add name-value pairs to it: intent.putExtras(name, value), 
- \item How to start an activity from one activity, send data to that activity and display that data by accessing View elements through 
-findViewById method which uses: R.id.<id_name>.
+ \item Intent: \\
+ create Intent : newIntent(), \\
+ add name-value pairs to it: intent.putExtra(name, value),\\
+ start activity passing the intent: 
+ startActivity(intent), \\
+ receive data sent thru an intent: getIntent(), getStringExtra(name). 
+ \item Accessing View elements of an activity through:\\
+ findViewById(R.id.<id\_name>)  method.
 \end{enumerate}
 
-\textbf{Next step:} getting two apps to communicate.
+\textbf{Next step:} getting two apps to communicate. I might want to understand intents and intent filters properly before that.
+
+\subsubsection*{3rd March:}
+I learnt how to invoke an app from one app that accepts an intent and return a result.\\
+However, I could not implement. I am writing down notes while I am reading a tutorial which slows me down. IDK\\
+Anyway, below is something I can modify to abstract the high level idea and metion in the implementation details of the journal.\\
+
+\textbf{Intents:}\\
+- Following is from: http://developer.android.com/guide/topics/manifest/manifest-intro.html\#ifs\\
+The core components of an application (its activities, services, and broadcast receivers) are activated by intents. An intent is a bundle of 
+information (an Intent object) describing a desired action — including the data to be acted upon, the category of component that should perform the 
+action, and other pertinent instructions. \\
+
+- Android locates an appropriate component to respond to the intent, launches a new instance of the 
+component if one is needed, and passes it the Intent object.\\
+
+- Components advertise their capabilities — the kinds of intents they can respond to — through intent filters. Since the Android system must learn 
+which intents a component can handle before it launches the component, intent filters are specified in the manifest as <intent-filter> elements. A 
+component may have any number of filters, each one describing a different capability.\\
+
+- An intent that explicitly names a target component will activate that component; the filter doesn't play a role. But an intent that doesn't specify 
+a target by name (implicit intents) can activate a component only if it can pass through one of the component's filters. 
+
+\subsubsection*{14thMarch:}
+- I created a new project with two app-modules : authapp and clientapp and started adding the basic logic to it.\\
+- I made the client app to invoke the auth app, by passing the SP URL to it.\\
+Auth app printed the passed infor and returned the session id to the client app which the client app printed in a toast.
+ \textbf{Troubles:}\\
+ First the app crashed because the name of the method written for the button didn't match.\\
+ Then I learned to debug the app while it running in the phone.\\
+ Then I couldn't invoke the second app because the way I have declared the data field in the intent filter didn't match.\\
+ Everything worked after I removed the data field from the intent filter.
+ 
+\subsubsection*{15thMarch:}
+I couldn't do much. But I searched for some good tutorial to learn how to invoke a REST service from mobile app.\\
+
+\textbf{Then I found this good and complete tutorial 
+(http://programmerguru.com/android-tutorial/android-restful-webservice-tutorial-how-to-call-restful-webservice-in-android-part-3) which uses 
+async Http client (http://loopj.com/android-async-http/) which is based on the apache Http client.}
+
+I also drew the sequence diagrams for enrollment and authentication using ZKP, before starting implementing. Then I realized that we need an 
+additional step to allow users to obtain:\\
+\begin{itemize}
+ \item different IDTs with different To fields, with same commitment. For this, user just have to send the IDT issued by the IDP at the enrollment 
+time with To field having IDP name and carry out ZKP to prove that the token belongs to him/her.
+ \item different IDTs with different To fields and different commitments to achieve unlinkability. For this, user needs to send a biometrics capture, 
+IDP runs it trough BID generator and create a new commitment. \textbf{We follow this approach because we do not store BID anywhere.}.
+\end{itemize}
+
+\subsubsection*{16thMarch:}
+I started writing a REST service to be invoked by the android app. \\
+
+I thought of going for Jersey rather than CXF because, jersey is said to be more light weight and meant for REST, compared with CXF which is more 
+focused on SOAP.\\
+
+I followed these tutorials to learn. It was very easy. You only need web.xml.\\
+\begin{itemize}
+ \item (2015) http://tutorial-academy.com/restful-webservice-jersey-maven/
+ \item (2011) http://www.mkyong.com/webservices/jax-rs/jersey-hello-world-example/
+ \item (Not so good, but it has client code.) http://www.vogella.com/tutorials/REST/article.html\#installation\_jersey
+ \item (Jersey modules and dependencies:) https://jersey.java.net/documentation/latest/modules-and-dependencies.html
+\end{itemize}
+
+\textbf{Troubles:}\\
+I got an issue of not being able to access the REST service. It was due to the fact that in servlet folter pattern, we need to specify the path 
+ignoring the path Until the webapp's name.\\
+
+Oh god, now I have basic REST service written in jersey to play around with.\\
+
+I read a bit about android http clients before start writing the client side for the REST service.\\
+This article gives a very good history: https://packetzoom.com/blog/which-android-http-library-to-use.html\\
+But it doesn't mention about async http client. Also, the quora thread doesn't mention about it: 
+https://www.quora.com/What-is-the-best-library-to-make-HTTP-calls-from-Java-Android
+
+From the first article abobe, it seems that OkHttp is promising, but it seems that it requires some additional things to get REST, json, images etc 
+working such as Retrofit..\\
+
+The reason I didn't go with Volley (although it is from google) is that it has very few number of threads as per the first article above. But the 
+plus point is that it is said to work with all types of devices including low power devices.\\
+
+I thought of going with async http client as it is based on Apache HTTP client, but the only problem is that it says it is compatible with Android 
+API 23 and higher. Let's see. 
 
 \pagebreak
 \subsection*{To Dos:}
@@ -185,6 +299,9 @@ down different aspects.\\
 
 \pagebreak
 \section*{New Ideas:}
+
+I attended Prof. Dongyan Xu's research award talk. I liked how he presented his research work as branches of a tree.
+
 \subsection*{PrivBioAuh and PrivBioGeneAuth}
 I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
 
@@ -225,7 +342,14 @@ for journals. Only extensions.
 \item Professor was interested in two of my new ideas. Professor mentioned we can ask Prof. Atallah or her Italian collaborators. She said it is a 
 very specialized area.
 \item Professor gave me the two recommendations for the communication requirement and the travel grant application.
-
 \end{itemize}
+
+\subsection*{Next Meeting:}
+I should mention about the issue of recovering from memory images. May be we can ignore it for the moment.\\
+Can we mention about the counter measures that we took in order to avoid the threats arise due to specifics of our architectural decisions and the 
+specifics of the framework?\\
+May be we can mention them as the security best practices for client implementations.
+
+
 
 \end{document}
