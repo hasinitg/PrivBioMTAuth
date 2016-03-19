@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  17 MAR 2016 15:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  19 MAR 2016 18:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -602,99 +602,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 278--284
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 291--293
+Underfull \hbox (badness 10000) in paragraph at lines 292--294
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 294--296
+Underfull \hbox (badness 10000) in paragraph at lines 295--297
 
- []
-
-
-Overfull \hbox (18.76337pt too wide) in paragraph at lines 297--300
-[]\OT1/cmr/m/n/10.95 From this thread (http://stackoverflow.com/questions/98876
-21/accessing-localhost-
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 307--309
+Underfull \hbox (badness 10000) in paragraph at lines 308--310
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 310--312
+Underfull \hbox (badness 10000) in paragraph at lines 311--313
 
  []
 
 
-Overfull \hbox (4.93901pt too wide) in paragraph at lines 313--317
+Overfull \hbox (37.15028pt too wide) in paragraph at lines 314--318
 \OT1/cmr/m/n/10.95 - Good ar-ti-cle: https://pibytes.wordpress.com/2012/11/16/v
-mware-workstation-
+mware-workstation-networking-
  []
 
 
-Overfull \hbox (2.03423pt too wide) in paragraph at lines 313--317
-\OT1/cmr/m/n/10.95 ubuntu-server-from-smartphone, http://askubuntu.com/question
-s/237461/how-
+Overfull \hbox (7.9959pt too wide) in paragraph at lines 314--318
+\OT1/cmr/m/n/10.95 - Threads: http://askubuntu.com/questions/629457/i-cant-conn
+ect-to-virtual-ubuntu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--317
+Overfull \hbox (32.20755pt too wide) in paragraph at lines 314--318
+\OT1/cmr/m/n/10.95 server-from-smartphone, http://askubuntu.com/questions/23746
+1/how-do-i-access-ubuntu-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 314--318
 
  []
 
 
-Overfull \hbox (2.82504pt too wide) in paragraph at lines 318--320
+Overfull \hbox (35.03632pt too wide) in paragraph at lines 319--321
 []\OT1/cmr/m/n/10.95 As this thread (http://superuser.com/questions/810097/vmwa
-re-player-bridged-
+re-player-bridged-networking-
  []
 
 
-Overfull \hbox (3.76793pt too wide) in paragraph at lines 318--320
-\OT1/cmr/m/n/10.95 networking-no-longer-works-host-win8-1-guest-mint-17-l) says
-: lot of Vir-tual Box
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 318--320
+Underfull \hbox (badness 10000) in paragraph at lines 319--321
 
  []
 
 
-Overfull \hbox (18.82422pt too wide) in paragraph at lines 324--328
-\OT1/cmr/m/n/10.95 sug-gested in this thread: http://stackoverflow.com/question
-s/10355702/connecting-
+Overfull \hbox (5.7754pt too wide) in paragraph at lines 322--324
+[]\OT1/cmr/m/n/10.95 As this thread (http://stackoverflow.com/questions/4601762
+/how-to-connect-wireless-
  []
 
 
-Overfull \hbox (8.87805pt too wide) in paragraph at lines 324--328
-\OT1/cmr/m/n/10.95 The tool made avail-able in this site (http://www.quantumg.n
-et/portforward.php):
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 324--328
+Underfull \hbox (badness 10000) in paragraph at lines 325--329
 
  []
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 361--368
+[11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 378--385
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--373
-
- []
-
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 374--377
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 387--389
+Underfull \hbox (badness 10000) in paragraph at lines 386--390
 
  []
 
@@ -704,58 +682,234 @@ Underfull \hbox (badness 10000) in paragraph at lines 391--394
  []
 
 
-Overfull \hbox (4.86292pt too wide) in paragraph at lines 396--397
+Underfull \hbox (badness 10000) in paragraph at lines 404--406
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 408--412
+
+ []
+
+
+Overfull \hbox (4.86292pt too wide) in paragraph at lines 415--417
 []\OT1/cmr/m/n/10.95 https://thestack.com/security/2016/03/15/amazon-wants-to-r
 eplace-passwords-with-
  []
 
 
-Overfull \hbox (10.15547pt too wide) in paragraph at lines 397--398
+Overfull \hbox (10.15547pt too wide) in paragraph at lines 417--419
 []\OT1/cmr/m/n/10.95 https://thestack.com/cloud/2016/03/03/google-hands-free-fa
 cial-recognition-trial-san-
  []
 
 
-Overfull \hbox (42.15387pt too wide) in paragraph at lines 398--399
+Underfull \hbox (badness 10000) in paragraph at lines 417--419
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 420--421
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 422--424
+
+ []
+
+
+Overfull \hbox (42.15387pt too wide) in paragraph at lines 428--430
 []\OT1/cmr/m/n/10.95 https://thestack.com/security/2015/03/16/alibaba-demonstra
 tes-facial-recognition-payment-
  []
 
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
+
+Overfull \hbox (17.57716pt too wide) in paragraph at lines 431--433
+[]\OT1/cmr/m/n/10.95 https://thestack.com/iot/2016/02/22/mastercard-rolls-out-s
+elfie-verification-for-mobile-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--433
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 434--436
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--421
+Underfull \hbox (badness 10000) in paragraph at lines 437--439
+
+ []
+
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--443
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--428
+Overfull \hbox (1.30423pt too wide) in paragraph at lines 444--445
+[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/banks-e
+mbrace-biometrics-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 444--445
 
  []
 
-[14] [15] (./journal.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 446--447
+
+ []
+
+
+Overfull \hbox (13.988pt too wide) in paragraph at lines 448--449
+[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/biometr
+ic-tipping-point-usaa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--449
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 450--454
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--457
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--465
+
+ []
+
+[15]
+Overfull \hbox (162.71968pt too wide) in paragraph at lines 469--475
+[]\OT1/cmr/m/n/10.95 ARM's Trust-Zone: Wikipedia: https://en.wikipedia.org/wiki
+/ARM[]architecture#Security[]extensions[].28TrustZone.29 
+ []
+
+[16]
+Overfull \hbox (155.88081pt too wide) in paragraph at lines 485--491
+\OT1/cmr/m/n/10.95 Today (18th March), I found this pa-per on that topic: http:
+//ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6686139 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 493--494
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 503--505
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 508--512
+
+ []
+
+[17] [18]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+Overfull \hbox (29.86552pt too wide) in paragraph at lines 544--550
+[]\OT1/cmr/m/n/10.95 From: https://thestack.com/security/2015/03/16/alibaba-dem
+onstrates-facial-recognition-
+ []
+
+
+Overfull \hbox (8.02632pt too wide) in paragraph at lines 544--550
+\OT1/cmr/m/n/10.95 New York City Uni-ver-si-tys Cen-ter for Catas-tro-phe Pre-p
+ared-ness and Re-sponse (CCPR)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 544--550
+
+ []
+
+[19]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ò in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ò in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 551--554
+
+ []
+
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--558
+
+ []
+
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ò in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ú in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ù in font cmr10!
+[20] (./journal.aux) ) 
 Here is how much of TeX's memory you used:
- 2945 strings out of 495028
- 39435 string characters out of 6181498
+ 2946 strings out of 495028
+ 39441 string characters out of 6181498
  103675 words of memory out of 5000000
- 6110 multiletter control sequences out of 15000+600000
+ 6111 multiletter control sequences out of 15000+600000
  10707 words of font info for 40 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,26p,248b,254s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on journal.pdf (15 pages, 133852 bytes).
+ 38i,6n,26p,248b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on journal.pdf (20 pages, 143379 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 97 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

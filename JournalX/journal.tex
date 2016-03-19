@@ -281,6 +281,7 @@ of the Auth app itself,
 Silly me 
 didn't realize that the IP of VM is not visible to outside. I went to sleep thinking it might be the reason that async HTTP client is said to be 
 compatible only higher than API 23 or something\\
+\end{enumerate}
 
 \textbf{Opportunity:} Prof. asked me to write a proposal for PRF. I would like to write it. I need to steal some good time from my busy schedule to 
 write down one of my ideas for the proposal. I am thinking of writing the GC idea for biometrics authentication which could avoid some of the 
@@ -332,12 +333,6 @@ process. It will be good for perf testing.
 \end{enumerate}
 
 
-
-\end{enumerate}
-
- 
-
-
 \pagebreak
 \subsection*{To Dos:}
 \begin{enumerate}
@@ -357,6 +352,28 @@ They have not described how they do biometrics authentication in ZKP, however, i
 I have written how their credit card authorization is comparable to ours in my RahasNym journal.
 
 \subsection*{Brain Storming:}
+
+\subsubsection*{Feb 2}
+I went through their attack descriptions. Their attack target is Android fingerprint authentication/authorization framework, in which the features 
+extracted from user's fingerprint is stored in encrypted form, for matching during authentication time. 
+
+They show that these can be stolen if TrustZone (a form of TEE) is not used and that they can be permanently lost since they are not revocable.
+
+Since we do not store the biometrics features as it is (and not even the biometric identifier, which is revocable as well), our approach is secure 
+against the rooting attack they mention.
+
+However, since we had proposed to use the TEE to securely store other artifacts, I need to look into the attacks against the TEE further, in the third 
+presentation linked above. I will update you on that too.
+
+\subsubsection*{Feb 3}
+I read the white paper on Exploiting Trust Zone in Android [1].\\
+Summary is: by exploiting a vulnerability in the kernel of TEE, any user-mode application could read from/write to any physical memory location. This 
+has made possible for a malicious local application to read the fingerprint image from sensor which is supposed to be read only by the trusted 
+application related to fingerprint scanning.
+
+However, under the responsible disclosure note at the end of the paper, it says "These vulnerabilities were disclosed to Huawei PSIRT in March 2015,a 
+fix was provided by Huawei in May 2015.CVE IDs were assigned as CVE-2015-4421 and CVE-2015-4422."
+
 \subsubsection*{Feb 19}
 Lot of biometrics based authentication mechanisms are defined for authenticating to devices. Once authenticated into the device, different services 
 that the user accesses are already logged in with username/password security. In such cases, critical remote services are relying on the device 
@@ -387,15 +404,74 @@ properties of biomertics (i.e: non-repeatability, non-revocability).
 I started documenting what I wrote down on paper during the weekend. I felt I need a brainstorming/mind mapping tool. And I got FreeMind and noted 
 down different aspects.\\
 
-\subsubsection*{16th March}
+\subsubsection*{16th March:}
 I found these articles which talks about Amazon, Alibaba and Google adopting selfies or FRT to make payments instead of password. But I think it is 
 bad. Coz now, instead of passwords, you store templates to pattern match, which has higher risk than passwords, coz passwords can change and you can 
-use different passwords at different SPs unlike your frt template.\\
+use different passwords at different SPs unlike your frt template. You need a secure (in the sense that biometric template is not stored) and 
+privacy preserving (in the sense that user's biometrics are not exposed to third party SPs that the user does not trust.)\\
 
+\subsubsection*{17th March:}
 \begin{enumerate}
- \item https://thestack.com/security/2016/03/15/amazon-wants-to-replace-passwords-with-selfies-and-videos/
- \item https://thestack.com/cloud/2016/03/03/google-hands-free-facial-recognition-trial-san-francisco/
- \item https://thestack.com/security/2015/03/16/alibaba-demonstrates-facial-recognition-payment-system-at-cebit/
+ \item https://thestack.com/security/2016/03/15/amazon-wants-to-replace-passwords-with-selfies-and-videos/\\
+ \textbf{Motivation:} Hard to type passwords in small screens.
+ \item https://thestack.com/cloud/2016/03/03/google-hands-free-facial-recognition-trial-san-francisco/\\
+ \textbf{Motivation:} To make it super easy: users do not even have to take out wallet or phone. To protect CCN.\\
+ 
+Picture taken from in-store camera is verified against your Hands-free profile picture and the temp pics are deleted.\\
+
+Hands Free never shares your full credit card number with the store and all your payment details are stored securely and shared only with the payment 
+processor.\\
+
+The cashier can only charge you when Hands Free detects that your phone is near the store. The cashier then verifies your identity to make sure that 
+they are charging the right person. You'll get instant notifications after every purchase, so you can check purchase details right away.
+ 
+ \item https://thestack.com/security/2015/03/16/alibaba-demonstrates-facial-recognition-payment-system-at-cebit/\\
+ \textbf{Motivation:} People forget passwords.
+ 
+ \item https://thestack.com/iot/2016/02/22/mastercard-rolls-out-selfie-verification-for-mobile-payments/\\
+ \textbf{Motivation:} To prevent the cost of false decline of transactions.\\
+ 
+ Consumers will be asked to upload their pictures online to be stored on MasterCard servers. These registered images will then be used as a reference 
+ every time a user opts for facial verification during a transaction.\\
+ 
+ \item https://thestack.com/world/2016/02/19/hsbc-voice-biometric-online-banking/\\
+ \textbf{Motivation:} quicker and easier for customers (15 million of its customers by summer 2016).\\
+ 
+Biometric banking has been used by other banks in the past, notably Barclay’s, which rolled out voice recognition to its top 300,000 wealthiest 
+corporate customers in 2014. In the U.S., Citibank has approximately 250,000 customers who have signed up for voice authentication since the company 
+launched the technology in April 2015.\\
+
+ \item http://www.americanbanker.com/news/bank-technology/banks-embrace-biometrics-but-will-customers-1078867-1.html\\
+ 
+ Citi: When customers call in, their voices are matched to the prerecorded data.\\
+
+ \item http://www.americanbanker.com/news/bank-technology/biometric-tipping-point-usaa-deploys-face-voice-recognition-1072509-1.html\\
+ 
+The key thing, and what may turn out to be USAA's secret sauce, is the company uses device identification in the background, so each time a member 
+logs in, an encrypted token is sent from their phone to USAA that is matched against the ID of the device registered at enrollment. So for a fraudster 
+to successfully impersonate a member with a photo or video (or trying to mimic their voice), they would also have to steal the member's mobile 
+device.\\
+
+The other safety mechanism is that USAA requires the member to blink, which rules out the use of a static photo or video replay, because video can't 
+blink at the right moment.\\
+
+\textbf{GREAT!} Swenson said USAA's technology analyzes facial bone structure and dimensions, allowing it to see through such alterations (beard, 
+glasses, aging etc.).
+
+\item Apple Touch ID:
+Activates the scanner on contact which then takes a high-resolution picture of your fingerprint. That fingerprint is then converted into a 
+mathematical formula, encrypted, and carried over a hardware channel to a secure enclave on the Apple A7 chipset. If the fingerprint is recognized, a 
+"yes" token is released. If it's not, a "no" token is released.\\
+
+Secure Enclave: The A7 also includes an area called the "Secure Enclave" that stores and protects the data from the Touch ID fingerprint sensor on the 
+iPhone 5S and iPad mini 3.[10] The security of the data in the Secure Enclave is probably enforced by ARM's TrustZone/SecurCore technology.
+
+\item ARM's TrustZone: Wikipedia: https://en.wikipedia.org/wiki/ARM\_architecture\#Security\_extensions\_.28TrustZone.29\\
+It provides a low-cost alternative to adding another dedicated security core to an SoC, by providing two virtual processors backed by hardware based 
+access control. This lets the application core switch between two states, referred to as worlds.\\
+Open Virtualization[81] and T6[82] are open source implementations of the trusted world architecture for TrustZone.\\
+In practice, since the specific implementation details of TrustZone are proprietary and have not been publicly disclosed for review, it is unclear 
+what level of assurance is provided for a given threat model.
 
 \end{enumerate}
 
@@ -404,6 +480,14 @@ use different passwords at different SPs unlike your frt template.\\
 \section*{New Ideas:}
 
 I attended Prof. Dongyan Xu's research award talk. I liked how he presented his research work as branches of a tree.
+
+\subsection{Privacy Preserving Personalized Medicine}
+The research that I wanted to do so eagerly, once upon a time. After the discussion with Fang-Yu about that, he mentioned about indistinguishability 
+obfuscation, in addition to GC based solution that I had in mind.\\
+Today (18th March), I found this paper on that topic: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=6686139\\
+Candidate Indistinguishability Obfuscation and Functional Encryption for all circuits
+(Extended Abstract) by Sanjam Garg IBM Research Craig Gentry IBM Research Shai Halevi IBM Research Mariana Raykova IBM Research Amit Sahai UCLA Brent 
+Waters UT Austin
 
 \subsection*{PrivBioAuh and PrivBioGeneAuth}
 I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
@@ -452,6 +536,31 @@ I should mention about the issue of recovering from memory images. May be we can
 Can we mention about the counter measures that we took in order to avoid the threats arise due to specifics of our architectural decisions and the 
 specifics of the framework?\\
 May be we can mention them as the security best practices for client implementations.
+
+\subsection*{Real world stories:}
+
+\subsubsection*{Biometrics:}
+\begin{enumerate}
+ \item From: https://thestack.com/security/2015/03/16/alibaba-demonstrates-facial-recognition-payment-system-at-cebit/\\
+ New York City University’s Center for Catastrophe Preparedness and Response (CCPR) published an interesting report [PDF] in 2009 detailing some of 
+the more pervasive problems of FRT systems:\\
+As the size of the identification database increases, the probability that two distinct images will “translate” into a very similar biometric template 
+increases. This is referred to as the biometric double or twin. Obviously, biometric doubles lead to a deterioration of the identification system 
+performance as they could result in false positives or false negatives.’\\
+
+Ninety per cent of the factors individuating one face from another occur in just 10\% of the facial area, and as the ‘enrolled’ database of 
+volunteered face images grows, the differences can become trivial enough to obtain either a false ID (the wrong person succeeds in identifying as 
+someone else) or a double-match (the ‘probe’ picture matches more than one face in the database).\\
+
+Australia’s SmartGate FRT technology (pictured right), designed to speed passengers more quickly through airport security, was duped by two 
+similar-looking journalists (Ibid) when first launched at Melbourne Airport in 2002. The two similarly-featured journalists had previously succeeded 
+in duping other facial recognition systems, and successfully got through the SmartGate system after swapping passports.\\
+
+According to the report, FRT accuracy is ‘very sensitive to the aging effect’, stating: “For 18 to 22 year-olds, the average identification rate for 
+the top systems was 62\%, and for 38 to 42 year-olds, 74\%. For every ten-year increase in age, performance increases on average 5\% through age 63,”
+
+ 
+\end{enumerate}
 
 
 

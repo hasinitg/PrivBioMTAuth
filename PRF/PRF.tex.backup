@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{float}
+\title{
+%\vspace{-20.mm}
+Privacy Preserving Biometrics based Authentication Protocol for Mobile Devices}
+
+
+\begin{document}
+\maketitle
+\section{Motivation:}
+Biometrics has been used as a strong factor of authentication. \\
+Unique, non-repeatable, non-revocable.\\
+In in-person and remote authentication. More challenges in remore authentication compared to in-person.\\
+Popular e-commerce applications moving towards this, for user friendliness and security. Although their FRT is improving, security wise their using 
+traditional template matching. It has several risks:\\
+- Several SPs maintaining it.\\
+- Need to protect the database.\\
+- If compromised, higher risk than password.\\
+\section{Past and current research work:}
+
+\section{Next research goal:}
+
+\section{Background and potential impact:}
+ 
+\end{document}

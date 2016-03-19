@@ -42,7 +42,8 @@ http://developer.android.com/tools/building/configuring-gradle.html
  \item Get two apps communicate and return result. DONE. 14th March.
  \item Get an app to communicate with a remote REST service. DONE. 17th March.
  \item Integrate ZKP.
- \item Run perf test for ZKP with a remote party with static identity.
+ \item Run perf test for ZKP with a remote party with static identity.\\
+ Perf test config: Connect laptop to network through wired connection. Run tomcat+services in Windows (so there wont be port forwarding overhead.)
  \item Look at the new trend in replacing passwords with FRT and re-write the introduction of the journal.
  \item Send the update to Prof: Perf results + introduction re-written.
  \item How to access TrustZone.
@@ -318,11 +319,15 @@ As this thread (http://superuser.com/questions/810097/vmware-player-bridged-netw
 Virtual Box related adaptors are made available, which I unchecked in Bride settings, but still no luck.\\
 
 As this thread (http://stackoverflow.com/questions/4601762/how-to-connect-wireless-network-adapter-to-vmware-workstation) suggests, I also tried 
-making a loop back, as described here: (https://4sysops.com/archives/how-to-install-loopback-adapter-in-windows-8/). Still no luck.\\
+making a loop back, as described here: (https://4sysops.com/archives/how-to-install-loopback-adapter-in-windows-8/). Still no luck.
 
 \item My final fall back was to use same old NAT for VM and use port forwarding, as suggested in this thread: 
-http://stackoverflow.com/questions/10355702/connecting-to-apache-web-server-that-is-running-on-a-vmware-from-any-device-in-t
+http://stackoverflow.com/questions/10355702/connecting-to-apache-web-server-that-is-running-on-a-vmware-from-any-device-in-t\\
+The tool made available in this site (http://www.quantumg.net/portforward.php): saved me finally. I hope I can trust that is not a malware. Even if it 
+is, I have no other option. \\
 
+Well, I have one, which is: run tomcat on Windows->copy .wars to it and access from phone. But I feel it will be very time consuming during the dev 
+process. It will be good for perf testing.
 
 \end{enumerate}
 
@@ -385,11 +390,20 @@ down different aspects.\\
 \subsubsection*{16th March}
 I found these articles which talks about Amazon, Alibaba and Google adopting selfies or FRT to make payments instead of password. But I think it is 
 bad. Coz now, instead of passwords, you store templates to pattern match, which has higher risk than passwords, coz passwords can change and you can 
-use different passwords at different SPs unlike your frt template.\\
+use different passwords at different SPs unlike your frt template. You need a secure (in the sense that biometric template is not stored) and 
+privacy preserving (in the sense that user's biometrics are not exposed to third party SPs that the user does not trust.)\\
 
 \begin{enumerate}
  \item https://thestack.com/security/2016/03/15/amazon-wants-to-replace-passwords-with-selfies-and-videos/
- \item https://thestack.com/cloud/2016/03/03/google-hands-free-facial-recognition-trial-san-francisco/
+ \item https://thestack.com/cloud/2016/03/03/google-hands-free-facial-recognition-trial-san-francisco/\\
+Picture taken from in-store camera is verified against your Hands-free profile picture and the temp pics are deleted.\\
+
+Hands Free never shares your full credit card number with the store and all your payment details are stored securely and shared only with the payment 
+processor.\\
+
+The cashier can only charge you when Hands Free detects that your phone is near the store. The cashier then verifies your identity to make sure that 
+they are charging the right person. You'll get instant notifications after every purchase, so you can check purchase details right away.
+ 
  \item https://thestack.com/security/2015/03/16/alibaba-demonstrates-facial-recognition-payment-system-at-cebit/
 
 \end{enumerate}
@@ -399,6 +413,14 @@ use different passwords at different SPs unlike your frt template.\\
 \section*{New Ideas:}
 
 I attended Prof. Dongyan Xu's research award talk. I liked how he presented his research work as branches of a tree.
+
+\subsection{Privacy Preserving Personalized Medicine}
+The research that I wanted to do so eagerly, once upon a time. After the discussion with Fang-Yu about that, he mentioned about indistinguishability 
+obfuscation, in addition to GC based solution that I had in mind.\\
+Today (18th March), I found this paper on that topic: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=6686139\\
+Candidate Indistinguishability Obfuscation and Functional Encryption for all circuits
+(Extended Abstract) by Sanjam Garg IBM Research Craig Gentry IBM Research Shai Halevi IBM Research Mariana Raykova IBM Research Amit Sahai UCLA Brent 
+Waters UT Austin
 
 \subsection*{PrivBioAuh and PrivBioGeneAuth}
 I can have two projects under the umbrella: PrivBioAuth. Two will be: PrivBioMTAuth and PrivBioGeneAuth.\\
@@ -447,6 +469,31 @@ I should mention about the issue of recovering from memory images. May be we can
 Can we mention about the counter measures that we took in order to avoid the threats arise due to specifics of our architectural decisions and the 
 specifics of the framework?\\
 May be we can mention them as the security best practices for client implementations.
+
+\subsection*{Real world stories:}
+
+\subsubsection*{Biometrics:}
+\begin{enumerate}
+ \item From: https://thestack.com/security/2015/03/16/alibaba-demonstrates-facial-recognition-payment-system-at-cebit/\\
+ New York City University’s Center for Catastrophe Preparedness and Response (CCPR) published an interesting report [PDF] in 2009 detailing some of 
+the more pervasive problems of FRT systems:\\
+As the size of the identification database increases, the probability that two distinct images will “translate” into a very similar biometric template 
+increases. This is referred to as the biometric double or twin. Obviously, biometric doubles lead to a deterioration of the identification system 
+performance as they could result in false positives or false negatives.’\\
+
+Ninety per cent of the factors individuating one face from another occur in just 10\% of the facial area, and as the ‘enrolled’ database of 
+volunteered face images grows, the differences can become trivial enough to obtain either a false ID (the wrong person succeeds in identifying as 
+someone else) or a double-match (the ‘probe’ picture matches more than one face in the database).\\
+
+Australia’s SmartGate FRT technology (pictured right), designed to speed passengers more quickly through airport security, was duped by two 
+similar-looking journalists (Ibid) when first launched at Melbourne Airport in 2002. The two similarly-featured journalists had previously succeeded 
+in duping other facial recognition systems, and successfully got through the SmartGate system after swapping passports.\\
+
+According to the report, FRT accuracy is ‘very sensitive to the aging effect’, stating: “For 18 to 22 year-olds, the average identification rate for 
+the top systems was 62\%, and for 38 to 42 year-olds, 74\%. For every ten-year increase in age, performance increases on average 5\% through age 63,”
+
+ 
+\end{enumerate}
 
 
 
