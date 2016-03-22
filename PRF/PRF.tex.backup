@@ -1,30 +1,118 @@
-\documentclass[11pt]{article}
-\usepackage{geometry}
+\documentclass[10pt]{article}
+\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+%\usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{float}
-\title{
-%\vspace{-20.mm}
-Privacy Preserving Biometrics based Authentication Protocol for Mobile Devices}
+\setlength\parindent{0pt}
 
+\title{
+\vspace{-20.mm}
+Privacy Preserving Biometrics based Remote Authentication Protocol for Mobile Devices}
 
 \begin{document}
 \maketitle
 \section{Motivation:}
-Biometrics has been used as a strong factor of authentication. \\
-Unique, non-repeatable, non-revocable.\\
-In in-person and remote authentication. More challenges in remore authentication compared to in-person.\\
-Popular e-commerce applications moving towards this, for user friendliness and security. Although their FRT is improving, security wise their using 
-traditional template matching. It has several risks:\\
-- Several SPs maintaining it.\\
-- Need to protect the database.\\
-- If compromised, higher risk than password.\\
-\section{Past and current research work:}
+There has been a major shift from traditional authentication mechanisms such as passwords to biometrics based authentication in the recent past as 
+the leaders in banking (such as Citi, HSBC, Barclays, USAA etc), credit cards (such as Master card) and e-commerce (such as Amazon and Alibaba) are 
+adopting biometrics to authenticate users to their applications.
 
+While biometrics has been treated as a strong factor of authentication for its ability to uniquely identity an individual, different vendors have 
+adopted it for different motivations, for examples, Amazon is going to use selfies to authenticate transactions based on facial recognition 
+techniques because it has been difficult for their users to type passwords to authenticate transactions in mobile devices with small screens and  
+Master cards has adopted it in order to drastically cut-down the cost of false decilned transactions.
+
+We identify two main contexts in which biometrics is being used for authentication as local authentication and remote authentication. In the 
+first case, user is present at the authenticator's premise when authentication is performed and a device of the autheticator captures the 
+biometrics. In the second case, authentication is performed over the network and the biometrics is captured by the user's device. Second case 
+involves more challenges than the first one in terms of liveliness verification of the biometrics to avoid spoofing attacks and in terms of
+guaranteeing the secure transmission of the biometrics. Furthermore, remote biometrics based authentication is being widely used as online-banking 
+and e-commerce applications are increasingly adopting it as mentioned above.
+
+Aforementioned commercial systems that are being deplyoed for authenticating users with biometrics today, inherit key security concerns 
+irrespective of the fact that they incorporate state-of-the-art facial/voice recognition algorithms and liveliness checking techniques. First, user's 
+biometrics templates are stored in the server databases for matching during the authentication, which become major targets 
+of attackers.
+For examples, in Google Hands Free system, user's picture taken at the authentication time is matched with the user's Hands Free profile picture and 
+in Citi bank system, users pre-recorded voice samples are matched with their voices captured when they call in. Second, different 
+third party service providers will be storing different biometrics traits of the user (such as face, voice and fingerprint) which together with 
+linkability, make multiple points of vulnerability on one's biometrics identity. Third, each time the user remotely authenticates using biometrics, 
+current protocols require the users to send a raw biometrics sample (e.g: a selfie in Amazon) over the network which is not desirable as such 
+biometrics samples reveal sensitive features of the user's biometrics which are used to uniquely identify an individual. Stolen biometrics templates 
+from server databases or from authentication channel lead to identity theft which poses severe threat to user's digital identity compared to the case 
+when a password is stolen, because of the inherited non-revocable nature of the biometrics. We can not solely rely on 
+
+The second issue mentioned above can be avoided by getting a trusted identity provider (IDP) to enroll user's biometrics identity as in the cases of 
+Google Hands Free and IdentityX, however, if the IDP is involved in each transaction that the user authenticates, it undermines user privacy since 
+the IDP gets to know about different transactions that the user performs with different service providers.
+  
+To address aforementioned security and privacy concerns, we envision a biometrics based remote authentication protocol which could be carried out 
+from user's mobile devices with following characteristics:
+\begin{enumerate}
+ \item User's biometrics identity is enrolled with only a trusted IDP ().
+ \item Biometrics is not stored anywhere i
+\end{enumerate}
+
+
+This can be avoided by having a trusted IDP doing the auth verification for you. E.g: Google's Hands Free pay. But then the problem is: IDP knows 
+about every place you make purchases which undermines your privacy. While we encourage enrolling biometrics at one trusted party, we do not 
+encourage that trusted party being involved in every transaction of the user.\\
+- Need to protect the database.\\
+- Need to reveal the biometrics each time. Higher risk of getting stolen.\\
+- If compromised, higher risk than password.\\
+
+Our goal is to develop a privacy preserving one - no storage of biometrics, no revealation of biometrics during auth, user-centric (no IDP involved 
+after initial enrollment.) still the authenticator is confirmed that user is authenticated using his/her biometrics.\\
+Unique, non-repeatable, non-revocable.\\
+In in-person (Google pilot project for in-store profile picture for payment verification) and remote authentication (Amazon and Ali-play). More 
+challenges in remore authentication compared to in-person.\\
+\section{Past and on-going research work:}
+ZKP. This has been used for static identity based authentication for a long time, since its first inception in 1986 - FFS. 
+Fulfils all requirements except for one major challenge.
+Challenge is using biometrics as the identity due to its non-static nature. We needed to develop a mechanism that creates repeatable, revocable and 
+unique BID. We use ML methods as opposed to traditional distance matching (I need to do a benchmarking to prove that ML outperforms distance 
+matching).
+
+\subsubsection{Overview of the solution}
+(from our paper)
+
+Currently, we are implementing it in the mobile phone, to test its feasibility interms of performance and security.
+Auth app is separate - which is trusted, which is invoked by any third party client app.
 \section{Next research goal:}
+In the previous approach, 
+- depend upon trust of hardware of phone to protect artifacts stored on the phone. Apple touch ID and android fingerprint authn framework use that. 
+But there has been attacks on trust zone uncovered in the past, which has been fixed. Although there is research going on that 
+area as well, it is good to rely on them as less as possible, as the tech is not public for review.
+- We argue that attack window is very small. But there are recent attacks to recover sensitive info. from physical memory images. Trust zone is just 
+virtual world in same physical processor and therefore, should be vulnerable to this, although is not specifically tested by the researchers.
+
+To address such concerns, GC is a good candidate. If we can encode ML model as a function, rather than a file (as we are currently using.)
+There are GC techniques specialized on classification functions.
+
+\subsubsection*{Related work:}
+What people have already done in this direction:
+
+\subsubsection*{Challenges:}
+Reusability of the garbled circuits.
+Extending building blocks which are defined for two party settings to achieve our goals in three party settings.
+Implementing.
+Performance. Protocol achieving all the security and privacy goals.
+How to incorporate liveliness check. Have to rely on trusted auth app.
+
+
+\subsubsection*{Contribution of this work:}
 
 \section{Background and potential impact:}
+- After the current work is over, at the end of this semester, we will have a working prototype of our past approach in the mobile phone. PhD student 
+Hasini will be attending a summer school conducted by leaders of secure mpc and oblivious computation research to learn the current-state-of-the-art 
+techniques. She has got a travel grant form NSF to participate in this.
+- Google ATAP project has accepted a proposal written by us and has funded Purdue.
+- Can help make existing biometrics based remote authentication in day-to-day transactions such as online-banking and e-commerce secure, which 
+already has a large user base and increasing.\\
+- Generalization of this techniques can have impact on other ML tasks where privacy is a concern.
+
+
  
 \end{document}

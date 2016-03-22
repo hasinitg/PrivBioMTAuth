@@ -30,7 +30,7 @@ biometrics. In the second case, authentication is performed over the network and
 While there are common challenges w.r.t both cases due to the sensitivity (being tightly coupled with one's identity) non-repeatability (no 
 two biometrics samples of the same individual match exactly) and non-revocable (inability to cancel/renew) nature of biometrics, the second case 
 involves more challenges than the first one in terms of liveliness verification of the biometrics to avoid spoofing attacks, secure 
-transmission of the authentication information and security of the user's device. Furthermore, remote biometrics based authentication is being widely 
+transmission of the authentication information and security of the user's device. Furthermore, biometrics based remote authentication is being widely 
 used since online-banking and e-commerce applications are increasingly adopting it.
 
 Aforementioned commercial authentication systems that are being deplyoed today, inherit key security 
@@ -40,7 +40,7 @@ of attackers.
 For examples, in Google Hands Free system~\cite{google}, user's picture taken at the authentication time is matched with the user's Hands Free 
 profile picture and in Citi bank system, user's pre-recorded voice samples are matched with the voice captured when the user call in. Second, 
 multiple third party service providers are storing different biometrics traits of the same user (such as face, voice and fingerprint) for their 
-proprietaty authentication protocols. This creates multiple points of vulnerability on one's biometrics identity, due to 
+proprietary authentication protocols. This creates multiple points of vulnerability on one's biometrics identity, due to 
 linkability~\cite{linkability}. Third, the current protocols require the users to send a raw biometrics sample over the network each time the user 
 remotely authenticates using biometrics, which is not desirable.
 %as such biometrics samples reveal sensitive features of the user's biometrics which are used to uniquely identify an individual. 
@@ -63,7 +63,7 @@ characteristics:
  \item Sensitive features of user's biometrics is not stored anywhere.
  \item Sensitive features of user's biometrics is not revealed during authentication.
  \item After the initial enrollment with the IDP, users can carry out biometrics based authentication with multiple service providers without 
-involving the IDP. (i.e: user-centric authentication protocol as opposed to traditional IDP-centric authentication protocol).
+involving the IDP. (i.e: user centric authentication protocol as opposed to traditional IDP-centric authentication protocol).
  \item Efficient in terms of computation and communication in order for it to be carried out from user's mobile devices.
 \end{enumerate}
 
@@ -71,20 +71,62 @@ In what follows we describe our roadmap of realizing the goal of developing a pr
 the aforementioned characteristics.
 
 \section{Past and on-going research work:}
-TODO: Write about the ZKPK based solution that we have proposed and currently working on in implementing in the mobile device, to achieve the above 
-goal.
-\subsubsection*{1.1 Overview of the solution:}
+ZKP. This has been used for static identity based authentication for a long time, since its first inception in 1986 - FFS. 
+Fulfils all requirements except for one major challenge.
+Challenge is using biometrics as the identity due to its non-static nature. We needed to develop a mechanism that creates repeatable, revocable and 
+unique BID. We use ML methods as opposed to traditional distance matching (I need to do a benchmarking to prove that ML outperforms distance 
+matching).
 
+Unique, non-repeatable, non-revocable.\\
+
+\subsubsection*{Overview of the solution}
+(from our paper)
+
+Currently, we are implementing it in the mobile phone, to test its feasibility interms of performance and security.
+Auth app is separate - which is trusted, which is invoked by any third party client app.
 \section{Next research goal:}
-In the aforementioned solution for 
-\subsubsection*{2.1 Related work:}
+In the aforementioned solution that we develop to achive our goal mentioned in Section 1, we assume the support of Trusted Execution Environment 
+(TEE) in the user's mobile device to securely store the artifacts obtained from the IDP during the enrollment phase and to execute BID generation 
+using the classifier during the authentication phase. TEE isolates the storage and execution from other applications which provides further 
+protection in addition to encrypting the artifacts during storage, which is being used by Apple touch ID and android fingerprint authentication 
+framework as well.
+While there are extensive research on the develpment of TEE technology~\cite{tee}, there are attacks being discovered~\cite{blackhat} on them too. 
+Since widely used implementations of TEE technology such as ARM's TrustZone are proprietary and not disclosed for public review, the level of 
+assurance provided against a given threat model is unclear~\cite{armtrustzone}. 
+Furthermore, recent advancement in memory forensics techniques~\cite{dimsum}, pose threats on processing sensitive data in the memory of user's 
+device in clear text, as it is proved that such data could be recovered from memory images even long after the processing of such data is finished. 
+Although it is theoretically possible to clear the memory soon after the processing of sensitive data, it is not practical because it requires 
+accurate tracking of each data object in order to clear them upon destruction of the process, which is a very heavy-weight operation 
+that no commodity operating system performs.
+Therefore, it is at our best interest to develop a privacy preserving biometrics based authentication protocol which achieves all the security and 
+privacy goals mentioned in Section 1, based on theoretical foundations and without assuming any hardware security support. Fully homomorphic 
+encryption (FHE) is one solution to avoid decryption of sensitive biometrics information during authentication, however, it has the drawbacks of  
 
-\subsubsection*{2.2 Challenges:}
+\subsubsection*{Related work:}
+What people have already done in this direction:
+- GC for biometrics authentication
+- GC on mobile devices
+- GC for classification
+- Reusabile GC.
+
+\subsubsection*{Challenges:}
+Reusability of the garbled circuits.
+Extending building blocks which are defined for two party settings to achieve our goals in three party settings.
+Implementing.
+Performance. Protocol achieving all the security and privacy goals.
+How to incorporate liveliness check. Have to rely on trusted auth app.
 
 
-\subsubsection*{2.3 Contribution of this work:}
+\subsubsection*{Contribution of this work:}
 
 \section{Background and potential impact:}
+- After the current work is over, at the end of this semester, we will have a working prototype of our past approach in the mobile phone. PhD student 
+Hasini will be attending a summer school conducted by leaders of secure mpc and oblivious computation research to learn the current-state-of-the-art 
+techniques. She has got a travel grant form NSF to participate in this.
+- Google ATAP project has accepted a proposal written by us and has funded Purdue.
+- Can help make existing biometrics based remote authentication in day-to-day transactions such as online-banking and e-commerce secure, which 
+already has a large user base and increasing.\\
+- Generalization of this techniques can have impact on other ML tasks where privacy is a concern.
 
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,IEEEexample}
