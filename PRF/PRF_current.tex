@@ -30,7 +30,7 @@ biometrics. In the second case, authentication is performed over the network and
 While there are common challenges w.r.t both cases due to the sensitivity (being tightly coupled with one's identity) non-repeatability (no 
 two biometrics samples of the same individual match exactly) and non-revocable (inability to cancel/renew) nature of biometrics, the second case 
 involves more challenges than the first one in terms of liveliness verification of the biometrics to avoid spoofing attacks, secure 
-transmission of the authentication information and security of the user's device. Furthermore, biometrics based remote authentication is being widely 
+transmission of the authentication information and security of the user's device. Furthermore, remote biometrics based authentication is being widely 
 used since online-banking and e-commerce applications are increasingly adopting it.
 
 Aforementioned commercial authentication systems that are being deplyoed today, inherit key security 
@@ -40,7 +40,7 @@ of attackers.
 For examples, in Google Hands Free system~\cite{google}, user's picture taken at the authentication time is matched with the user's Hands Free 
 profile picture and in Citi bank system, user's pre-recorded voice samples are matched with the voice captured when the user call in. Second, 
 multiple third party service providers are storing different biometrics traits of the same user (such as face, voice and fingerprint) for their 
-proprietary authentication protocols. This creates multiple points of vulnerability on one's biometrics identity, due to 
+proprietaty authentication protocols. This creates multiple points of vulnerability on one's biometrics identity, due to 
 linkability~\cite{linkability}. Third, the current protocols require the users to send a raw biometrics sample over the network each time the user 
 remotely authenticates using biometrics, which is not desirable.
 %as such biometrics samples reveal sensitive features of the user's biometrics which are used to uniquely identify an individual. 
@@ -49,9 +49,11 @@ digital identity, compared to the case in which a password is stolen, because bi
 biometrics identity which can not be revoked.
 %non-revocable nature of the biometrics.
 
-Therefore, it is best to avoid storing or transmitting sensitive biometrics information during authentication because we can not solely rely on 
-encryption to protect biometrics databases and authentication channels as there have been many instances of 
-password breaches in the past, although such techniques were used to secure passwords during storage and transmission.
+Therefore, it is best to avoid storing and transmitting sensitive biometrics information during authentication, when developing a secure biometrics 
+based remote authentication protocol.
+%because we can not solely rely on 
+%encryption to protect biometrics databases and authentication channels as there have been many instances of 
+%password breaches in the past, although such techniques were used to secure passwords during storage and transmission.
 The second issue mentioned above can be avoided by getting a trusted identity provider (IDP) to enroll user's biometrics identity~\cite{google, 
 identityX}. However, if the IDP is involved in each transaction that the user authenticates, it undermines the user's privacy since the IDP gets to 
 know about different transactions that the user performs with different service providers.
@@ -63,7 +65,7 @@ characteristics:
  \item Sensitive features of user's biometrics is not stored anywhere.
  \item Sensitive features of user's biometrics is not revealed during authentication.
  \item After the initial enrollment with the IDP, users can carry out biometrics based authentication with multiple service providers without 
-involving the IDP. (i.e: user centric authentication protocol as opposed to traditional IDP-centric authentication protocol).
+involving the IDP. (i.e: user-centric authentication protocol as opposed to traditional IDP-centric authentication protocol).
  \item Efficient in terms of computation and communication in order for it to be carried out from user's mobile devices.
 \end{enumerate}
 
@@ -71,19 +73,75 @@ In what follows we describe our roadmap of realizing the goal of developing a pr
 the aforementioned characteristics.
 
 \section{Past and on-going research work:}
-ZKP. This has been used for static identity based authentication for a long time, since its first inception in 1986 - FFS. 
-Fulfils all requirements except for one major challenge.
-Challenge is using biometrics as the identity due to its non-static nature. We needed to develop a mechanism that creates repeatable, revocable and 
+We found Zero Knowlede Proof (ZKP) of identity to be a suitable cryptographic primitive to be used along with a secure commitment 
+scheme~\cite{pedersenCommitment}, in order to authenticate without revealing any sensitive biometrics information to the SP. The concept of ZKP of 
+identity, first proposed by Feige, Fiat and Shamir~\cite{fiat-shamir} in 1988, has been used to develop numerous identity based authentication 
+schemes~\cite{idemixConcepts, DAA} for static identities such as email, credit card number, etc. Making it applicable in the domain of biometrics 
+based remote authentication is not straight forward due to non-repeatable nature of biometrics identity. 
+%omit following sentence if needed%
+In other words, since the biometrics sample used to create the commitment does not exactly match the biometrics sample captured during 
+authentication, the ZKP might not suceed even for the genuine prover, unlike in the case of static identity.
+Previous approaches which addressed the non-repeatability of biometrics, mainly in the domain of biometrics based encryption, have used distance 
+matching with threshold, by applying error correction on the features extracted from the second sample. 
+Our goal is to generate a unique, repeatable and revocable biometrics based identifier for the user, based on discriminative features of his/her 
+biometrics, which is used in creating the identity commitment during the enrollment of identity and which is used later for authentication 
+via ZKP of identity usig such commitment. We employ a machine learning based classification model to generate such biometrics identifier (BID).
+
+\subsubsection*{Overview of the solution}
+
+In what follows we provide an overview of the protocol that we have proposed, using aforementioned building blocks. Please refer to our 
+paper~\cite{ours} for more details. This protocol involves three main parties namely: IDP, SP and user and also involves two main phases namely: 
+enrollment phase and authentication phase.\\
+
+\textbf{Enrollment Phase:}
+First, the IDP trains the classification model using the biometrics features extracted from biometrics images. The output is a 
+file encapsulating the base classification model that encodes the information required for prediction. 
+During enrollment of each user, the base classification model is customized by randomizing the class labels encoded in the 
+model. This step is performed as a security measure to avoid compromising the BIDs of the other users of the system, if one user's device is 
+compromized.
+Features extracted from the biometrics image of the enrolling user is given as input to the customized classification model and the corresponding 
+class label is obtained through prediction. This class label is combined with the user provided secret to generate the BID, which is used in creating 
+the identity commitment. The identity commitment, which is based on the Pedersend commitment scheme~\cite{pedersenCommitment} takes the form: C (x, r) 
+= gxhr mod p, where x = BID and r = user provided secret. Pawwsowrd based key generation is used to derive multiple secrets used in the 
+protocol, from a single password provided by the user. The BID generated in this way preserves the uniqueness as it is based on the discriminative 
+features of the user's biometris, repeatable based on the prediction accuracy of the classification model and revocable as the user can cancel any 
+existing BID and obtain a new one simply by requesting the IDP to issue a new customized classification model, which will output a different class 
+label, and changing the password from which the secret used to create the BID is derived.
+
+At the end of the enrollment process, user is issued an identity token (IDT) signed by the IDP and the customized classification model to be used 
+during the authentication phase, which are securely stored in the user's device. The IDT contains the commitment, To and From fields indicating the 
+identity of the prover and the verifier of the ZKP verification in which the IDT will be used, expiration time and the signature of the IDT vouching 
+for such information.
+
+\textbf{Authentication Phase:}
+During the authentication phase, the user provides the IDT issued by the trusted IDP, to the SP and carries out ZKP of the biometrics identity.
+Authentication scceeds if the user is able to prove the verifier in zero-knowlege, his/her ownership of the biometrics identity 
+encoded in the IDT issued by the trusted IDP. In order to carry out the proof, features extracted from a new biometrics image of the user is given as 
+input to the customized classification model stored in the user's device and the BID is generated in the same way as in the enrollment phase. This 
+BID and the secret derived from the user's password are used to carry out the ZKP of biometric identity.
+
+This protocol that we have proposed in~\cite{outs}, pocess characteristics 1-5 mentioned in Section 1. The research goal of the current semester 
+(Spring 2016) is to implement it in the mobile device and evaluate the performance, in order to confirm its compliance with the sixth 
+characteristics as well. 
+
+
+(from our paper)
+
+Currently, we are implementing it in the mobile phone, to test its feasibility interms of performance and security.
+Auth app is separate - which is trusted, which is invoked by any third party client app.
+
+
+(Write about the ZKPK based solution that we have proposed and currently working on in implementing in the mobile device, to achieve the above 
+goal.)
+
+
+We needed to develop a mechanism that creates repeatable, revocable and 
 unique BID. We use ML methods as opposed to traditional distance matching (I need to do a benchmarking to prove that ML outperforms distance 
 matching).
 
 Unique, non-repeatable, non-revocable.\\
 
-\subsubsection*{Overview of the solution}
-(from our paper)
 
-Currently, we are implementing it in the mobile phone, to test its feasibility interms of performance and security.
-Auth app is separate - which is trusted, which is invoked by any third party client app.
 \section{Next research goal:}
 In the aforementioned solution that we develop to achive our goal mentioned in Section 1, we assume the support of Trusted Execution Environment 
 (TEE) in the user's mobile device to securely store the artifacts obtained from the IDP during the enrollment phase and to execute BID generation 
@@ -116,23 +174,27 @@ What people have already done in this direction:
 - GC for classification
 - Reusabile GC.
 
-\subsection*{Proposed Solution:}
+\subsubsection*{Proposed Solution:}
 
 \subsubsection*{Challenges:}
 One basic limitation of the original garbled circuit construction is that it offers only one-time usage. Specifically, evaluating a circuit on any 
-new input requires an entirely new garbling of the circuit~\cite{}, which causes the user to communicate with the
-Reusability of the garbled circuits.
-Extending building blocks which are defined for two party settings to achieve our goals in three party settings.
-Implementing.
-Performance. Protocol achieving all the security and privacy goals.
-How to incorporate liveliness check. Have to rely on trusted auth app.
-
+new input requires an entirely new garbling of the circuit~\cite{reusablegc}. This causes the user to communicate with the IDP each time the user 
+needs to authenticate to a service provider, which we need to avoid as per the 4th requirement mentioned in Section 1. The problem of reusing garbled 
+circuits has been open for 30 years until the reusable garbled circuit contstruct was proposed by Shafi et. al in 2013~\cite{reusablegc}. This new 
+construct looks promising to develop the biometrics based authentication protocol that we target, as it allows the secure authentication artifacts to 
+be used multiple times without exposing any sensitive information during the process.
+Utilizing this construct in designing and developing our target biometrics authentication protocol, however, requires addressing several challenges. 
+Firstly, the scheme poposed in~\cite{reusablegc} is presented in the context of two party secure computation. Although original garbled circuit 
+construct can be used in three-party context, it is currently not straight forward to see how the re-usable garbled circuit contruct could be 
+extended to three-party protocol, which we need to investigate further. Secondly, all the current efficient implementations of garbled circuits do not 
+support this construct, which is currently a challenge when it comes to implemention of the protocol. Therefore, we believe that designing and 
+developing a privacy preserving biometrics authentication protocol using this construct will contribute important results to the research literature. 
 
 \subsubsection*{Contribution of this work:}
 We aim to produce the following research output:
 \begin{enumerate}
  \item Designing a privacy preserving biometrics based remote authentication protocol with aforementioned characteristics, using re-usable garbled 
-circuits. 
+circuit construct. 
  \item A prototype implementation of the protocol that is able to run in mobile devices.
  \item Security and performance analysis of the protocol.
 \end{enumerate}

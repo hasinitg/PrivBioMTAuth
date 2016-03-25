@@ -17,50 +17,59 @@ Warning--string name "march" is undefined
 --line 19 of file IEEEexample.bib
 Warning--string name "january" is undefined
 --line 33 of file IEEEexample.bib
+Warning--string name "march" is undefined
+--line 55 of file IEEEexample.bib
+Repeated entry---line 347 of file IEEEexample.bib
+ : @inproceedings{pedersenCommitment
+ :                                  ,
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty year in idemixConcepts
+Warning--empty booktitle in fhe
+Warning--empty year in reusablegc
 
 Done.
-You've used 9 entries,
+You've used 19 entries,
             4039 wiz_defined-function locations,
-            1244 strings with 16417 characters,
-and the built_in function-call counts, 3237 in all, are:
-= -- 241
-> -- 33
-< -- 0
-+ -- 17
-- -- 8
-* -- 112
-:= -- 608
-add.period$ -- 19
-call.type$ -- 9
-change.case$ -- 9
-chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 264
-empty$ -- 337
-format.name$ -- 8
-if$ -- 681
+            1297 strings with 17956 characters,
+and the built_in function-call counts, 8304 in all, are:
+= -- 598
+> -- 152
+< -- 15
++ -- 78
+- -- 33
+* -- 321
+:= -- 1403
+add.period$ -- 41
+call.type$ -- 19
+change.case$ -- 19
+chr.to.int$ -- 39
+cite$ -- 22
+duplicate$ -- 677
+empty$ -- 875
+format.name$ -- 39
+if$ -- 1847
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 63
-newline$ -- 64
-num.names$ -- 8
-pop$ -- 185
+int.to.str$ -- 19
+missing$ -- 144
+newline$ -- 98
+num.names$ -- 18
+pop$ -- 424
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 252
+skip$ -- 651
 stack$ -- 0
-substring$ -- 2
-swap$ -- 158
-text.length$ -- 0
+substring$ -- 100
+swap$ -- 406
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 9
-warning$ -- 0
-while$ -- 8
-width$ -- 10
-write$ -- 106
-(There were 4 warnings)
+type$ -- 19
+warning$ -- 3
+while$ -- 24
+width$ -- 21
+write$ -- 189
+(There was 1 error message)

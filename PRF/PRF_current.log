@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  22 MAR 2016 13:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  25 MAR 2016 00:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -285,12 +285,12 @@ LaTeX Warning: No \author given.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
 
  []
 
-[2] (./PRF_current.bbl [3]
-Underfull \hbox (badness 10000) in paragraph at lines 97--100
+[2] [3] (./PRF_current.bbl [4]
+Underfull \hbox (badness 10000) in paragraph at lines 119--122
 []\OT1/cmr/m/n/10 Wikipedia. (2014) Arm ar-chi-tec-ture. [On-line]. Avail-able:
 
  []
@@ -298,15 +298,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 97--100
 Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no ™ in font cmti10!
-) [4] (./PRF_current.aux) ) 
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no   in font cmr10!
+Missing character: There is no â in font cmti10!
+Missing character: There is no € in font cmti10!
+Missing character: There is no ™ in font cmti10!
+) [5] (./PRF_current.aux) ) 
 Here is how much of TeX's memory you used:
- 2962 strings out of 495028
- 39531 string characters out of 6181498
- 105806 words of memory out of 5000000
- 6125 multiletter control sequences out of 15000+600000
+ 2968 strings out of 495028
+ 39603 string characters out of 6181498
+ 105830 words of memory out of 5000000
+ 6131 multiletter control sequences out of 15000+600000
  11542 words of font info for 45 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,26p,243b,213s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,26p,243b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
@@ -315,10 +321,10 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on PRF_current.pdf (4 pages, 114869 bytes).
+Output written on PRF_current.pdf (5 pages, 121350 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
