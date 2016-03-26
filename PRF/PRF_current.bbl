@@ -80,13 +80,13 @@ H.~Gunasinghe and E.~Bertino, ``Rahasnym: Protecting against linkability in the
 ``Identity{X} $|$ {W}orld-{C}lass {M}obile {B}iometric {A}uthentication,''
   http://www.identityx.com.
 
-\bibitem{pedersenCommitment}
-T.~P. Pedersen, ``Non-interactive and information-theoretic secure verifiable
-  secret sharing,'' in \emph{Proceedings of CRYPTO'91}, 1992.
-
 \bibitem{fiat-shamir}
 A.~S. U.~Feige, A.~Fiat, ``Zero-knowledge proofs of identity,'' \emph{Journal
   of Cryptology}, 1988.
+
+\bibitem{pedersenCommitment}
+T.~P. Pedersen, ``Non-interactive and information-theoretic secure verifiable
+  secret sharing,'' in \emph{Proceedings of CRYPTO'91}, 1992.
 
 \bibitem{idemixConcepts}
 J.~Camenisch and A.~Lysyanskaya, ``An {E}fficient {S}ystem for
@@ -138,5 +138,9 @@ A.~C. Yao., ``Protocols for secure computations.'' in \emph{In {FOCS}}, 1982.
 S.~Goldwasser, Y.~Kalai†, R.~A. Popa, V.~Vaikuntanathan, and N.~Zeldovich,
   ``Reusable garbled circuits and succinct functional encryption,'' in
   \emph{Proceedings of STOC’13}.
+
+\bibitem{mlgc}
+R.~Bost, R.~A. Popa, and S.~T. amd S.~Goldwasser, ``Machine learning
+  classification over encrypted data,'' in \emph{NDSS '15}, 2015.
 
 \end{thebibliography}

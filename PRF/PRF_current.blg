@@ -19,7 +19,7 @@ Warning--string name "january" is undefined
 --line 33 of file IEEEexample.bib
 Warning--string name "march" is undefined
 --line 55 of file IEEEexample.bib
-Repeated entry---line 353 of file IEEEexample.bib
+Repeated entry---line 359 of file IEEEexample.bib
  : @inproceedings{pedersenCommitment
  :                                  ,
 I'm skipping whatever remains of this entry
@@ -35,45 +35,45 @@ Warning--empty booktitle in fhe
 Warning--empty year in reusablegc
 
 Done.
-You've used 21 entries,
+You've used 22 entries,
             4039 wiz_defined-function locations,
-            1307 strings with 18269 characters,
-and the built_in function-call counts, 9512 in all, are:
-= -- 688
-> -- 175
+            1311 strings with 18382 characters,
+and the built_in function-call counts, 10002 in all, are:
+= -- 721
+> -- 188
 < -- 21
-+ -- 90
-- -- 37
-* -- 373
-:= -- 1583
-add.period$ -- 45
-call.type$ -- 21
-change.case$ -- 21
++ -- 96
+- -- 40
+* -- 395
+:= -- 1659
+add.period$ -- 47
+call.type$ -- 22
+change.case$ -- 22
 chr.to.int$ -- 54
-cite$ -- 24
-duplicate$ -- 772
-empty$ -- 1004
-format.name$ -- 45
-if$ -- 2134
+cite$ -- 25
+duplicate$ -- 814
+empty$ -- 1062
+format.name$ -- 49
+if$ -- 2248
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 161
-newline$ -- 104
-num.names$ -- 20
-pop$ -- 470
+int.to.str$ -- 22
+missing$ -- 170
+newline$ -- 107
+num.names$ -- 21
+pop$ -- 496
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 752
+skip$ -- 792
 stack$ -- 0
-substring$ -- 137
-swap$ -- 467
+substring$ -- 138
+swap$ -- 489
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 21
+type$ -- 22
 warning$ -- 3
-while$ -- 29
-width$ -- 23
-write$ -- 206
+while$ -- 30
+width$ -- 24
+write$ -- 214
 (There were 3 error messages)

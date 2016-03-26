@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage[letterpaper,top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage[letterpaper,top=0.75in,bottom=0.75in,left=0.75in,right=0.75in]{geometry}
 %\usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{amssymb}
@@ -24,13 +24,14 @@ in typing passwords to authenticate transactions in mobile devices with small sc
 drastically cut-down the cost of false decilned transactions~\cite{mastercard}.
 
 Two main contexts in which biometrics is being used for authentication are: in-person authentication~\cite{google} and remote 
-authentication~\cite{hsbc}. In the first case, user is present at the authenticator's premise when authentication is performed and a device of the 
-autheticator captures the 
-biometrics. In the second case, authentication is performed over the network and the biometrics is captured by the user's device. 
+authentication~\cite{hsbc}. In the first case, user is present at the authenticator's premise when authentication is performed 
+%and a device of the autheticator captures the biometrics. 
+whereas in the second case, authentication is performed over the network. 
+%and the biometrics is captured by the user's device. 
 While there are common challenges w.r.t both cases due to the sensitivity (being tightly coupled with one's identity) non-repeatability (no 
 two biometrics samples of the same individual match exactly) and non-revocable (inability to cancel/renew) nature of biometrics, the second case 
-involves more challenges than the first one in terms of liveliness verification of the biometrics to avoid spoofing attacks, secure 
-transmission of the authentication information and security of the user's device. Furthermore, remote biometrics based authentication is being widely 
+involves more challenges than the first one due to spoofing attacks, the attacks on the communication channel and the attacks on the user's 
+device. Furthermore, remote biometrics based authentication is being widely 
 used since online-banking and e-commerce applications are increasingly adopting it.
 
 Aforementioned commercial authentication systems that are being deplyoed today, inherit key security 
@@ -56,7 +57,7 @@ based remote authentication protocol.
 %password breaches in the past, although such techniques were used to secure passwords during storage and transmission.
 The second issue mentioned above can be avoided by getting a trusted identity provider (IDP) to enroll user's biometrics identity~\cite{google, 
 identityX}. However, if the IDP is involved in each transaction that the user authenticates, it undermines the user's privacy since the IDP gets to 
-know about different transactions that the user performs with different service providers.
+know about different transactions that the user performs with different service providers (SPs).
   
 To address aforementioned security and privacy concerns, we aim to develop a biometrics based remote authentication protocol with following 
 characteristics:
@@ -64,8 +65,9 @@ characteristics:
  \item User's biometrics identity is enrolled with only a trusted IDP (i.e: biometrics is not stored with multiple service providers).
  \item Sensitive features of user's biometrics is not stored anywhere.
  \item Sensitive features of user's biometrics is not revealed during authentication.
- \item After the initial enrollment with the IDP, users can carry out biometrics based authentication with multiple service providers without 
+ \item After the initial enrollment with the IDP, users can carry out biometrics based authentication with multiple SPs without 
 involving the IDP. (i.e: user-centric authentication protocol as opposed to traditional IDP-centric authentication protocol).
+ \item Enrolled biometrics identity is revocable and renewable.
  \item Efficient in terms of computation and communication in order for it to be carried out from user's mobile devices.
 \end{enumerate}
 
@@ -73,128 +75,141 @@ In what follows we describe our roadmap of realizing the goal of developing a pr
 the aforementioned characteristics.
 
 \section{Past and on-going research work:}
-We found Zero Knowlede Proof (ZKP) of identity to be a suitable cryptographic primitive to be used along with a secure commitment 
+We found zero knowlede proof (ZKP) of identity~\cite{fiat-shamir} to be a suitable cryptographic primitive to be used along with a secure commitment 
 scheme~\cite{pedersenCommitment}, in order to authenticate without revealing any sensitive biometrics information to the SP. The concept of ZKP of 
 identity, first proposed by Feige, Fiat and Shamir~\cite{fiat-shamir} in 1988, has been used to develop numerous identity based authentication 
 schemes~\cite{idemixConcepts, DAA} for static identities such as email, credit card number, etc. Making it applicable in the domain of biometrics 
 based remote authentication is not straight forward due to non-repeatable nature of biometrics identity. 
 %omit following sentence if needed%
 In other words, since the biometrics sample used to create the commitment does not exactly match the biometrics sample captured during 
-authentication, the ZKP might not suceed even for the genuine prover, unlike in the case of static identity.
-Previous approaches which addressed the non-repeatability of biometrics, mainly in the domain of biometrics based encryption, have used distance 
-matching with threshold, by applying error correction on the features extracted from the second sample. 
-Our goal is to generate a unique, repeatable and revocable biometrics based identifier for the user, based on discriminative features of his/her 
-biometrics, which is used in creating the identity commitment during the enrollment of identity and which is used later for authentication 
-via ZKP of identity usig such commitment. We employ a machine learning based classification model to generate such biometrics identifier (BID).
+authentication, the ZKP might not succeed even for the genuine prover, unlike in the case of static identity.
+Previous approaches which addressed the non-repeatability issue of biometrics, mainly in the domain of biometrics based encryption, have used 
+distance matching with threshold, by applying error correction on the features extracted from the second sample. 
+Our goal is to generate a unique, repeatable and revocable biometrics based identifier for the user, to be used in creating the identity 
+commitment during the enrollment of identity and to be used in authentication via ZKP of identity usig such commitment. We employ a machine 
+learning based classification model to generate such biometrics identifier (BID), based on the discriminative features of the user's biometrics.
 
 \subsubsection*{Overview of the solution}
 
-In what follows we provide an overview of the protocol that we have proposed, using aforementioned building blocks. Please refer to our 
-paper~\cite{ours} for more details. This protocol involves three main parties namely: IDP, SP and user and also involves two main phases namely: 
+In what follows we provide an overview of the protocol that we have proposed, using the aforementioned building blocks. Please refer to our 
+paper~\cite{ours} for more details. This protocol involves three main parties namely: IDP, SP and user. It involves two main phases namely: 
 enrollment phase and authentication phase.\\
 
 \textbf{Enrollment Phase:}
 First, the IDP trains the classification model using the biometrics features extracted from biometrics images. The output is a 
-file encapsulating the base classification model that encodes the information required for prediction. 
+file encapsulating the base-classification model that encodes the information required for prediction. 
 During enrollment of each user, the base classification model is customized by randomizing the class labels encoded in the 
 model. This step is performed as a security measure to avoid compromising the BIDs of the other users of the system, if one user's device is 
 compromized.
 Features extracted from the biometrics image of the enrolling user is given as input to the customized classification model and the corresponding 
 class label is obtained through prediction. This class label is combined with the user provided secret to generate the BID, which is used in creating 
-the identity commitment. The identity commitment, which is based on the Pedersend commitment scheme~\cite{pedersenCommitment} takes the form: C (x, r) 
-= gxhr mod p, where x = BID and r = user provided secret. Pawwsowrd based key generation is used to derive multiple secrets used in the 
-protocol, from a single password provided by the user. The BID generated in this way preserves the uniqueness as it is based on the discriminative 
-features of the user's biometris, repeatable based on the prediction accuracy of the classification model and revocable as the user can cancel any 
-existing BID and obtain a new one simply by requesting the IDP to issue a new customized classification model, which will output a different class 
-label, and changing the password from which the secret used to create the BID is derived.
-
-At the end of the enrollment process, user is issued an identity token (IDT) signed by the IDP and the customized classification model to be used 
-during the authentication phase, which are securely stored in the user's device. The IDT contains the commitment, To and From fields indicating the 
-identity of the prover and the verifier of the ZKP verification in which the IDT will be used, expiration time and the signature of the IDT vouching 
-for such information.
+the identity commitment. The identity commitment, which is based on the Pedersend commitment scheme~\cite{pedersenCommitment}, takes the form: $C (x, 
+r)$ = $g^{x}h^{r} mod p$, where $x$ = BID and $r$ = user provided secret. Password based key generation is used to derive multiple secrets used in 
+the protocol, from a single password provided by the user. The BID generated in this way, preserves the uniqueness as it is based on the 
+discriminative features of the user's biometrics, is repeatable based on the prediction accuracy of the classification model and is revocable as the 
+user can cancel any existing BID and obtain a new one simply by requesting the IDP to issue a new customized classification model, which will output 
+a different class label, and by changing the password from which the secret used to create the BID is derived.
+At the end of the enrollment process, user is issued an identity token (IDT) which containst the identity commitment signed by the IDP and the 
+customized classification model, to be used during the authentication phase, which are securely stored in the user's device.\\
 
 \textbf{Authentication Phase:}
-During the authentication phase, the user provides the IDT issued by the trusted IDP, to the SP and carries out ZKP of the biometrics identity.
-Authentication scceeds if the user is able to prove the verifier in zero-knowlege, his/her ownership of the biometrics identity 
-encoded in the IDT issued by the trusted IDP. In order to carry out the proof, features extracted from a new biometrics image of the user is given as 
-input to the customized classification model stored in the user's device and the BID is generated in the same way as in the enrollment phase. This 
-BID and the secret derived from the user's password are used to carry out the ZKP of biometric identity.
+During the authentication phase, the user provides the IDT issued by the trusted IDP, to the SP and carries out ZKP of the biometrics identity with 
+the SP.
+Authentication scceeds if the user is able to prove the SP in zero-knowlege, his/her ownership of the biometrics identity and the knowledge of 
+the secret encoded in the identity commitment of the IDT. In order to carry out the proof, features extracted from a new biometrics image of the user 
+is given as input to the customized classification model stored in the user's device and the BID is generated in the same way as it was done in the 
+enrollment phase. This BID and the secret derived from the user's password are used to carry out the ZKP of biometric identity.\\
 
-This protocol that we have proposed in~\cite{outs}, pocess characteristics 1-5 mentioned in Section 1. The research goal of the current semester 
-(Spring 2016) is to implement it in the mobile device and evaluate the performance, in order to confirm its compliance with the sixth 
-characteristics as well. 
-
-
-(from our paper)
-
-Currently, we are implementing it in the mobile phone, to test its feasibility interms of performance and security.
-Auth app is separate - which is trusted, which is invoked by any third party client app.
-
-
-(Write about the ZKPK based solution that we have proposed and currently working on in implementing in the mobile device, to achieve the above 
-goal.)
-
-
-We needed to develop a mechanism that creates repeatable, revocable and 
-unique BID. We use ML methods as opposed to traditional distance matching (I need to do a benchmarking to prove that ML outperforms distance 
-matching).
-
-Unique, non-repeatable, non-revocable.\\
-
+This protocol that we have proposed in~\cite{ours}, pocesses the characteristics: 1-5 mentioned in Section 1. The research goal of the current 
+semester (Spring 2016) is to implement it in the mobile device and to evaluate the performance in order to confirm its compliance with the sixth 
+characteristics as well.
 
 \section{Next research goal:}
-In the aforementioned solution that we develop to achive our goal mentioned in Section 1, we assume the support of Trusted Execution Environment 
-(TEE) in the user's mobile device to securely store the artifacts obtained from the IDP during the enrollment phase and to execute BID generation 
-using the classifier during the authentication phase. TEE isolates the storage and execution from other applications which provides further 
-protection in addition to encrypting the artifacts during storage and which is being used by Apple touch ID and android fingerprint authentication 
-framework as well.
-While there are extensive research on the develpment of TEE technology~\cite{tee}, there are attacks being discovered~\cite{blackhat} on them too. 
-Since widely used implementations of TEE technology such as ARM's TrustZone are proprietary and not disclosed for public review, the level of 
+In the aforementioned solution, we assume the support of Trusted Execution Environment  (TEE) in the user's mobile device to securely store the 
+artifacts obtained from the IDP during the enrollment phase and to execute the BID generation process using the classification model during the 
+authentication phase. 
+TEE isolates the storage and the execution from other applications that run in the device which provides protection for trojan type attacks in 
+addition to just encrypting the artifacts during storage. TEE is being used by Apple touch ID and android fingerprint authentication framework 
+as well.
+Although there are extensive research on the develpment of TEE technology~\cite{tee}, there are attacks that have been discovered~\cite{blackhat} on 
+them too.
+Since widely used implementations of TEE technology such as ARM's TrustZone are proprietary and are not disclosed for public review, the level of 
 assurance provided against a given threat model is unclear~\cite{armtrustzone}. 
 
-Furthermore, recent advancement in memory forensics techniques~\cite{dimsum}, pose threats on processing sensitive data in the memory of user's 
-device in clear text, as it is proved that such data could be recovered from memory images even long after the processing of such data is finished. 
-Although it is theoretically possible to clear the memory soon after the processing of sensitive data, it is not practical because it requires 
-accurate tracking of each data object in order to clear them upon destruction of the process, which is a very heavy-weight operation 
-that no commodity operating system performs.
+Furthermore, recent advancement in memory forensics techniques~\cite{dimsum}, pose threats on processing sensitive data in clear text in the memory 
+of the user's device as it is proved that such data could be recovered from memory images even long after the processing of such data is finished. 
+Although it is theoretically possible to clear the related memory upon destruction of a process, it is not practical because it requires 
+accurate tracking of each data object, which is a very heavy-weight operation that no commodity operating system performs.
 
-Therefore, it is at our best interest to develop a privacy preserving biometrics based authentication protocol which achieves all the security and 
-privacy goals mentioned in Section 1, based on theoretical foundations and without assuming any hardware security support. Fully homomorphic 
-encryption (FHE)~\cite{fhe} is one solution to avoid decryption of sensitive biometrics information during authentication, however, it has certain 
-drawbacks to be used in building an authentication protocol with the aforementioned characteristics, as the service provider learns the 
-authentication function, which is the classification model in our case, and it needs to obtain the secret key to decrypt the authentication result, 
-which in turn allows it to decrypt the biometrics data as well. Yao's garbled circuit~\cite{yaogc}, on the other hand, is a better cryptographic 
+Therefore, our next goal is to develop a biometrics based authentication protocol which achieves all the security and 
+privacy goals mentioned in Section 1, based only on theoretical foundations and without assuming any platform security support. Fully homomorphic 
+encryption (FHE)~\cite{fhe} is one solution to avoid decryption of sensitive information during authentication, however, it has certain 
+limitations, such as: SP learns the authentication function, which is the classification model 
+in our case, and SP needs to obtain the secret key to decrypt the authentication decision, which in turn allows it to decrypt the biometrics data 
+as well. 
+Yao's garbled circuit~\cite{yaogc}, on the other hand, is a better cryptographic 
 building block as it allows secure computation of a function $f$ on input data $x$ to obtain the result $f(x)$ while hiding both the function and the 
 input data from the function evaluator.
 
-\subsubsection*{Related work:}
-What people have already done in this direction:
-- GC for biometrics authentication
-- GC on mobile devices
-- GC for classification
-- Reusabile GC.
+%\subsubsection*{Related work:}
+%What people have already done in this direction:
+%- GC for biometrics authentication
+%- GC on mobile devices
+%- GC for classification
+%- Reusabile GC.
 
-\subsubsection*{Proposed Solution:}
+\subsubsection*{Overview of the proposed solution:}
+In what follows we present the tenatative design of the solution that we aim to develop next.\\
+
+\textbf{Enrollment Phase:}
+As shown in Figure 1, IDP first creates a trained classification model (which is a function that can be encoded as a circuit) and then creates a 
+garbled version of it (step 1). This is shared with the enrolling user, to be userd during authentication, along with other artifacts and the IDT 
+(step 5). The IDT in this case is the encrypted and signed BID of the user (step 4). The encryption used here facilitates 
+\begin{figure}[H]
+\centering
+\includegraphics[height=3.00in,width=5.00in]{enrollment}
+\caption{Proposed Enrollment Phase}
+\label{example}
+\end{figure}
+
+\textbf{Authentication Phase:}
+\begin{figure}[H]
+\centering
+\includegraphics[height=3.00in,width=5.00in]{authentication}
+\caption{Proposed Authentication Phase}
+\label{example}
+\end{figure}
 
 \subsubsection*{Challenges:}
 One basic limitation of the original garbled circuit construction is that it offers only one-time usage. Specifically, evaluating a circuit on any 
 new input requires an entirely new garbling of the circuit~\cite{reusablegc}. This causes the user to communicate with the IDP each time the user 
-needs to authenticate to a service provider, which we need to avoid as per the 4th requirement mentioned in Section 1. The problem of reusing garbled 
+needs to authenticate to a SP, which we need to avoid as per the 4th requirement mentioned in Section 1. The problem of reusing garbled 
 circuits has been open for 30 years until the reusable garbled circuit contstruct was proposed by Shafi et. al in 2013~\cite{reusablegc}. This new 
-construct looks promising to develop the biometrics based authentication protocol that we target, as it allows the secure authentication artifacts to 
-be used multiple times without exposing any sensitive information during the process.
+construct sounds promising to develop our target biometrics based authentication protocol, as it allows the secure authentication 
+artifacts that are issued upon enrollment (see step 5 of Figure 1), to be used multiple times without exposing any sensitive information during the 
+process.
+
 Utilizing this construct in designing and developing our target biometrics authentication protocol, however, requires addressing several challenges. 
-Firstly, the scheme poposed in~\cite{reusablegc} is presented in the context of two party secure computation. Although original garbled circuit 
-construct can be used in three-party context, it is currently not straight forward to see how the re-usable garbled circuit contruct could be 
-extended to three-party protocol, which we need to investigate further. Secondly, all the current efficient implementations of garbled circuits do not 
-support this construct, which is currently a challenge when it comes to implemention of the protocol. Therefore, we believe that designing and 
-developing a privacy preserving biometrics authentication protocol using this construct will contribute important results to the research literature. 
+First, the scheme poposed in~\cite{reusablegc} is presented in the context of two party secure computation. We need to exend it to three-party 
+secure computation protocol to build our solution, specifically we need to address the question of how the IDP (who is the circuit generator) 
+delegates the ability to the user to issue labels (see step 5 of Figure 1) to the SP(s) for the SPs to evaluate the garbled classification model 
+(see step 3.1 of Figure 2). 
+Second, encoding the classification model as a garbled function is a challenge. There are very recent efforts~\cite{mlgc} in developing building 
+blocks to construct privacy preserving classifiers which will be useful in addressing this challenge.
+Third, we need to figure out if the three sub steps in the step 3 of authentication phase (in Figure 2) could be combined into one garbled circuit or 
+should they be executed separately, in terms of technical feasibility, security and efficiency.
+Fourth, we need to make sure that delegation of the ability to share GCM by the IDP to the user, does not cause any secret information be stored in 
+the user's device.
+Fifth, all the existing efficient implementations of garbled circuits do not support this construct, which is a challenge when it comes 
+to implemention of the protocol. 
+Therefore, we believe that addressing such challengs and coming up with a secure and privacy preserving biometrics authentication 
+protocol using this construct will contribute important results to the research literature. 
 
 \subsubsection*{Contribution of this work:}
 We aim to produce the following research output:
 \begin{enumerate}
- \item Designing a privacy preserving biometrics based remote authentication protocol with aforementioned characteristics, using re-usable garbled 
-circuit construct. 
+ \item Designing a secure and privacy preserving biometrics based remote authentication protocol with aforementioned characteristics, using re-usable 
+garbled circuit construct. 
  \item A prototype implementation of the protocol that is able to run in mobile devices.
  \item Security and performance analysis of the protocol.
 \end{enumerate}
@@ -208,7 +223,8 @@ techniques. She has got a travel grant form NSF to participate in this.
 - Can help make existing biometrics based remote authentication in day-to-day transactions such as online-banking and e-commerce secure, which 
 already has a large user base and increasing.\\
 - Generalization of this techniques can have impact on other ML tasks where privacy is a concern.
-
+%\pagebreak
+\footnotesize
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,IEEEexample}
  
