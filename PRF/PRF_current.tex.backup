@@ -163,9 +163,12 @@ In what follows we present the tenatative design of the solution that we aim to 
 
 \textbf{Enrollment Phase:}
 As shown in Figure 1, IDP first creates a trained classification model (which is a function that can be encoded as a circuit) and then creates a 
-garbled version of it (step 1). This is shared with the enrolling user, 
-
-\begin{figure}[H]
+garbled version of it (step 1). This is shared with the enrolling user, to be userd during authentication, along with other artifacts and the IDT 
+(step 5). The IDT in this case is the encrypted and signed BID of the user (step 4). The encryption used here facilitates comparison in 
+encrypted domain without requiring any secret key to decrypt the comparison result. This is achieved by providing a garbled version of the 
+decryption function to the evaluator (see step 3.ii of Figure 2). The BID is obtained as the classification output of the biometrics features of the 
+user which is given as input to the trained classification model (step 2).\\
+\begin{figure}
 \centering
 \includegraphics[height=3.00in,width=5.00in]{enrollment}
 \caption{Proposed Enrollment Phase}
@@ -173,7 +176,9 @@ garbled version of it (step 1). This is shared with the enrolling user,
 \end{figure}
 
 \textbf{Authentication Phase:}
-\begin{figure}[H]
+Authentication phase is illustrated in Figure 2. Using the ability to share the GCM with the authenticator (i.e: SP), delegated by the IDP, user 
+creates labels corresponding to the biometrics feature vector, for the SP to evaluate the GCM and obtain the encrypted BID>
+\begin{figure}
 \centering
 \includegraphics[height=3.00in,width=5.00in]{authentication}
 \caption{Proposed Authentication Phase}

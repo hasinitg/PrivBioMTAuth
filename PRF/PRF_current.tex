@@ -11,6 +11,8 @@
 \title{
 \vspace{-20.mm}
 Privacy Preserving Biometrics based Remote Authentication Protocol for Mobile Devices}
+\date{}
+\vspace{-20.mm}
 
 \begin{document}
 \maketitle
@@ -66,7 +68,7 @@ characteristics:
  \item Sensitive features of user's biometrics is not stored anywhere.
  \item Sensitive features of user's biometrics is not revealed during authentication.
  \item After the initial enrollment with the IDP, users can carry out biometrics based authentication with multiple SPs without 
-involving the IDP. (i.e: user-centric authentication protocol as opposed to traditional IDP-centric authentication protocol).
+involving the IDP. (i.e: user-centric as opposed to traditional IDP-centric authentication protocol).
  \item Enrolled biometrics identity is revocable and renewable.
  \item Efficient in terms of computation and communication in order for it to be carried out from user's mobile devices.
 \end{enumerate}
@@ -149,30 +151,58 @@ in our case, and SP needs to obtain the secret key to decrypt the authentication
 as well. 
 Yao's garbled circuit~\cite{yaogc}, on the other hand, is a better cryptographic 
 building block as it allows secure computation of a function $f$ on input data $x$ to obtain the result $f(x)$ while hiding both the function and the 
-input data from the function evaluator.
+input data from the function evaluator.\\
 
-%\subsubsection*{Related work:}
-%What people have already done in this direction:
-%- GC for biometrics authentication
-%- GC on mobile devices
-%- GC for classification
-%- Reusabile GC.
-
-\subsubsection*{Overview of the proposed solution:}
+\textbf{Overview of the proposed solution:}\\
 In what follows we present the tenatative design of the solution that we aim to develop next.\\
 
 \textbf{Enrollment Phase:}
 As shown in Figure 1, IDP first creates a trained classification model (which is a function that can be encoded as a circuit) and then creates a 
-garbled version of it (step 1). This is shared with the enrolling user, to be userd during authentication, along with other artifacts and the IDT 
-(step 5). The IDT in this case is the encrypted and signed BID of the user (step 4). The encryption used here facilitates 
-\begin{figure}[H]
+garbled version of it (step 1). This is shared with the enrolling user, to be used during authentication, along with other artifacts and the IDT 
+(step 5). The IDT in this case is the encrypted and signed BID of the user (step 4). The encryption used here facilitates comparison in 
+encrypted domain without requiring any secret key to decrypt the comparison result. This is achieved by providing a garbled version of the 
+decryption function to the evaluator (see step 3.ii of Figure 2). The BID is obtained as the classification output of the biometrics features of the 
+user which is given as input to the trained classification model (step 2).\\
+
+\textbf{Authentication Phase:}
+Authentication phase is illustrated in Figure 2. Using the ability to share the GCM with the authenticator (i.e: SP) which is delegated by the IDP 
+(step 5 of Figure 1), user creates labels corresponding to the biometrics feature vector (step 1), for the SP to evaluate the GCM and obtain the 
+encrypted BID (step 3.i).
+During the verification, the SP compares in the encrypted domain, the output obtained in the step 3.i with the encrypted BID in the IDT issued by the 
+IDP (step 3.ii). SP uses the provided garbled decryption function to obtain the decrypted authentication result (step 3.iii) without learning any 
+other sensitive information about the user's biometrics.\\
+
+\textbf{Challenges:}
+One basic limitation of the original garbled circuit construction is that it offers only one-time usage. Specifically, evaluating a circuit on any 
+new input requires an entirely new garbling of the circuit~\cite{reusablegc}. This causes the user to communicate with the IDP each time the user 
+needs to authenticate to a SP, which we need to avoid as per the 4th requirement mentioned in Section 1. The problem of reusing garbled 
+circuits has been open for 30 years until the reusable garbled circuit contstruct was proposed by Shafi et. al in 2013~\cite{reusablegc}. This new 
+construct sounds promising to develop our target biometrics based authentication protocol, as it allows the secure authentication 
+artifacts that are issued upon enrollment (step 5 of Figure 1), to be used multiple times without exposing any sensitive information during the 
+process.
+
+Utilizing this construct in designing and developing our target biometrics authentication protocol, however, requires addressing several challenges. 
+First, the scheme poposed in~\cite{reusablegc} is presented in the context of two party secure computation. We need to exend it to three-party 
+secure computation protocol to build our solution, specifically we need to address the question of how the IDP (who is the circuit generator) 
+delegates the ability to the user (step 5 of Figure 1) to issue labels  to the SP(s) (step 1 of Figure 2) for the SPs to evaluate the garbled 
+classification model (step 3.1 of Figure 2). 
+Second, encoding the classification model as a garbled function is a challenge. There are very recent efforts~\cite{mlgc} in developing building 
+blocks to construct privacy preserving classifiers which will be useful in addressing this challenge.
+Third, we need to figure out if the three sub steps in the step 3 of the authentication phase could be combined into one garbled 
+circuit or should they be executed separately, based on technical feasibility, security and efficiency.
+Fourth, we need to make sure that delegation of the ability to share GCM by the IDP to the user, does not cause any secret information be stored in 
+the user's device.
+Fifth, all the existing efficient implementations of garbled circuits do not support this construct, which is a challenge when it comes 
+to implemention of the protocol. 
+Therefore, we believe that addressing such challengs and coming up with a design and an implementation of a secure and privacy preserving biometrics 
+authentication protocol using this construct will contribute important results to the research literature. 
+\begin{figure}[h]
 \centering
 \includegraphics[height=3.00in,width=5.00in]{enrollment}
 \caption{Proposed Enrollment Phase}
 \label{example}
 \end{figure}
 
-\textbf{Authentication Phase:}
 \begin{figure}[H]
 \centering
 \includegraphics[height=3.00in,width=5.00in]{authentication}
@@ -180,31 +210,7 @@ garbled version of it (step 1). This is shared with the enrolling user, to be us
 \label{example}
 \end{figure}
 
-\subsubsection*{Challenges:}
-One basic limitation of the original garbled circuit construction is that it offers only one-time usage. Specifically, evaluating a circuit on any 
-new input requires an entirely new garbling of the circuit~\cite{reusablegc}. This causes the user to communicate with the IDP each time the user 
-needs to authenticate to a SP, which we need to avoid as per the 4th requirement mentioned in Section 1. The problem of reusing garbled 
-circuits has been open for 30 years until the reusable garbled circuit contstruct was proposed by Shafi et. al in 2013~\cite{reusablegc}. This new 
-construct sounds promising to develop our target biometrics based authentication protocol, as it allows the secure authentication 
-artifacts that are issued upon enrollment (see step 5 of Figure 1), to be used multiple times without exposing any sensitive information during the 
-process.
-
-Utilizing this construct in designing and developing our target biometrics authentication protocol, however, requires addressing several challenges. 
-First, the scheme poposed in~\cite{reusablegc} is presented in the context of two party secure computation. We need to exend it to three-party 
-secure computation protocol to build our solution, specifically we need to address the question of how the IDP (who is the circuit generator) 
-delegates the ability to the user to issue labels (see step 5 of Figure 1) to the SP(s) for the SPs to evaluate the garbled classification model 
-(see step 3.1 of Figure 2). 
-Second, encoding the classification model as a garbled function is a challenge. There are very recent efforts~\cite{mlgc} in developing building 
-blocks to construct privacy preserving classifiers which will be useful in addressing this challenge.
-Third, we need to figure out if the three sub steps in the step 3 of authentication phase (in Figure 2) could be combined into one garbled circuit or 
-should they be executed separately, in terms of technical feasibility, security and efficiency.
-Fourth, we need to make sure that delegation of the ability to share GCM by the IDP to the user, does not cause any secret information be stored in 
-the user's device.
-Fifth, all the existing efficient implementations of garbled circuits do not support this construct, which is a challenge when it comes 
-to implemention of the protocol. 
-Therefore, we believe that addressing such challengs and coming up with a secure and privacy preserving biometrics authentication 
-protocol using this construct will contribute important results to the research literature. 
-
+\pagebreak
 \subsubsection*{Contribution of this work:}
 We aim to produce the following research output:
 \begin{enumerate}
@@ -214,16 +220,6 @@ garbled circuit construct.
  \item Security and performance analysis of the protocol.
 \end{enumerate}
 
-
-\section{Background and potential impact:}
-- After the current work is over, at the end of this semester, we will have a working prototype of our past approach in the mobile phone. PhD student 
-Hasini will be attending a summer school conducted by leaders of secure mpc and oblivious computation research to learn the current-state-of-the-art 
-techniques. She has got a travel grant form NSF to participate in this.
-- Google ATAP project has accepted a proposal written by us and has funded Purdue.
-- Can help make existing biometrics based remote authentication in day-to-day transactions such as online-banking and e-commerce secure, which 
-already has a large user base and increasing.\\
-- Generalization of this techniques can have impact on other ML tasks where privacy is a concern.
-%\pagebreak
 \footnotesize
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,IEEEexample}
