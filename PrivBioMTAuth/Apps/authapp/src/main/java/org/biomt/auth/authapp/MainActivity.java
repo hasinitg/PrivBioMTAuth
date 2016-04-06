@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onMainAuthButtonClicked(View v){
         Intent authIntent = new Intent(this, AuthActivity.class);
-        authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://192.168.211.153:8080/abcbank/account");
+        authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://128.10.120.195:8080/abcbank/account");
+        //authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://192.168.211.153:8080/abcbank/account");
 
         startActivityForResult(authIntent, 1);
     }

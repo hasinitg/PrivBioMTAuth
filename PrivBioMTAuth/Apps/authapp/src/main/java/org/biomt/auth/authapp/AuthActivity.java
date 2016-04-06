@@ -28,7 +28,7 @@ public class AuthActivity extends AppCompatActivity {
         spURL = authRequest.getStringExtra(AuthConstants.SP_URL_NAME);
 
         EditText identityText = (EditText) findViewById(R.id.identityText);
-        identityText.setText(spURL);
+        //identityText.setText(spURL);
 
         //perform ZKP with SP.
 
