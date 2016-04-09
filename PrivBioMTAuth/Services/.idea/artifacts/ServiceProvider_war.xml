@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="ServiceProvider:war">
-    <output-path>$PROJECT_DIR$/ServiceProvider/target</output-path>
-    <root id="archive" name="abcbank.war">
-      <element id="artifact" artifact-name="ServiceProvider:war exploded" />
-    </root>
-  </artifact>
-</component>
