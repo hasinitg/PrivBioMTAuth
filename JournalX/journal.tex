@@ -390,6 +390,36 @@ http://stackoverflow.com/questions/8194408/how-to-access-parameters-in-a-restful
  \item @PathParam
 \end{enumerate}
 
+I finished implementing the IDP service by 8pm I guess.
+
+\subsubsection*{9th April}
+
+I started to work after gettig up at 5am and after doing my leg exercises.\\
+I wanted to test the IDP service, first by writing a desktop client.\\
+My goal was to use jersey's POJO-JSON converting ability to easily handle objects.\\
+\textbf{Troubles:}
+\begin{enumerate}
+ \item First of all, it was hard to get post method invoked from jersey client. It is different from get method, which most of the samples provide.
+ I did it in the way how this has done it: 
+http://stackoverflow.com/questions/10335483/how-do-i-post-a-pojo-with-jersey-client-without-manually-convert-to-json\\
+But I could not get it to working. I tried several trouble shooting.\\
+First of all, the URL I used was wrong, which I got from this tutorial. 
+http://www.mkyong.com/webservices/jax-rs/restful-java-client-with-jersey-client/\\
+LESSON: You do not have to add get, post etc. at the end of the url.
+\item Then I got some exceptions in the enroll method in the service due to some silly mistakes of mine in using AND OR.
+\item Then I found there is a serious issue in POJO-JSON conversion support in jersy, because first it complains there is no reader/writer in the 
+client side. When I configured the converters as in: http://stackoverflow.com/questions/18808018/parse-a-json-response-as-an-object\\
+But it gives a parsing error, when parsing the identityCommitment parameter, which is a big integer.
+\item Then I tried only decoding mannually at the client side, but it also failed, when creating the json object from the response string, the big 
+integer format is changed due to some reason.
+\item Then I wrote encoding also mannually, to be used at the server side, then only it actually worked.
+\end{enumerate}
+
+\textbf{MyNexts:}
+ 1. Port the IDP client into mobile.\\
+ 2. Save the commitment in the mobile\\
+ 3. Implement ZKP with SP\\
+ 4. Run performance tests\\
 
 
 \pagebreak
