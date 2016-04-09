@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IdentityProvider/IdentityProvider.iml" filepath="$PROJECT_DIR$/IdentityProvider/IdentityProvider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServiceProvider/ServiceProvider.iml" filepath="$PROJECT_DIR$/ServiceProvider/ServiceProvider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Services.iml" filepath="$PROJECT_DIR$/Services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ZKP4IDLib/ZKP4IDLib.iml" filepath="$PROJECT_DIR$/ZKP4IDLib/ZKP4IDLib.iml" />
+    </modules>
+  </component>
+</project>

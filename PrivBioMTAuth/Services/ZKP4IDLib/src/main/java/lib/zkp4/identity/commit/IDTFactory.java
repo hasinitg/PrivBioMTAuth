@@ -33,7 +33,7 @@ public class IDTFactory {
             //initialize pedersen commitment factory
             PedersenCommitmentFactory pedersenCommitmentFactory = new PedersenCommitmentFactory();
             PedersenPublicParams pedersenPublicParams;
-            if (config == null) {
+            if (config == null || config.getPublicParams() == null) {
                 pedersenPublicParams = pedersenCommitmentFactory.initialize();
             } else {
                 pedersenPublicParams = config.getPublicParams();
@@ -41,13 +41,19 @@ public class IDTFactory {
 
             pedersenCommitmentFactory.initialize(pedersenPublicParams);
 
-            //TODO: decrypt the secret and obtain the big integer for the momet, assume that sending over SSL is fine.
+            //TODO: decrypt the secret and obtain the big integer for the moment, assume that sending over SSL is fine.
             String encryptedSecret = request.getEncryptedSecret();
             //todo: decrypt the secret
             BigInteger secretBIG = new BigInteger(encryptedSecret);
-            //TODO: get the user's attribute value from the AttributeFinder given the user name and the attribute name
             String attributeName = request.getAttributeName();
-            String attributeValue = config.getAttributeValue(userName, attributeName);
+            /*TODO: if the attribute value is not in the request,
+            get the user's attribute value from the AttributeFinder given the user name and the attribute name*/
+
+            String attributeValue = request.getAttributeValue();
+            if (attributeValue == null) {
+
+                attributeValue = config.getAttributeValue(userName, attributeName);
+            }
             BigInteger emailBIG = CryptoUtil.getCommittableThruHash(attributeValue, CryptoLibConstants.SECRET_BIT_LENGTH);
             //System.out.println("emailBIG at IDP: " + emailBIG);
             PedersenCommitment commitment = pedersenCommitmentFactory.createCommitment(emailBIG, secretBIG);

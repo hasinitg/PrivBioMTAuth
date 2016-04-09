@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="IdentityProvider:war">
+    <output-path>$PROJECT_DIR$/IdentityProvider/target</output-path>
+    <root id="archive" name="idp.war">
+      <element id="artifact" artifact-name="IdentityProvider:war exploded" />
+    </root>
+  </artifact>
+</component>

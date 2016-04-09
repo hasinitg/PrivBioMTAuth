@@ -10,12 +10,14 @@ import java.util.Map;
 /*This is the request sent by the client to initiate obtaining the IDT.*/
 
 public class IDTRequest {
-    /*following are the mandatory param, any additional ones according to the implementation
+    /*following are the default set of params, any additional ones according to the implementation
     * can be added to additional param request.*/
     private String attributeName;
     private String encryptedSecret;
     private String fromField;
     private String toField;
+    //this is optional.
+    private String attributeValue;
 
     private Map<String, Object> additionalReqParams = new HashMap<>();
 
@@ -65,5 +67,13 @@ public class IDTRequest {
 
     public void setToField(String toField) {
         this.toField = toField;
+    }
+
+    public String getAttributeValue() {
+        return attributeValue;
+    }
+
+    public void setAttributeValue(String attributeValue) {
+        this.attributeValue = attributeValue;
     }
 }
