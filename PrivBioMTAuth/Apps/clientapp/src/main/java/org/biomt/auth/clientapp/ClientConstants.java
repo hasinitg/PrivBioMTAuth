@@ -5,6 +5,7 @@ package org.biomt.auth.clientapp;
  */
 public class ClientConstants {
     public static final String SP_URL_NAME = "SP_URL";
+    public static final String USER_NAME_NAME = "USER_NAME";
     public static final String ACTION_AUTH_ZKP = "org.biomt.auth.authapp.ACTION_AUTH_ZKP";
     public static int ZKP_AUTH_REQUEST = 5;
 }

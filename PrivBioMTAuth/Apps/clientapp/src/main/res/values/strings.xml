@@ -3,6 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="auth_button_name">Authenticate</string>
+    <string name="auth_button_name">Authenticate with Biometrics</string>
+    <string name="label_name_SP_URL">SP URL</string>
+    <string name="label_name_user_name">User Name</string>
     <string name="title_activity_account">AccountActivity</string>
 </resources>

@@ -11,7 +11,8 @@ import java.util.Map;
 
 public class IDTRequest {
     /*following are the default set of params, any additional ones according to the implementation
-    * can be added to additional param request.*/
+        * can be added to additional param request.*/
+    private String userName;
     private String attributeName;
     private String encryptedSecret;
     private String fromField;
@@ -76,4 +77,13 @@ public class IDTRequest {
     public void setAttributeValue(String attributeValue) {
         this.attributeValue = attributeValue;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
 }

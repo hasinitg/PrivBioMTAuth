@@ -3,6 +3,7 @@
     package="org.biomt.auth.authapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -25,11 +26,26 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.biomt.auth.authapp.MainActivity" />
+
+        </activity>
+        <activity
+            android:name=".EnrollmentActivity"
+            android:label="@string/title_activity_enrollment" >
+        </activity>
+        <activity
+            android:name=".FilterActivity"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:label="@string/title_activity_filter"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.biomt.auth.authapp.MainActivity" />
+
             <intent-filter>
-                <action android:name="org.biomt.auth.authapp.ACTION_AUTH_ZKP"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <!--<data android:name="text/plain"/>-->
-                <!--<category android:name="org.biomt.auth.authapp.AUTH"/>-->
+                <action android:name="org.biomt.auth.authapp.ACTION_AUTH_ZKP" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <!-- <data android:name="text/plain"/> -->
+                <!-- <category android:name="org.biomt.auth.authapp.AUTH"/> -->
             </intent-filter>
         </activity>
     </application>

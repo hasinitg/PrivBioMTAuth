@@ -3,8 +3,22 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!--Common Constants-->
+    <string name="label_text_identity">Identity</string>
+    <string name="label_text_password">Password</string>
+
+    <!-- Constants of auth activity-->
     <string name="title_activity_auth">AuthActivity</string>
-    <string name="identity_label_text">Identity</string>
-    <string name="password_label_text">Password</string>
-    <string name="auth_button_text">Authenticate</string>
+    <string name="button_text_auth">Authenticate</string>
+
+    <!--Constants of enrollment activity-->
+    <string name="title_activity_enrollment">EnrollmentActivity</string>
+    <string name="label_text_from">From</string>
+    <string name="label_text_to">To</string>
+    <string name="label_text_idp_url">IDP URL</string>
+    <string name="button_text_enroll">Enroll</string>
+
+    <string name="title_activity_filter">FilterActivity</string>
+
 </resources>

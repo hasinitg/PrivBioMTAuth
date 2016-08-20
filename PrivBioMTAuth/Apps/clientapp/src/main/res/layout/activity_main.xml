@@ -10,8 +10,47 @@
         android:layout_height="wrap_content"
         android:text="@string/auth_button_name"
         android:id="@+id/auth_button"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="183dp"
-        android:onClick="onAuthButtonClicked"/>
+        android:onClick="onAuthButtonClicked"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/editTextUserName"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_name_SP_URL"
+        android:id="@+id/textViewSPURL"
+        android:layout_marginBottom="96dp"
+        android:layout_above="@+id/auth_button"
+        android:layout_alignLeft="@+id/auth_button"
+        android:layout_alignStart="@+id/auth_button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextSPURL"
+        android:layout_alignTop="@+id/textViewSPURL"
+        android:layout_alignRight="@+id/auth_button"
+        android:layout_alignEnd="@+id/auth_button"
+        android:layout_toRightOf="@+id/textViewSPURL"
+        android:layout_toEndOf="@+id/textViewSPURL" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_name_user_name"
+        android:id="@+id/textViewUserName"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/auth_button"
+        android:layout_alignStart="@+id/auth_button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextUserName"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/editTextSPURL"
+        android:layout_alignEnd="@+id/editTextSPURL"
+        android:layout_toRightOf="@+id/textViewUserName"
+        android:layout_toEndOf="@+id/textViewUserName" />
 </RelativeLayout>

@@ -19,7 +19,7 @@ Warning--string name "january" is undefined
 --line 33 of file IEEEexample.bib
 Warning--string name "march" is undefined
 --line 55 of file IEEEexample.bib
-Repeated entry---line 347 of file IEEEexample.bib
+Repeated entry---line 359 of file IEEEexample.bib
  : @inproceedings{pedersenCommitment
  :                                  ,
 I'm skipping whatever remains of this entry
@@ -27,49 +27,53 @@ I'm skipping whatever remains of this entry
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty year in idemixConcepts
+Name 2 in "E. Brickell, J. Camenisch and L. Chen," has a comma at the end for entry DAA
+while executing---line 2419 of file IEEEtran.bst
+Name 2 in "E. Brickell, J. Camenisch and L. Chen," has a comma at the end for entry DAA
+while executing---line 2419 of file IEEEtran.bst
 Warning--empty booktitle in fhe
 Warning--empty year in reusablegc
 
 Done.
-You've used 19 entries,
+You've used 22 entries,
             4039 wiz_defined-function locations,
-            1297 strings with 17956 characters,
-and the built_in function-call counts, 8304 in all, are:
-= -- 598
-> -- 152
-< -- 15
-+ -- 78
-- -- 33
-* -- 321
-:= -- 1403
-add.period$ -- 41
-call.type$ -- 19
-change.case$ -- 19
-chr.to.int$ -- 39
-cite$ -- 22
-duplicate$ -- 677
-empty$ -- 875
-format.name$ -- 39
-if$ -- 1847
+            1311 strings with 18366 characters,
+and the built_in function-call counts, 10002 in all, are:
+= -- 721
+> -- 188
+< -- 21
++ -- 96
+- -- 40
+* -- 395
+:= -- 1659
+add.period$ -- 47
+call.type$ -- 22
+change.case$ -- 22
+chr.to.int$ -- 54
+cite$ -- 25
+duplicate$ -- 814
+empty$ -- 1062
+format.name$ -- 49
+if$ -- 2248
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 144
-newline$ -- 98
-num.names$ -- 18
-pop$ -- 424
+int.to.str$ -- 22
+missing$ -- 170
+newline$ -- 107
+num.names$ -- 21
+pop$ -- 496
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 651
+skip$ -- 792
 stack$ -- 0
-substring$ -- 100
-swap$ -- 406
-text.length$ -- 2
+substring$ -- 138
+swap$ -- 489
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 19
+type$ -- 22
 warning$ -- 3
-while$ -- 24
-width$ -- 21
-write$ -- 189
-(There was 1 error message)
+while$ -- 30
+width$ -- 24
+write$ -- 214
+(There were 3 error messages)

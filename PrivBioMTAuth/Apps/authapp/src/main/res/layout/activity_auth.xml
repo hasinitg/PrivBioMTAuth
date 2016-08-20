@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/identity_label_text"
+        android:text="@string/label_text_identity"
         android:id="@+id/identityLabel"
         android:layout_marginTop="165dp"
         android:layout_alignParentTop="true"
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/password_label_text"
+        android:text="@string/label_text_password"
         android:id="@+id/passwordLabel"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/passworText"
+        android:id="@+id/passwordText"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -39,18 +39,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/identityText"
-        android:layout_alignLeft="@+id/passworText"
-        android:layout_alignStart="@+id/passworText"
+        android:layout_alignLeft="@+id/passwordText"
+        android:layout_alignStart="@+id/passwordText"
         android:layout_alignBottom="@+id/identityLabel"
-        android:layout_alignRight="@+id/passworText"
-        android:layout_alignEnd="@+id/passworText" />
+        android:layout_alignRight="@+id/passwordText"
+        android:layout_alignEnd="@+id/passwordText" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/auth_button_text"
+        android:text="@string/button_text_auth"
         android:id="@+id/auth_button"
-        android:layout_below="@+id/passworText"
+        android:layout_below="@+id/passwordText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
         android:onClick="onAuthButtonClicked"/>

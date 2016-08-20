@@ -80,18 +80,27 @@ H.~Gunasinghe and E.~Bertino, ``Rahasnym: Protecting against linkability in the
 ``Identity{X} $|$ {W}orld-{C}lass {M}obile {B}iometric {A}uthentication,''
   http://www.identityx.com.
 
-\bibitem{pedersenCommitment}
-T.~P. Pedersen, ``Non-interactive and information-theoretic secure verifiable
-  secret sharing,'' in \emph{Proceedings of CRYPTO'91}, 1992.
-
 \bibitem{fiat-shamir}
 A.~S. U.~Feige, A.~Fiat, ``Zero-knowledge proofs of identity,'' \emph{Journal
   of Cryptology}, 1988.
+
+\bibitem{pedersenCommitment}
+T.~P. Pedersen, ``Non-interactive and information-theoretic secure verifiable
+  secret sharing,'' in \emph{Proceedings of CRYPTO'91}, 1992.
 
 \bibitem{idemixConcepts}
 J.~Camenisch and A.~Lysyanskaya, ``An {E}fficient {S}ystem for
   {N}on-{T}ransferable {A}nonymous {C}redentials with {O}ptional {A}nonymity
   {R}evocation,'' in \emph{Proceedings of EUROCRYPT '01}, pp. 93--118.
+
+\bibitem{DAA}
+J.~C. E.~Brickell and L.~Chen, ``Direct anonymous attestation,'' in \emph{ACM
+  Conference on Computer and Communications Security}, 2004.
+
+\bibitem{ours}
+H.~Gunasinghe and E.~Bertino, ``Privacy {P}reserving {B}iometrics-{B}ased and
+  {U}ser {C}entric {A}uthentication {P}rotocol,'' in \emph{Network and System
+  Security - 8th International Conference, NSS 2014}, 2014, pp. 15--17.
 
 \bibitem{tee}
 N.~Asokan, J.~Ekberg, and K.~Kostiainen, ``The untapped potential of trusted
@@ -129,5 +138,9 @@ A.~C. Yao., ``Protocols for secure computations.'' in \emph{In {FOCS}}, 1982.
 S.~Goldwasser, Y.~Kalai†, R.~A. Popa, V.~Vaikuntanathan, and N.~Zeldovich,
   ``Reusable garbled circuits and succinct functional encryption,'' in
   \emph{Proceedings of STOC’13}.
+
+\bibitem{mlgc}
+R.~Bost, R.~A. Popa, and S.~T. amd S.~Goldwasser, ``Machine learning
+  classification over encrypted data,'' in \emph{NDSS '15}, 2015.
 
 \end{thebibliography}

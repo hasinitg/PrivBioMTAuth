@@ -1,7 +1,7 @@
 package lib.zkp4.identity.util;
 
-import lib.zkp4.identity.commit.IdentityToken;
-import org.crypto.lib.commitments.pedersen.PedersenPublicParams;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -22,4 +22,11 @@ public class Utilz {
         return new Timestamp(parsedDate.getTime());
     }
 
+    public static String getAttributeFromJSONMessage(JSONObject jsonObject, String attributeName) throws JSONException {
+        if (!jsonObject.isNull(attributeName)) {
+            return (String) jsonObject.get(attributeName);
+        } else {
+            return null;
+        }
+    }
 }

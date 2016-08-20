@@ -1,12 +1,16 @@
 package org.biomt.auth.clientapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.List;
@@ -17,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EditText defaultSPURL = (EditText) findViewById(R.id.editTextSPURL);
+        defaultSPURL.setText(Config.SP_URL);
     }
 
     @Override
@@ -42,10 +48,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAuthButtonClicked(View v){
+
+        //check if the network connectivity is there
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (!(networkInfo!=null && networkInfo.isConnected())){
+            Toast myToast = Toast.makeText(getApplicationContext(),
+                    "Please connect to the internet first.", Toast.LENGTH_LONG);
+            myToast.show();
+        }
+
         //create the implicit intent and call it with necessary inputs
         Intent authIntent = new Intent(ClientConstants.ACTION_AUTH_ZKP);
-        //authIntent.setType("text/plain");
-        authIntent.putExtra(ClientConstants.SP_URL_NAME, Config.SP_URL);
+
+        //add inputs to the intent
+        EditText spURL = (EditText) findViewById(R.id.editTextSPURL);
+        //TODO: check if the sp url is null
+        authIntent.putExtra(ClientConstants.SP_URL_NAME, spURL.getText().toString());
+
+        EditText userName = (EditText) findViewById(R.id.editTextUserName);
+        authIntent.putExtra(ClientConstants.USER_NAME_NAME, userName.getText().toString());
 
         //verify that the intended app exists.
         PackageManager pkgManager = getPackageManager();

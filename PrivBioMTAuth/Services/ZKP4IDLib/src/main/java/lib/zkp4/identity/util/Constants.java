@@ -1,5 +1,7 @@
 package lib.zkp4.identity.util;
 
+import javax.xml.soap.SAAJResult;
+
 /**
  * Created by hasini on 4/6/16.
  */
@@ -19,4 +21,9 @@ public class Constants {
         public static final String H_PARAM = "h";
     public static final String SIGNATURE = "signature";
     public static final String PUBLIC_CERT_ALIAS = "publicCertAlias";
+
+    /*String names for IDT Request parameters*/
+    public static final String ATTRIBUTE_VALUE = "attributeValue";
+    public static final String ENCRYPTED_SECRET = "encryptedSecret";
+    public static final String USER_NAME = "userName";
 }

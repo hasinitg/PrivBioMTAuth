@@ -15,7 +15,7 @@ public class IDTManager {
             //TODO: IDP manager should call the classifier and generate the BID.
             IdentityRetriever idRet = new IdentityRetriever();
             //Todo: setting a dummy value for testing no.
-            idRet.setBID("jasi86@gmail.com");
+            idRet.setBID("hasi86@gmail.com");
             IDPConfigImpl config = new IDPConfigImpl();
             config.setIdentityRetriever(idRet);
 

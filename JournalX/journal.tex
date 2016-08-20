@@ -55,12 +55,17 @@ proposal.
  \item I think it is fundementally wrong to say that you generate BID for a user by giving his/her biometrics features into a classification model 
 that   did not use his/her biometrics images to train the model. I think I should also test this during the experiments. But training a model is all 
 about using it during prediction. But this will not preserve uniqueness. So I guess that we need to train a model for each enrolling user.
+I should do both:\\
+1. Train without individual's biometrics.\\
+2. Train with individual's biometrics.\\
+\item I should claim results with statistical significance.
+\item I should check if one app can invoke another app's activity through explicit intents - which is a security concern.
 \end{enumerate}
 
 \subsubsection*{Wed Jan 20}
 I installed Android studio. I referenced this good tutorial: http://www.androidauthority.com/first-android-app-what-you-need-to-know-619260/\\
 However, in my Ubuntu, I got an error from android studio saying that SDK or libraries could not be installed. \\
-Then this was the solution: http://stackoverflow.com/questions/28804863/android-studio-how-to-install-android-platform-tools-on-ubuntu-14-04-64-bit
+Then this was the solution: http://stackoverflow.com/questions/28804863/android-studio-how-to-install-android-platform-tools-on-ubuntu-14-04-64-bit\\
 It was because Android needs 32 bit libs and I have a 64 bit Ubuntu.\\
 Here are some tips I found to make the emulator fast:
 http://developer.android.com/tools/devices/emulator.html\#vm-linux
@@ -108,7 +113,6 @@ running in Windows. https://dzone.com/articles/genymotion-simply-best-android \\
 I tried to install it in my phone (I upgraded my phone too for this reason. My phone is running Android 4.4.2). But somehow it didn't get installed.
 I was so tired by then and went to sleep.\\
 
-\textbf{TODO:}
 Read how to make android studio faster:\\
 1. https://dzone.com/articles/how-speed-android-studio\\
 2. http://www.codeproject.com/Articles/803935/How-To-Make-Android-Studio-Really-Fast-On-A-Window\\
@@ -122,8 +126,10 @@ is going through the Android build process. See how slow my progress is! :(\\
 Oh... Android studio integrated gradle build is a crap!. It didn't even complain that the build was not successful. That is why there was no apk 
 local path existed.\\
 
-I ran gradle build from command line according to this tutorial: http://developer.android.com/training/basics/firstapp/running-app.html\\
-Steps: \\
+I ran gradle build from command line according to this tutorial: \\
+http://developer.android.com/training/basics/firstapp/running-app.html\\
+
+Steps:\\
 1. invoke the assembleDebug build task using the Gradle wrapper script (gradlew assembleRelease).\\
 chmod +x gradlew\\
 ./gradlew assembleDebug\\
@@ -137,10 +143,11 @@ After doing: sudo apt-get install zlib1g:i386, the gradle gave me: BUILD SUCCESS
 
 2. Then I wanted to deploy the app in my phone also from the command line (mentioned in the same above tutorial).\\
 Added android-sdk/platform-tools to PATH and ran: adb install app/build/outputs/apk/app-debug.apk\\
-Yeyyy... I got my first android app installed on my phone! :) Now the floor is mine to do cool stuff.\\
+\textbf{Yeyyy... I got my first android app installed on my phone! :) Now the floor is mine to do cool stuff.}\\
 
 Command line worked so smooth compared to crappy android studio. \\
-\textbf{Commands to build and run in the phone:}\\
+
+\textbf{Steps to build and run in the phone:}\\
 ./gradlew assembleDebug\\
 adb install -r app/build/outputs/apk/app-debug.apk\\
 
@@ -161,11 +168,14 @@ under the res/layout folder, strings.xml file.
  \item View and ViewGroups.
  \item How to add a method for a view to be responsive. Method should satisfy following:\\
  Be public. Have a void return value. Have a View as the only parameter.
- \item Intent: \\
+ \item \textbf{Intents}: \\
+ Invoke phase:\\
  create Intent : newIntent(), \\
  add name-value pairs to it: intent.putExtra(name, value),\\
  start activity passing the intent: 
  startActivity(intent), \\
+ 
+ Receive Phase:\\
  receive data sent thru an intent: getIntent(), getStringExtra(name). 
  \item Accessing View elements of an activity through:\\
  findViewById(R.id.<id\_name>)  method.
@@ -192,7 +202,10 @@ which intents a component can handle before it launches the component, intent fi
 component may have any number of filters, each one describing a different capability.\\
 
 - An intent that explicitly names a target component will activate that component; the filter doesn't play a role. But an intent that doesn't specify 
-a target by name (implicit intents) can activate a component only if it can pass through one of the component's filters. 
+a target by name (implicit intents) can activate a component only if it can pass through one of the component's filters.\\
+
+\textbf{TODO:}\\
+I should check if one app can invoke another app's activity through explicit intents - which is a security concern.
 
 \subsubsection*{14thMarch:}
 - I created a new project with two app-modules : authapp and clientapp and started adding the basic logic to it.\\
@@ -223,6 +236,11 @@ time with To field having IDP name and carry out ZKP to prove that the token bel
  \item different IDTs with different To fields and different commitments to achieve unlinkability. For this, user needs to send a biometrics capture, 
 IDP runs it trough BID generator and create a new commitment. \textbf{We follow this approach because we do not store BID anywhere.}.
 \end{itemize}
+
+\textbf{Question:} will this make the IDP know about the transaction time? No, actually it can be done at periodical windows of a day or week. 
+The first will not require user involvement. And the second will require user involvement.\\
+\textbf{TODO:} Measure the performance of the first case. How much time and cpu cost it takes to refill the commitments. But in this case, helper 
+secrets needs to be stored - no, actually only an incrementer will be sufficient, which helps to derive the same secrets later.
 
 \subsubsection*{16thMarch:}
 I started writing a REST service to be invoked by the android app. \\
@@ -415,7 +433,7 @@ integer format is changed due to some reason.
 \item Then I wrote encoding also mannually, to be used at the server side, then only it actually worked.
 \end{enumerate}
 
-\textbf{MyNexts:}
+\textbf{MyNexts:}\\
  1. Port the IDP client into mobile.\\
  2. Save the commitment in the mobile\\
  3. Implement ZKP with SP\\
@@ -572,6 +590,56 @@ Professor liked the proposal very much.\\
 
 She said that she is very confident that I could do the prelim early this Fall.
 
+\subsubsection*{June 19th:}
+This is the difference between privacy and security: 
+https://www.ghostery.com/intelligence/business-blog/privacy/understanding-the-differences-between-privacy-and-/
+
+\subsubsection*{July 6th, July 14th}
+I went through my diary, tried to recap my work and tried get the setup working. I could access the tomcat service through the web browser but 
+couldn't run the phone app. When I was debugging, Android studio suddenly gave the device not found error. This is where I am, trying to get out of 
+it.
+
+\subsubsection*{July 18th}
+Too bad I didn't do anything during the weekend. 
+Oh the problem is that USB debuggins is disabled. When I re-enabled it, it listed the USB device. \\
+Commands for the adb and USB device:\\
+1. adb devices\\
+2. lsusb\\
+3. ls -l /dev/bus/usb/002 (the device id)\\
+
+\subsubsection*{July 23rd}
+I worked in the coffee bar. It is a very nice place. I tried to get the mobile app connected to my server. But it didn't work. Could be a problem 
+with the network. So I switched to planning what I need to do.
+I found certain ways to do performance testing of the mobile app:\\
+http://www.developer.com/ws/android/development-tools/android-app-performance-testing-an-end-to-end-approach.html\\
+https://developer.android.com/studio/profile/index.html\\
+http://stackoverflow.com/questions/1957135/how-to-test-the-performance-of-an-android-application\\
+
+I also found about the async tasks which I should use when invoking remote services from the mobile app:\\
+https://developer.android.com/training/basics/network-ops/connecting.html\#http-client
+
+Android suggests to use HttpURLConnection client. But I already use some other client:
+https://developer.android.com/reference/java/net/HttpURLConnection.html
+
+\subsubsection*{July 30th}
+I was looking for a face dataset.\\
+This seems to be for the algorithms to detect frontal face images - http://vasc.ri.cmu.edu/idb/html/face/frontal_images/ Which is not so useful to 
+me.\\
+
+This contains a list of datasets:\\
+http://www.face-rec.org/databases/\\
+
+This is a very good tutorial on fisher faces and SVM multi-class classification:\\
+https://github.com/JaimeIvanCervantes/FaceRecognition\\
+
+It gives mixed feelings to find this paper published based on Google ATAP project:\\
+http://www.cse.msu.edu/rgroups/biometrics/Publications/Face/Crouseetal_ContinuousAuthMobileFace_ICB15.pdf\\
+
+Another paper from blackhat:\\
+https://www.blackhat.com/presentations/bh-dc-09/Nguyen/BlackHat-DC-09-Nguyen-Face-not-your-password.pdf\\
+
+
+
 \pagebreak
 
 \section*{New Ideas:}
@@ -643,6 +711,21 @@ May be we can mention them as the security best practices for client implementat
 \subsubsection*{March 22nd:}
 I met with Professor to talk about the proposal. I worked hard and sent an initial draft of the proposal to her just about 1 hour before the meeting. 
 She said it looks reasonable. Then I mentioned breifly
+
+\subsubsection*{August 19th:}
+It was a very hard meeting. I knew it was going to be so.\\
+Professor said: you keep saying this to me for two years, I hope you will get it done finally. This time you do not have any excuses and you do not 
+get sick. She took as example Daniele. He has completed the PhD in 2 1/2 years with a 4.0 GPA. She said if he can do it, she doesn't see any reason 
+why I can't do it. She said I really do not know how to manage time. I should not wait for the perfect time in the future to do the research. In 
+order to publish in top conferences, the student should be really hard working. \\
+
+Notes to me: I should re-build HASINI.Inc. from the worn out tools and establish my identity.\\
+
+I sketched the design.\\
+Implemented little things in the mobile app.\\
+An android activity can be with or without a view. http://stackoverflow.com/questions/17346102/must-every-activity-have-a-layout\\
+
+
 
 \subsection*{Real world stories:}
 
