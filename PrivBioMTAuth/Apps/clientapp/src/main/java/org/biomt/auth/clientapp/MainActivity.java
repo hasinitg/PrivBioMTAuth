@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         //start intent for result
         if(isSafeIntent){
-            startActivityForResult(authIntent, ClientConstants.ZKP_AUTH_REQUEST);
+            startActivityForResult(authIntent, ClientConstants.REQUEST_CODE_ZKP_AUTH);
         }
 
     }

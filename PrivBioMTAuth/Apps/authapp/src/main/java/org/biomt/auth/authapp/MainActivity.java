@@ -1,15 +1,12 @@
 package org.biomt.auth.authapp;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://128.10.120.195:8080/abcbank/account");
         //authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://192.168.211.153:8080/abcbank/account");
 
-        startActivityForResult(authIntent, 1);
+        startActivityForResult(authIntent, AuthConstants.REQUEST_CODE_ZKP_AUTH);
     }
 
     @Override

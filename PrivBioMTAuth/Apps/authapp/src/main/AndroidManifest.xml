@@ -30,7 +30,12 @@
         </activity>
         <activity
             android:name=".EnrollmentActivity"
-            android:label="@string/title_activity_enrollment" >
+            android:label="@string/title_activity_enrollment"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.biomt.auth.authapp.MainActivity" />
+
         </activity>
         <activity
             android:name=".FilterActivity"

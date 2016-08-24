@@ -83,7 +83,8 @@ public class AuthActivity extends AppCompatActivity {
                 //super.onSuccess(statusCode, headers, response);
                 try {
                     sessionId[0] = (String) response.get("sessionId");
-                    Intent resultIntent = new Intent(AuthConstants.RESULT_AUTH_ZKP);
+                    Intent resultIntent = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
+
                     resultIntent.putExtra("Session_Id", sessionId[0]);
                     setResult(Activity.RESULT_OK, resultIntent);
                     finish();
@@ -95,7 +96,7 @@ public class AuthActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Intent resultIntent = new Intent(AuthConstants.RESULT_AUTH_ZKP);
+                Intent resultIntent = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
                 resultIntent.putExtra("Session_Id", "Error");
                 setResult(Activity.RESULT_OK,resultIntent);
                 finish();

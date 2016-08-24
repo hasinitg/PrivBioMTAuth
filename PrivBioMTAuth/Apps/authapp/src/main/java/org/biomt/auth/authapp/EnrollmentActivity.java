@@ -1,5 +1,6 @@
 package org.biomt.auth.authapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +19,6 @@ import org.json.JSONObject;
 import java.security.NoSuchAlgorithmException;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.entity.ContentType;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import lib.zkp4.identity.commit.IDTRequest;
 import lib.zkp4.identity.util.JSONIDTRequestEncoderDecoder;
@@ -96,13 +96,17 @@ public class EnrollmentActivity extends AppCompatActivity {
             AuthRESTClient idpClient = new AuthRESTClient();
             //TODO: send the user name (and the authentication details) with the IDP in the headers
             idpClient.post(this, idpURLValue.getText().toString(), null, new StringEntity(encodedIDTRequest,
-                            AuthConstants.REQUEST_ENCODING), AuthConstants.CONTENT_TYPE_JSON, new JsonHttpResponseHandler(){
+                            AuthConstants.ENCODING), AuthConstants.CONTENT_TYPE_JSON, new JsonHttpResponseHandler(){
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    //print the response in a toast for now
+                    Intent responseIntent = new Intent(AuthConstants.ACTION_RESULT_ENROLLMENT);
+                    responseIntent.putExtra(AuthConstants.INFO_CODE_ENROLL_RESP, response.toString());
+                    setResult(Activity.RESULT_OK, responseIntent);
+                    finish();
+                    /*//print the response in a toast for now
                     Toast responseToast = Toast.makeText(getApplicationContext(), response.toString(),
                             Toast.LENGTH_LONG);
-                    responseToast.show();
+                    responseToast.show();*/
                 }
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable,

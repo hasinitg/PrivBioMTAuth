@@ -7,5 +7,6 @@ public class ClientConstants {
     public static final String SP_URL_NAME = "SP_URL";
     public static final String USER_NAME_NAME = "USER_NAME";
     public static final String ACTION_AUTH_ZKP = "org.biomt.auth.authapp.ACTION_AUTH_ZKP";
-    public static int ZKP_AUTH_REQUEST = 5;
+    /*Intent Request Codes*/
+    public static int REQUEST_CODE_ZKP_AUTH = 5;
 }
