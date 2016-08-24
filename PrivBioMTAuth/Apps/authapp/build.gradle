@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    mavenLocal()
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -22,6 +26,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'CryptoLib:CryptoLib:1.0-SNAPSHOT'
+    compile 'org.biomt.auth:ZKP4IDLib:1.0-SNAPSHOT'
     compile 'com.android.support:appcompat-v7:23.1.1'
 
 }

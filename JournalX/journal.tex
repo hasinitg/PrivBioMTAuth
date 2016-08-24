@@ -433,8 +433,113 @@ integer format is changed due to some reason.
 \item Then I wrote encoding also mannually, to be used at the server side, then only it actually worked.
 \end{enumerate}
 
+\subsubsection*{June 19th:}
+This is the difference between privacy and security: 
+https://www.ghostery.com/intelligence/business-blog/privacy/understanding-the-differences-between-privacy-and-/
+
+\subsubsection*{July 6th, July 14th}
+I went through my diary, tried to recap my work and tried get the setup working. I could access the tomcat service through the web browser but 
+couldn't run the phone app. When I was debugging, Android studio suddenly gave the device not found error. This is where I am, trying to get out of 
+it.
+
+\subsubsection*{July 18th}
+Too bad I didn't do anything during the weekend. 
+Oh the problem is that USB debuggins is disabled. When I re-enabled it, it listed the USB device. \\
+Commands for the adb and USB device:\\
+1. adb devices\\
+2. lsusb\\
+3. ls -l /dev/bus/usb/002 (the device id)\\
+
+\subsubsection*{July 23rd}
+I worked in the coffee bar. It is a very nice place. I tried to get the mobile app connected to my server. But it didn't work. Could be a problem 
+with the network. So I switched to planning what I need to do.
+I found certain ways to do performance testing of the mobile app:\\
+http://www.developer.com/ws/android/development-tools/android-app-performance-testing-an-end-to-end-approach.html\\
+https://developer.android.com/studio/profile/index.html\\
+http://stackoverflow.com/questions/1957135/how-to-test-the-performance-of-an-android-application\\
+
+I also found about the async tasks which I should use when invoking remote services from the mobile app:\\
+https://developer.android.com/training/basics/network-ops/connecting.html\#http-client
+
+Android suggests to use HttpURLConnection client. But I already use some other client:
+https://developer.android.com/reference/java/net/HttpURLConnection.html
+
+\subsubsection*{July 30th}
+I was looking for a face dataset.\\
+This seems to be for the algorithms to detect frontal face images - http://vasc.ri.cmu.edu/idb/html/face/frontal\_images/ \\
+Which is not so useful to me.\\
+
+This contains a list of datasets:\\
+http://www.face-rec.org/databases/\\
+
+This is a very good tutorial on fisher faces and SVM multi-class classification:\\
+https://github.com/JaimeIvanCervantes/FaceRecognition\\
+
+It gives mixed feelings to find this paper published based on Google ATAP project:\\
+http://www.cse.msu.edu/rgroups/biometrics/Publications/Face/Crouseetal\_ContinuousAuthMobileFace\_ICB15.pdf\\
+
+Another paper from blackhat:\\
+https://www.blackhat.com/presentations/bh-dc-09/Nguyen/BlackHat-DC-09-Nguyen-Face-not-your-password.pdf\\
+
+\subsubsection*{Aug 19th:}
+Designed most of the end-to-end flow of the client and auth apps.
+
+\subsubsection*{Aug 20th:}
+Saturday, I implemented the phone app based on the design I made.
+
+\subsubsection*{Aug 22nd:}
+I implemented the test client with Async tasks. But it didn't work!! Either I have done it wrong, or Async task is not for what I want to do. :(\\
+I was right, according to this SO thread, \\
+http://stackoverflow.com/questions/19044670/should-i-use-android-async-http-client-in-dobackground-of-async-task\\
+I do not need to use Async Task if I use asynchttpclient.\\
+So I need to revert the change and continue from there.\\
+Also, I might need to increase the default timeout of async http client if needed.\\
+
+\subsubsection*{Aug 23rd:}
+Reverted the async task.\\
+Porting the enrollment client to android. How to to a post from asynchttpclient: 
+http://stackoverflow.com/questions/30594572/send-json-as-a-post-request-to-server-by-asynchttpclient\\
+I also needed to add my libraries as dependencies into the android project: 
+http://stackoverflow.com/questions/31463908/how-to-import-a-maven-module-to-an-android-studio-project\\
+If it is an external maven module use `mavenCentral' in the repositories instead.\\
+How to sync android project with updated gradle files: http://stackoverflow.com/questions/19932793/syncing-android-studio-project-with-gradle-files\\
+
+Enrollment client was implemented. Two important links from which I learned how to do a post from asynchttpclient:\\
+http://stackoverflow.com/questions/30594572/send-json-as-a-post-request-to-server-by-asynchttpclient\\
+https://github.com/loopj/android-async-http/issues/642\\
+
+When building from command line in debug mode, I got an error: \\
+Exception is: org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':authapp:preDexDebug'.\\
+There were several SO threads with the same issue, but no body has answered.\\
+When I built from the android studio, it built fine - but later I found out there is no .apk built - I should not trust android studio build, with 
+warnings-saying that my maven dependencies are in a higher java version. 
+Then I noticed that android studio is pointing to java 1.7 - I upgraded it -warnings went away.\textbf{This is not Good, as I later read, android 
+studio supports Java 1.7}\\
+
+Then I was reading how to run gradle from command-line: https://developer.android.com/studio/build/building-cmdline.html\\
+There are two build types : debugMode and releaseMode. In debug mode, the .apk file is signed using a temp. debug key and in releaseMode, we need to 
+sign it using our private key by specifying its details in gradle script.\\
+
+\textbf{Like python wrapper, there is a gradle wrapper as well. Need to include the gradle wrapper files in the git repo so that others can use them 
+as well.}
+
+I was further debugging the issue. I noticed that when failing, gradle complains about javax.xml stuff, when I searched about the error, it seemed 
+that I should not conflict with android core libraries, when adding dependencies to the android app.\\
+http://stackoverflow.com/questions/10098088/dalvik-vm-error-exception-found-javax-xml-namespace-qname-class\\
+
+\subsubsection*{Aug 24th:}
+Then I removed jersy libraries from ZKP4ID and downgraded the java version of the libraries to 1.7 and of android studio - then it was built fine. 
+But let's see how it goes when running the app.\\
+
+OMG, OMG, Finally, Finally, I was able to port the enrollment client to the mobile app and run it successfully and get the result.
+\textbf{It was afer almost three and half months from I first invoked the IDP from desktop client, that I was able to invoke IDP from mobile client. 
+Somehow I did it. Yeah... :)}
+
+
+
+
 \textbf{MyNexts:}\\
- 1. Port the IDP client into mobile.\\
+ 1. Port the IDP client into mobile - DONE - Aug 24th.\\
  2. Save the commitment in the mobile\\
  3. Implement ZKP with SP\\
  4. Run performance tests\\
@@ -458,6 +563,7 @@ This commercial product : sedicii (https://www.sedicii.com), seem to be doing ex
 They say that they do credit card authorization as well as biometrics authorization in ZKP - exactly my two works.
 They have not described how they do biometrics authentication in ZKP, however, it should be similar to their website loging scenario:
 I have written how their credit card authorization is comparable to ours in my RahasNym journal.
+\pagebreak
 
 \subsection*{Brain Storming:}
 
@@ -589,57 +695,6 @@ I wrote PFR proposal. It takes lot of time to write.\\
 Professor liked the proposal very much.\\
 
 She said that she is very confident that I could do the prelim early this Fall.
-
-\subsubsection*{June 19th:}
-This is the difference between privacy and security: 
-https://www.ghostery.com/intelligence/business-blog/privacy/understanding-the-differences-between-privacy-and-/
-
-\subsubsection*{July 6th, July 14th}
-I went through my diary, tried to recap my work and tried get the setup working. I could access the tomcat service through the web browser but 
-couldn't run the phone app. When I was debugging, Android studio suddenly gave the device not found error. This is where I am, trying to get out of 
-it.
-
-\subsubsection*{July 18th}
-Too bad I didn't do anything during the weekend. 
-Oh the problem is that USB debuggins is disabled. When I re-enabled it, it listed the USB device. \\
-Commands for the adb and USB device:\\
-1. adb devices\\
-2. lsusb\\
-3. ls -l /dev/bus/usb/002 (the device id)\\
-
-\subsubsection*{July 23rd}
-I worked in the coffee bar. It is a very nice place. I tried to get the mobile app connected to my server. But it didn't work. Could be a problem 
-with the network. So I switched to planning what I need to do.
-I found certain ways to do performance testing of the mobile app:\\
-http://www.developer.com/ws/android/development-tools/android-app-performance-testing-an-end-to-end-approach.html\\
-https://developer.android.com/studio/profile/index.html\\
-http://stackoverflow.com/questions/1957135/how-to-test-the-performance-of-an-android-application\\
-
-I also found about the async tasks which I should use when invoking remote services from the mobile app:\\
-https://developer.android.com/training/basics/network-ops/connecting.html\#http-client
-
-Android suggests to use HttpURLConnection client. But I already use some other client:
-https://developer.android.com/reference/java/net/HttpURLConnection.html
-
-\subsubsection*{July 30th}
-I was looking for a face dataset.\\
-This seems to be for the algorithms to detect frontal face images - http://vasc.ri.cmu.edu/idb/html/face/frontal_images/ Which is not so useful to 
-me.\\
-
-This contains a list of datasets:\\
-http://www.face-rec.org/databases/\\
-
-This is a very good tutorial on fisher faces and SVM multi-class classification:\\
-https://github.com/JaimeIvanCervantes/FaceRecognition\\
-
-It gives mixed feelings to find this paper published based on Google ATAP project:\\
-http://www.cse.msu.edu/rgroups/biometrics/Publications/Face/Crouseetal_ContinuousAuthMobileFace_ICB15.pdf\\
-
-Another paper from blackhat:\\
-https://www.blackhat.com/presentations/bh-dc-09/Nguyen/BlackHat-DC-09-Nguyen-Face-not-your-password.pdf\\
-
-
-
 \pagebreak
 
 \section*{New Ideas:}

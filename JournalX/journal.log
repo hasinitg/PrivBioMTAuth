@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  30 JUL 2016 12:45
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  23 AUG 2016 11:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -733,205 +733,279 @@ s tu-to-rial. http://www.mkyong.com/webservices/jax-
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 436--441
-
- []
-
-[15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 486--493
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 494--498
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 499--502
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 512--514
-
- []
-
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 516--520
-
- []
-
-
-Overfull \hbox (4.86292pt too wide) in paragraph at lines 523--525
-[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2016/03/15/amazon-wants-to-r
-eplace-passwords-with-
- []
-
-
-Overfull \hbox (10.15547pt too wide) in paragraph at lines 525--527
-[]\OT1/cmr/m/n/10.95 https://thestack.com/cloud/2016/03/03/google-hands-free-fa
-cial-recognition-trial-san-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 525--527
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 528--529
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 530--532
-
- []
-
-
-Overfull \hbox (42.15387pt too wide) in paragraph at lines 536--538
-[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2015/03/16/alibaba-demonstra
-tes-facial-recognition-payment-
- []
-
-
-Overfull \hbox (17.57716pt too wide) in paragraph at lines 539--541
-[]\OT1/cmr/m/n/10.95 https://thestack.com/iot/2016/02/22/mastercard-rolls-out-s
-elfie-verification-for-mobile-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 539--541
-
- []
-
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 542--544
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 545--547
-
- []
-
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ô in font cmr10!
-
-Underfull \hbox (badness 10000) in paragraph at lines 548--551
-
- []
-
-
-Overfull \hbox (1.30423pt too wide) in paragraph at lines 552--553
-[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/banks-e
-mbrace-biometrics-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 552--553
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 554--555
-
- []
-
-
-Overfull \hbox (13.988pt too wide) in paragraph at lines 556--557
-[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/biometr
-ic-tipping-point-usaa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 556--557
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 558--562
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 563--565
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 569--573
-
- []
-
-[19]
-Overfull \hbox (162.71968pt too wide) in paragraph at lines 577--583
-[]\OT1/cmr/m/n/10.95 ARM's Trust-Zone: Wikipedia: https://en.wikipedia.org/wiki
-/ARM[]architecture#Security[]extensions[].28TrustZone.29 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 587--588
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 589--590
-
- []
-
-
-Overfull \hbox (46.3209pt too wide) in paragraph at lines 594--596
+Overfull \hbox (46.3209pt too wide) in paragraph at lines 437--439
 \OT1/cmr/m/n/10.95 This is the dif-fer-ence be-tween pri-vacy and se-cu-rity: h
 ttps://www.ghostery.com/intelligence/business-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 603--609
+Underfull \hbox (badness 10000) in paragraph at lines 446--452
 
  []
 
-[20]
-Overfull \hbox (16.23882pt too wide) in paragraph at lines 611--617
+
+Overfull \hbox (16.23882pt too wide) in paragraph at lines 454--460
 \OT1/cmr/m/n/10.95 http://www.developer.com/ws/android/development-tools/androi
 d-app-performance-testing-
  []
 
 
-Overfull \hbox (48.81502pt too wide) in paragraph at lines 611--617
+Overfull \hbox (48.81502pt too wide) in paragraph at lines 454--460
 \OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/1957135/how-to-test-the-p
 erformance-of-an-android-application 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 611--617
+Underfull \hbox (badness 10000) in paragraph at lines 454--460
+
+ []
+
+[15]
+Overfull \hbox (134.18263pt too wide) in paragraph at lines 468--471
+\OT1/cmr/m/n/10.95 This seems to be for the al-go-rithms to de-tect frontal fac
+e im-ages - http://vasc.ri.cmu.edu/idb/html/face/frontal[]images/ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--471
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 472--474
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 475--477
+
+ []
+
+
+Overfull \hbox (121.97336pt too wide) in paragraph at lines 478--480
+\OT1/cmr/m/n/10.95 http://www.cse.msu.edu/rgroups/biometrics/Publications/Face/
+Crouseetal[]ContinuousAuthMobileFace[]ICB15.pdf 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--480
+
+ []
+
+
+Overfull \hbox (8.96916pt too wide) in paragraph at lines 481--483
+\OT1/cmr/m/n/10.95 https://www.blackhat.com/presentations/bh-dc-09/Nguyen/Black
+Hat-DC-09-Nguyen-Face-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 481--483
+
+ []
+
+
+Overfull \hbox (61.98543pt too wide) in paragraph at lines 491--497
+\OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/19044670/should-i-use-and
+roid-async-http-client-in-dobackground-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--497
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 498--503
+
+ []
+
+[17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 549--556
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 557--561
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 562--565
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 575--577
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 579--583
+
+ []
+
+
+Overfull \hbox (4.86292pt too wide) in paragraph at lines 586--588
+[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2016/03/15/amazon-wants-to-r
+eplace-passwords-with-
+ []
+
+
+Overfull \hbox (10.15547pt too wide) in paragraph at lines 588--590
+[]\OT1/cmr/m/n/10.95 https://thestack.com/cloud/2016/03/03/google-hands-free-fa
+cial-recognition-trial-san-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 588--590
+
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 591--592
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--595
+
+ []
+
+
+Overfull \hbox (42.15387pt too wide) in paragraph at lines 599--601
+[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2015/03/16/alibaba-demonstra
+tes-facial-recognition-payment-
+ []
+
+
+Overfull \hbox (17.57716pt too wide) in paragraph at lines 602--604
+[]\OT1/cmr/m/n/10.95 https://thestack.com/iot/2016/02/22/mastercard-rolls-out-s
+elfie-verification-for-mobile-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 602--604
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 605--607
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 608--610
+
+ []
+
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 611--614
+
+ []
+
+
+Overfull \hbox (1.30423pt too wide) in paragraph at lines 615--616
+[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/banks-e
+mbrace-biometrics-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--616
 
  []
 
 [21]
-Overfull \hbox (155.88081pt too wide) in paragraph at lines 632--639
+Underfull \hbox (badness 10000) in paragraph at lines 617--618
+
+ []
+
+
+Overfull \hbox (13.988pt too wide) in paragraph at lines 619--620
+[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/biometr
+ic-tipping-point-usaa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 619--620
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 621--625
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--628
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--636
+
+ []
+
+
+Overfull \hbox (162.71968pt too wide) in paragraph at lines 640--646
+[]\OT1/cmr/m/n/10.95 ARM's Trust-Zone: Wikipedia: https://en.wikipedia.org/wiki
+/ARM[]architecture#Security[]extensions[].28TrustZone.29 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--651
+
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 652--653
+
+ []
+
+[23]
+Overfull \hbox (155.88081pt too wide) in paragraph at lines 662--669
 \OT1/cmr/m/n/10.95 Today (18th March), I found this pa-per on that topic: http:
 //ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6686139 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 641--642
+Underfull \hbox (badness 10000) in paragraph at lines 671--672
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 651--653
+Underfull \hbox (badness 10000) in paragraph at lines 681--683
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 656--660
+Underfull \hbox (badness 10000) in paragraph at lines 686--690
 
  []
 
-[22] [23]
+[24] [25]
+Underfull \hbox (badness 10000) in paragraph at lines 728--733
+
+ []
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 734--735
+
+ []
+
+
+Overfull \hbox (60.84998pt too wide) in paragraph at lines 736--739
+\OT1/cmr/m/n/10.95 An an-droid ac-tiv-ity can be with or with-out a view. http:
+//stackoverflow.com/questions/17346102/must-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 736--739
+
+ []
+
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
@@ -945,23 +1019,22 @@ Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
 
-Overfull \hbox (29.86552pt too wide) in paragraph at lines 701--707
+Overfull \hbox (29.86552pt too wide) in paragraph at lines 746--752
 []\OT1/cmr/m/n/10.95 From: https://thestack.com/security/2015/03/16/alibaba-dem
 onstrates-facial-recognition-
  []
 
 
-Overfull \hbox (8.02632pt too wide) in paragraph at lines 701--707
+Overfull \hbox (8.02632pt too wide) in paragraph at lines 746--752
 \OT1/cmr/m/n/10.95 New York City Uni-ver-si-tys Cen-ter for Catas-tro-phe Pre-p
 ared-ness and Re-sponse (CCPR)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 701--707
+Underfull \hbox (badness 10000) in paragraph at lines 746--752
 
  []
 
-[24]
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ò in font cmr10!
@@ -975,7 +1048,7 @@ Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 708--711
+Underfull \hbox (badness 10000) in paragraph at lines 753--756
 
  []
 
@@ -983,7 +1056,7 @@ Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 712--715
+Underfull \hbox (badness 10000) in paragraph at lines 757--760
 
  []
 
@@ -999,42 +1072,42 @@ Missing character: There is no ú in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ù in font cmr10!
-
-Underfull \hbox (badness 10000) in paragraph at lines 721--722
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 766--767
 
  []
 
-[25]
-Overfull \hbox (20.74052pt too wide) in paragraph at lines 733--735
+
+Overfull \hbox (20.74052pt too wide) in paragraph at lines 778--780
 \OT1/cmr/m/n/10.95 edge (same au-thors) (http://www.lsv.ens-cachan.fr/Publis/PA
 PERS/PDF/BKSST-
  []
 
 
-Overfull \hbox (181.18864pt too wide) in paragraph at lines 735--737
+Overfull \hbox (181.18864pt too wide) in paragraph at lines 780--782
 []\OT1/cmr/m/n/10.95 An im-ple-men-ta-tion of zero knowl-edge au-then-ti-ca-tio
 n (NAR-WHAL): https://courses.csail.mit.edu/6.857/2014/files/15-
  []
 
 
-Overfull \hbox (267.785pt too wide) in paragraph at lines 737--738
+Overfull \hbox (267.785pt too wide) in paragraph at lines 782--783
 []\OT1/cmr/m/n/10.95 Implementation and Eval-u-a-tion of Zero-Knowledge Proofs 
 of Knowl-edge (https://securewww.esat.kuleuven.be/cosic/publications/thesis-
  []
 
-
-Overfull \hbox (66.30481pt too wide) in paragraph at lines 754--756
+[28]
+Overfull \hbox (66.30481pt too wide) in paragraph at lines 799--801
 \OT1/cmr/m/n/10.95 Jonathan Din-er-stein, and Dan Ven-tura (http://axon.cs.byu.
 edu/papers/dinerstein.smc07.pdf) 
  []
 
 
-Overfull \hbox (210.3279pt too wide) in paragraph at lines 756--757
+Overfull \hbox (210.3279pt too wide) in paragraph at lines 801--802
 []\OT1/cmr/m/n/10.95 An En-sem-ble Ap-proach to Ro-bust Bio-met-rics Fu-sion : 
 http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1640496 
  []
 
-[26] (./journal.aux) ) 
+[29] (./journal.aux) ) 
 Here is how much of TeX's memory you used:
  2946 strings out of 495028
  39441 string characters out of 6181498
@@ -1042,7 +1115,7 @@ Here is how much of TeX's memory you used:
  6111 multiletter control sequences out of 15000+600000
  10707 words of font info for 40 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,26p,248b,238s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,26p,248b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
@@ -1050,10 +1123,10 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on journal.pdf (26 pages, 157599 bytes).
+Output written on journal.pdf (29 pages, 160550 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 125 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
