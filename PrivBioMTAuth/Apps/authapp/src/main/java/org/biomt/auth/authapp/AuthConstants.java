@@ -28,5 +28,7 @@ public class AuthConstants {
     public static final int SUCCESS = 11;
     public static final int FAILURE = 00;
 
-
+    /*Result Signals*/
+    public static final String SUCCESS_NAME = "SUCCESS: ";
+    public static final String ERROR_NAME = "ERROR: ";
 }

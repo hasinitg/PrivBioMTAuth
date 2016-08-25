@@ -69,7 +69,7 @@ public class EnrollmentActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onEnrollButtonClicked(View v){
+    public void onEnrollButtonClicked(View v) {
         try {
             //get the information from the UI
             EditText identityValue = (EditText) findViewById(R.id.editTextIdentity);
@@ -94,27 +94,43 @@ public class EnrollmentActivity extends AppCompatActivity {
 
             //invoke the client for the post request
             AuthRESTClient idpClient = new AuthRESTClient();
+            final String[] responseMsg = {null};
+
             //TODO: send the user name (and the authentication details) with the IDP in the headers
             idpClient.post(this, idpURLValue.getText().toString(), null, new StringEntity(encodedIDTRequest,
-                            AuthConstants.ENCODING), AuthConstants.CONTENT_TYPE_JSON, new JsonHttpResponseHandler(){
+                    AuthConstants.ENCODING), AuthConstants.CONTENT_TYPE_JSON, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    Intent responseIntent = new Intent(AuthConstants.ACTION_RESULT_ENROLLMENT);
-                    responseIntent.putExtra(AuthConstants.INFO_CODE_ENROLL_RESP, response.toString());
-                    setResult(Activity.RESULT_OK, responseIntent);
-                    finish();
-                    /*//print the response in a toast for now
-                    Toast responseToast = Toast.makeText(getApplicationContext(), response.toString(),
+                    //print the response in a toast for now
+                    /*Toast responseToast = Toast.makeText(getApplicationContext(), response.toString(),
                             Toast.LENGTH_LONG);
                     responseToast.show();*/
+                    Intent responseIntent = new Intent(AuthConstants.ACTION_RESULT_ENROLLMENT);
+                    responseMsg[0] = response.toString();
+                    responseIntent.putExtra("Test", "testData");
+                    responseIntent.putExtra(AuthConstants.INFO_CODE_ENROLL_RESP, responseMsg[0]);
+                    setResult(Activity.RESULT_OK, responseIntent);
+                    finish();
                 }
+
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable,
                                       JSONObject errorResponse) {
                     //print the response in a toast for now
-                    Toast errorToast = Toast.makeText(getApplicationContext(), errorResponse.toString(),
-                            Toast.LENGTH_LONG);
-                    errorToast.show();
+                    //TODO: remember to assign errorResponse to responseMsg before returning the intent.
+                    if (errorResponse != null) {
+                        Toast errorToast = Toast.makeText(getApplicationContext(), errorResponse.toString(),
+                                Toast.LENGTH_LONG);
+                        errorToast.show();
+                    } else if (statusCode != 0) {
+                        Toast errorToast = Toast.makeText(getApplicationContext(), String.valueOf(statusCode),
+                                Toast.LENGTH_LONG);
+                        errorToast.show();
+                    } else if (throwable != null && throwable.getMessage() != null) {
+                        Toast errorToast = Toast.makeText(getApplicationContext(), throwable.getMessage(),
+                                Toast.LENGTH_LONG);
+                        errorToast.show();
+                    }
                 }
             });
 

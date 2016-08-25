@@ -1,14 +1,17 @@
 package org.biomt.auth.authapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import lib.zkp4.identity.commit.IdentityToken;
-import lib.zkp4.identity.util.JSONIdentityTokenEncoderDecoder;
+import lib.zkp4.identity.util.JSONIdentityTokenDecoder;
 
 /*This activity started by the Android system through an implicit intent passed by another app -
 * specifically, any SP client application.*/
@@ -66,15 +69,15 @@ public class FilterActivity extends AppCompatActivity {
             if (Activity.RESULT_OK == resultCode) {
                 //decode the response, save the artifacts and redirects to authentication
                 try {
-                    Intent responseIntent = getIntent();
-                    String responseString = responseIntent.getStringExtra(AuthConstants.INFO_CODE_ENROLL_RESP);
-                    IdentityToken IDT = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(responseString);
-                    
+                    String responseString = data.getStringExtra(AuthConstants.INFO_CODE_ENROLL_RESP);
+                    Toast respToast = Toast.makeText(this, responseString, Toast.LENGTH_LONG);
+                    respToast.show();
+                    new IdentityTokenWriteTask(this).execute(responseString);
                 } catch (Exception e) {
                     //return to client app with the error
                     Intent responseErrorIntent = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
                     responseErrorIntent.putExtra(AuthConstants.INFO_CODE_ZKP_AUTH_RESP,
-                            "Error in decoding the enrollment response: " + e.getMessage());
+                            "Error in processing the enrollment response: " + e.getMessage());
                     setResult(Activity.RESULT_CANCELED, responseErrorIntent);
                     //e.printStackTrace();
                 }
@@ -93,5 +96,34 @@ public class FilterActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private class IdentityTokenWriteTask extends AsyncTask<String, Void, String> {
+        private Context appContext = null;
+
+        public IdentityTokenWriteTask(Context context) {
+            this.appContext = context;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                IdentityToken identityToken = new JSONIdentityTokenDecoder().decodeIdentityToken(params[0]);
+                DatabaseAccessManager databaseAccessManager = new DatabaseAccessManager();
+                String insertedRowID = databaseAccessManager.writeToIdentityTokenTable(appContext, params[0], identityToken);
+                return AuthConstants.SUCCESS_NAME + insertedRowID;
+            } catch (Exception e) {
+                return AuthConstants.ERROR_NAME + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //Show result of the database write task in a toast.
+            Toast resultToast = Toast.makeText(appContext, result, Toast.LENGTH_LONG);
+            resultToast.show();
+
+        }
     }
 }

@@ -39,20 +39,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMainAuthButtonClicked(View v){
-        Intent authIntent = new Intent(this, AuthActivity.class);
+        /*Intent authIntent = new Intent(this, AuthActivity.class);
         authIntent.putExtra(AuthConstants.SP_URL_NAME, Config.TEST_URL);
         //authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://128.10.120.195:8080/abcbank/account");
         //authIntent.putExtra(AuthConstants.SP_URL_NAME, "http://192.168.211.153:8080/abcbank/account");
 
-        startActivityForResult(authIntent, AuthConstants.REQUEST_CODE_ZKP_AUTH);
+        startActivityForResult(authIntent, AuthConstants.REQUEST_CODE_ZKP_AUTH);*/
+
+        //invoke filter activity just like it is done by the client app, for the debug purposes
+        Intent enrollmentIntent = new Intent(this, FilterActivity.class);
+        enrollmentIntent.putExtra(AuthConstants.SP_URL_NAME, "whatever");
+        enrollmentIntent.putExtra(AuthConstants.USER_NAME_NAME, "whatever");
+        startActivityForResult(enrollmentIntent, AuthConstants.REQUEST_CODE_ENROLL);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String sessionId = data.getStringExtra("Session_Id");
+        //String sessionId = data.getStringExtra("Session_Id");
 
         Toast myToast = Toast.makeText(getApplicationContext(),
-                "Auth Success_"+sessionId, Toast.LENGTH_LONG);
+                "whatever", Toast.LENGTH_LONG);
         myToast.show();
     }
 }

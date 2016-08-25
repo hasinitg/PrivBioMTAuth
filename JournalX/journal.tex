@@ -546,12 +546,44 @@ SQLite DB for commitment data.\\
 \textbf{SQLite DB:}\\
 This is a very comprehensive example on storing data in the database: https://developer.android.com/training/basics/data-storage/databases.html\\
 First create a contract class.\\
+Then create the DBManager class which is a subclass of SQLiteOpenHelper, which is used to instantiate and obtain getWrittable and getReadable 
+database.\\
+But they say it is recommended to use AsyncTask to getWrittable and getReadable databases. Then what happens is, when we run performance test, there 
+will be multiple threads trying to read and write from/to the database and there can be problems. So we have to use locks - like semaphores.\\
+\textbf{This is a SO thread that talks about semaphores usage with sqlite db:} 
+http://stackoverflow.com/questions/2647542/android-threading-and-database-locking\\
+
+\subsubsection*{Aug 25th:}
+Following are the recommended things to do to avoid issues when multiple threads accessing database:\\
+1. Keep db instances local.\\
+2. call close() on db in the same method it opened - in finally block.\\
+3. call close on the cursors got from the db - in finally block.\\
+4. Db wrapper that aquires/releases a global semaphore your DB access will be thread safe. Indeed this means that you could get a bootleneck because 
+you are queueing the access to the DB. So in addition you could only wrap the access using semaphores if it's an operation that alters the database, 
+so while you are alterin the db no one will be able to access it and wait until the write process has been completed.\\
+
+I finished implementing the persistance of IDTs based on what I read and thought was correct. But when I ran the app, all sorts of problems.\\
+1. I get an error: Unfortunately, authApp has stopped working, every now and then.\\
+2. When I tried to debug the app, it doesn't go beyond FilterActivity.\\
+
+Then I got to know about logCat. Let's see if it can help me. Yes, I found it, it was because FilterActivity had a theme as NoDisplay, when I changed 
+it to a normal theme, it worked. Well, now FilterActivity is visible. \\
+\textbf{I might want to make filter activity a nice landing page of the authApp when it is invoked from other apps.}\\
+
+Then I have done a very stupid mistake which ate my time a lot. Rather than using the intent object passed into the callback method: 
+onActivityResult, I have done getIntent. It was so stupid. If I was in the present moment well, I would have detected it better.\\
+
+Now, with that solved, execution proceeds to DBCode, but get an error due to the SQL query of : create table.\\
+OK, that is solved. Lesson learned: you shouldn't have SQL keywords in column names\\
+
+And now, the token gets stored in the DB. Yeah.... :)\\
+
 
 
 
 \textbf{MyNexts:}\\
  1. Port the IDP client into mobile - DONE - Aug 24th.\\
- 2. Save the commitment in the mobile\\
+ 2. Save the commitment in the mobile - DONE - Aug 25th\\
  3. Implement ZKP with SP\\
  4. Run performance tests\\
 

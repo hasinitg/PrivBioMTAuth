@@ -39,7 +39,7 @@
         </activity>
         <activity
             android:name=".FilterActivity"
-            android:theme="@android:style/Theme.NoDisplay"
+            android:theme="@style/AppTheme"
             android:label="@string/title_activity_filter"
             android:parentActivityName=".MainActivity" >
             <meta-data

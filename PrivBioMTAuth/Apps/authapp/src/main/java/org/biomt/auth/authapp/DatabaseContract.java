@@ -15,8 +15,8 @@ public final class DatabaseContract {
 
     public static abstract class IdentityTokenTable implements BaseColumns{
         public static final String IDT_TABLE_NAME = "identity_token";
-        public static final String COLUMN_NAME_FROM = "from";
-        public static final String COLUMN_NAME_TO = "to";
+        public static final String COLUMN_NAME_FROM = "fromIdentity";
+        public static final String COLUMN_NAME_TO = "toIdentity";
         public static final String COLUMN_NAME_IDT = "idt";
         public static final String COLUMN_NAME_EXPIRATION_TIME_STAMP = "expiration_ts";
     }
