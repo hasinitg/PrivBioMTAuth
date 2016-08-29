@@ -26,4 +26,22 @@ public class Constants {
     public static final String ATTRIBUTE_VALUE = "attributeValue";
     public static final String ENCRYPTED_SECRET = "encryptedSecret";
     public static final String USER_NAME = "userName";
+
+    /*ZKP Proof Types*/
+    public static String ZKP_I = "ZKP_I";
+    public static String ZKP_NI = "ZKP_NI";
+    public static String ZKP_NI_S = "ZKP_NI_S";
+
+    /*Constants related to Identity Proofs*/
+    public static final String PROOF_TYPE_NAME = "proofType";
+    public static final String HELPER_COMMITMENT_NAME = "helper";
+    public static final String HELPER_COMMITMENTS_NAME = "helpers";
+    public static final String U_VALUE_NAME = "U_Value";
+    public static final String U_VALUES_NAME = "U_Values";
+    public static final String V_VALUE_NAME = "V_Value";
+    public static final String V_VALUES_NAME = "V_Values";
+    public static final String CHALLENGE_NAME = "challenge";
+    public static final String CHALLENGES_NAME = "challenges";
+    public static final String TIMESTAMP_AT_PROOF_CREATION = "timestampAtProofCreation";
+
 }

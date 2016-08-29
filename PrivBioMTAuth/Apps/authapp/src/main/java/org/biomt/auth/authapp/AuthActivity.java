@@ -15,14 +15,28 @@ import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.crypto.lib.commitments.pedersen.PedersenCommitment;
+import org.crypto.lib.commitments.pedersen.PedersenPublicParams;
+import org.crypto.lib.exceptions.CryptoAlgorithmException;
+import org.crypto.lib.zero.knowledge.proof.ZKPPedersenCommitment;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
+import lib.zkp4.identity.commit.IdentityToken;
+import lib.zkp4.identity.proof.IdentityProof;
+import lib.zkp4.identity.util.Constants;
+import lib.zkp4.identity.util.JSONIdentityProofEncoderDecoder;
+import lib.zkp4.identity.util.JSONIdentityTokenEncoderDecoder;
+import lib.zkp4.identity.util.Utilz;
 
 
 public class AuthActivity extends AppCompatActivity {
-    private  String testURL = null;
+    private String spURL = null;
+    private String userName = null;
+    private String identityTokenString = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,20 +45,16 @@ public class AuthActivity extends AppCompatActivity {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (!(networkInfo!=null && networkInfo.isConnected())){
+        if (!(networkInfo != null && networkInfo.isConnected())) {
             Toast myToast = Toast.makeText(getApplicationContext(),
                     "Please connect to the internet first.", Toast.LENGTH_LONG);
             myToast.show();
         }
 
         Intent authRequest = getIntent();
-        testURL = authRequest.getStringExtra(AuthConstants.SP_URL_NAME);
-
-        EditText identityText = (EditText) findViewById(R.id.identityText);
-        identityText.setText(testURL);
-
-        //perform ZKP with SP.
-
+        spURL = authRequest.getStringExtra(AuthConstants.SP_URL_NAME);
+        userName = authRequest.getStringExtra(AuthConstants.USER_NAME_NAME);
+        identityTokenString = authRequest.getStringExtra(AuthConstants.IDENTITY_TOKEN_STRING_NAME);
     }
 
     @Override
@@ -69,15 +79,73 @@ public class AuthActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onAuthButtonClicked(View v){
+    public void onAuthButtonClicked(View v) {
 
         AuthRESTClient client = new AuthRESTClient();
 
-        final String[] sessionId = {null};
+        EditText identityText = (EditText) findViewById(R.id.identityText);
+        EditText passwordText = (EditText) findViewById(R.id.passwordText);
+        try {
+            final String[] responseMsg = {null};
+            //decode the identity token from string
+            IdentityToken IDT = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(identityTokenString);
 
-        EditText testURLX = (EditText) findViewById(R.id.identityText);
+            IdentityProof proof = new IdentityProof();
+            proof.setProofType(Constants.ZKP_I);
 
-        client.get(testURLX.getText().toString(), null, new JsonHttpResponseHandler() {
+            PedersenPublicParams pedersenPublicParams = IDT.getPedersenParams();
+            ZKPPedersenCommitment ZKPK = new ZKPPedersenCommitment(pedersenPublicParams);
+
+            PedersenCommitment helperCommitment = ZKPK.createHelperProblem(null);
+            proof.addHelperCommitment(helperCommitment.getCommitment());
+
+            //encode the identity proof
+            JSONObject encodedIdentityProof = new JSONIdentityProofEncoderDecoder().encodeIdentityProof(proof);
+            AuthRESTClient spClient = new AuthRESTClient();
+            //send the encoded identity proof and the username in an auth request
+            spClient.post(this, spURL, null, new StringEntity(encodedIdentityProof.toString(), AuthConstants.ENCODING),
+                    AuthConstants.CONTENT_TYPE_JSON, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    //print the response in a toast for now
+                    /*Toast responseToast = Toast.makeText(getApplicationContext(), response.toString(),
+                    Toast.LENGTH_LONG);
+                    responseToast.show();*/
+                    Intent responseIntent = new Intent(AuthConstants.ACTION_RESULT_ENROLLMENT);
+                    responseMsg[0] = response.toString();
+                    responseIntent.putExtra(AuthConstants.INFO_CODE_ENROLL_RESP, responseMsg[0]);
+                    setResult(Activity.RESULT_OK, responseIntent);
+                    finish();
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable,
+                                      JSONObject errorResponse) {
+                    //print the response in a toast for now
+                    //TODO: remember to assign errorResponse to responseMsg before returning the intent.
+                    if (errorResponse != null) {
+                        Toast errorToast = Toast.makeText(getApplicationContext(), errorResponse.toString(),
+                                Toast.LENGTH_LONG);
+                        errorToast.show();
+                    } else if (statusCode != 0) {
+                        Toast errorToast = Toast.makeText(getApplicationContext(), String.valueOf(statusCode),
+                                Toast.LENGTH_LONG);
+                        errorToast.show();
+                    } else if (throwable != null && throwable.getMessage() != null) {
+                        Toast errorToast = Toast.makeText(getApplicationContext(), throwable.getMessage(),
+                                Toast.LENGTH_LONG);
+                        errorToast.show();
+                    }
+                }
+            });
+        } catch (CryptoAlgorithmException e) {
+            //TODO: create result intent with error and return
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*client.get(testURLX.getText().toString(), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //super.onSuccess(statusCode, headers, response);
@@ -101,7 +169,6 @@ public class AuthActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK,resultIntent);
                 finish();
             }
-        });
-
+        });*/
     }
 }

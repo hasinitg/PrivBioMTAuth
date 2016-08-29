@@ -578,8 +578,36 @@ OK, that is solved. Lesson learned: you shouldn't have SQL keywords in column na
 
 And now, the token gets stored in the DB. Yeah.... :)\\
 
+Then I spend a little bit time desinging the next steps---to forward to AuthActivity from FilterActivity.\\
+Then I had to find out how to pass IDT. It is by serialization. Then I serialized IDT class in ZKP4IDLib.\\
+Now let's see what happens.\\
 
+\subsubsection*{Aug 26th:}
+Well, serializig IdentityToken didn't work, because of the attribute Public Pedersen Params.\\
+It is ok, I will just pass the identity token string and decode it from there.\\
 
+Yeah.. I got the flow of the two app working end-to-end, given that enrollment is performed everytime.\\
+Next steps:\\
+In filter activity, if an appropriate token is there in the database, skip enrollment and proceed to authentication. \\
+
+\textbf{Note:}\\
+To start an activity from an AsyncTask:\\
+- instantiate the AsyncTask class with the Context passed as a contructor argument, from the first (current) activity.\\
+- call the second activity as this:\\
+((Activity) appContext).startActivityForResult(authActivityIntent, AuthConstants.REQUEST\_CODE\_ZKP\_AUTH);\\
+- the result from the second activity will be returned to the onActivityResult method of the first activity.\\
+
+Then I wrote the code for retrieving information from the SQLite database.\\
+How to write query: http://www.mysamplecode.com/2011/10/android-sqlite-query-example-selection.html\\
+
+\subsubsection*{Aug 27th:}
+I didn't do any work because I went to temple.\\
+
+\subsubsection*{Aug 28th:}
+I complete the IdentityTokenReadTask in the FilterActivity and then completing missing parts in ZKP4Lib and writing AuthClient to fulfill ZKPK with 
+the IDT obtained during enrollment.\\
+
+I need to complete ZKP with SP today somehow. :-)
 
 \textbf{MyNexts:}\\
  1. Port the IDP client into mobile - DONE - Aug 24th.\\

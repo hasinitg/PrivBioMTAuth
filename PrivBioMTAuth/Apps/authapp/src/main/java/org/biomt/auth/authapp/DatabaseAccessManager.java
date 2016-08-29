@@ -2,6 +2,7 @@ package org.biomt.auth.authapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
 
@@ -25,8 +26,35 @@ public class DatabaseAccessManager {
     private final Lock rl = rwl.readLock();
     private final Lock wl = rwl.writeLock();
 
-    public IdentityToken readFromIdentityTokenTable(String fromIdentity, String toIdentity) {
-        return null;
+    public String readFromIdentityTokenTable(Context context, String fromIdentity, String toIdentity) {
+        DatabaseHelper dbHelper = null;
+        SQLiteDatabase db = null;
+        rl.lock();
+        try {
+            //get the db in read mode
+            dbHelper = new DatabaseHelper(context);
+            db = dbHelper.getReadableDatabase();
+
+            //format of the query result:
+            String[] projection = {DatabaseContract.IdentityTokenTable.COLUMN_NAME_IDT};
+            String selection = DatabaseContract.IdentityTokenTable.COLUMN_NAME_FROM + "=?" + " and " +
+                    DatabaseContract.IdentityTokenTable.COLUMN_NAME_TO + "=?";
+            String[] selectionArgs = {fromIdentity, toIdentity};
+            Cursor results = db.query(DatabaseContract.IdentityTokenTable.IDT_TABLE_NAME, projection,
+                    selection, selectionArgs, null, null, null);
+            //we assume there is only one identity token for a given to and from value combination.
+            boolean resultExists = results.moveToFirst();
+            if (resultExists){
+                return results.getString(results.getColumnIndex(DatabaseContract.IdentityTokenTable.COLUMN_NAME_IDT));
+            } else {
+                return null;
+            }
+
+        } finally {
+            db.close();
+            dbHelper.close();
+            rl.unlock();
+        }
     }
 
     /*Although IdentityToken could be built from the String, we perform minimal operations in this

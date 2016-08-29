@@ -11,11 +11,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import lib.zkp4.identity.commit.IdentityToken;
-import lib.zkp4.identity.util.JSONIdentityTokenDecoder;
+import lib.zkp4.identity.util.JSONIdentityTokenEncoderDecoder;
 
 /*This activity started by the Android system through an implicit intent passed by another app -
-* specifically, any SP client application.*/
+* specifically, any SP client application. This routes the request to either enrollment activity or
+* auth activity as appropriate.*/
 public class FilterActivity extends AppCompatActivity {
+    private String spURL = null;
+    private String userName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +26,15 @@ public class FilterActivity extends AppCompatActivity {
         /**check if already enrolled for the given user name and SP NAME pair and if IDT and other artifacts exists.
          If so, redirect to authenticate window, if not, redirect to enroll window.**/
 
-        //obtain the intent and the passed data
+        //obtain the intent and retrieve the passed data
         Intent authRequest = getIntent();
-        String spURL = authRequest.getStringExtra(AuthConstants.SP_URL_NAME);
-        String userName = authRequest.getStringExtra(AuthConstants.USER_NAME_NAME);
+        spURL = authRequest.getStringExtra(AuthConstants.SP_URL_NAME);
+        userName = authRequest.getStringExtra(AuthConstants.USER_NAME_NAME);
 
-        //invoke the enroll activity for now.
-        Intent enrollActivityIntent = new Intent(this, EnrollmentActivity.class);
-        enrollActivityIntent.putExtra(AuthConstants.SP_URL_NAME, spURL);
-        enrollActivityIntent.putExtra(AuthConstants.USER_NAME_NAME, userName);
-        startActivityForResult(enrollActivityIntent, AuthConstants.REQUEST_CODE_ENROLL);
+        //hand over db access to an async task
+        new IdentityTokenReadTask(this).execute();
 
+        /*Since the filter activity acts as the controller, in model-view-controller pattern, we do not display it.*/
         //setContentView(R.layout.activity_filter);
     }
 
@@ -89,17 +90,26 @@ public class FilterActivity extends AppCompatActivity {
         } else if (AuthConstants.REQUEST_CODE_ZKP_AUTH == requestCode) {
             //if it is from auth activity and if it is a success
             if (Activity.RESULT_OK == resultCode) {
+                //send the response to client application which invoked th auth app.
+                Toast testToast = Toast.makeText(this, "AuthAppReturned.", Toast.LENGTH_LONG);
+                testToast.show();
+
+                Intent responseIntentToClient = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
+                responseIntentToClient.putExtra("Session_Id", data.getStringExtra("Session_Id"));
+                setResult(Activity.RESULT_OK, responseIntentToClient);
+                finish();
 
             } else if (Activity.RESULT_CANCELED == resultCode) {
 
             }
         }
-
-
     }
 
+    /*Write to the database asynchronously, and upon successful write, invoke the auth activity.*/
     private class IdentityTokenWriteTask extends AsyncTask<String, Void, String> {
         private Context appContext = null;
+        private String identityTokenString = null;
+        private IdentityToken identityToken = null;
 
         public IdentityTokenWriteTask(Context context) {
             this.appContext = context;
@@ -109,10 +119,12 @@ public class FilterActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             try {
-                IdentityToken identityToken = new JSONIdentityTokenDecoder().decodeIdentityToken(params[0]);
+                identityTokenString = params[0];
+                identityToken = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(identityTokenString);
                 DatabaseAccessManager databaseAccessManager = new DatabaseAccessManager();
-                String insertedRowID = databaseAccessManager.writeToIdentityTokenTable(appContext, params[0], identityToken);
-                return AuthConstants.SUCCESS_NAME + insertedRowID;
+                String insertedRowID = databaseAccessManager.writeToIdentityTokenTable(appContext, params[0],
+                        identityToken);
+                return AuthConstants.SUCCESS_NAME + "IDT saved successfully." + insertedRowID;
             } catch (Exception e) {
                 return AuthConstants.ERROR_NAME + e.getMessage();
             }
@@ -123,7 +135,51 @@ public class FilterActivity extends AppCompatActivity {
             //Show result of the database write task in a toast.
             Toast resultToast = Toast.makeText(appContext, result, Toast.LENGTH_LONG);
             resultToast.show();
+            //Create an intent and invoke the AuthActivity.
+            if (result.contains(AuthConstants.SUCCESS_NAME)) {
+                Intent authActivityIntent = new Intent(appContext, AuthActivity.class);
+                authActivityIntent.putExtra(AuthConstants.SP_URL_NAME, spURL);
+                authActivityIntent.putExtra(AuthConstants.USER_NAME_NAME, userName);
+                authActivityIntent.putExtra(AuthConstants.IDENTITY_TOKEN_STRING_NAME, identityTokenString);
 
+                ((Activity) appContext).startActivityForResult(authActivityIntent, AuthConstants.REQUEST_CODE_ZKP_AUTH);
+            } else {
+                //TODO: handle the error results.
+            }
+        }
+    }
+
+    /*Read from the database - if an IDT exists, forward to AuthActivity with that, else, forward to EnrollActivity*/
+    private class IdentityTokenReadTask extends AsyncTask<String, Void, String> {
+        private Context appContext = null;
+
+        public IdentityTokenReadTask(Context context) {
+            appContext = context;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            DatabaseAccessManager databaseAccessManager = new DatabaseAccessManager();
+            String identityToken = databaseAccessManager.readFromIdentityTokenTable(appContext,
+                    spURL, userName);
+            return identityToken;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (result != null) {
+                //invoke the auth activity, upon successful retrieval
+                Intent authActivityIntent = new Intent(appContext, AuthActivity.class);
+                authActivityIntent.putExtra(AuthConstants.SP_URL_NAME, spURL);
+                authActivityIntent.putExtra(AuthConstants.USER_NAME_NAME, userName);
+                authActivityIntent.putExtra(AuthConstants.IDENTITY_TOKEN_STRING_NAME, result);
+                ((Activity) appContext).startActivityForResult(authActivityIntent, AuthConstants.REQUEST_CODE_ZKP_AUTH);
+            } else {
+                Intent enrollActivityIntent = new Intent(appContext, EnrollmentActivity.class);
+                enrollActivityIntent.putExtra(AuthConstants.SP_URL_NAME, spURL);
+                enrollActivityIntent.putExtra(AuthConstants.USER_NAME_NAME, userName);
+                ((Activity) appContext).startActivityForResult(enrollActivityIntent, AuthConstants.REQUEST_CODE_ENROLL);
+            }
         }
     }
 }

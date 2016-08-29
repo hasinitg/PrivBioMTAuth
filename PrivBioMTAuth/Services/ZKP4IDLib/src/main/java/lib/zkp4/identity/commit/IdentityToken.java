@@ -2,12 +2,14 @@ package lib.zkp4.identity.commit;
 
 import org.crypto.lib.commitments.pedersen.PedersenPublicParams;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 
 /**
  * Created by hasini on 4/6/16.
  */
+//@SuppressWarnings("serial")
 public class IdentityToken {
     private String fromIdentity;
     private String toIdentity;

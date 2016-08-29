@@ -7,6 +7,9 @@ public class AuthConstants {
     public static final String SP_URL_NAME = "SP_URL";
     public static final String USER_NAME_NAME = "USER_NAME";
     public static final String BIOMETRIC_ATTRIBUTE_NAME = "Biometrics";
+    public static final String IDENTITY_TOKEN_STRING_NAME = "IDT_STRING";
+    public static final String IDENTITY_TOKEN_NAME = "IDT";
+    public static final String IDENTITY_PROOF_NAME = "IdentityProof";
 
     /*Intent Actions (Results)*/
     public static final String ACTION_RESULT_AUTH_ZKP = "org.biomt.auth.authapp.ACTION_RESULT_AUTH_ZKP";

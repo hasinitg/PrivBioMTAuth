@@ -107,7 +107,6 @@ public class EnrollmentActivity extends AppCompatActivity {
                     responseToast.show();*/
                     Intent responseIntent = new Intent(AuthConstants.ACTION_RESULT_ENROLLMENT);
                     responseMsg[0] = response.toString();
-                    responseIntent.putExtra("Test", "testData");
                     responseIntent.putExtra(AuthConstants.INFO_CODE_ENROLL_RESP, responseMsg[0]);
                     setResult(Activity.RESULT_OK, responseIntent);
                     finish();

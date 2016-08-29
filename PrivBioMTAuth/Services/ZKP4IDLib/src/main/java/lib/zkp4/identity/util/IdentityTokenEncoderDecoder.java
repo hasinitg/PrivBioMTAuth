@@ -7,7 +7,7 @@ import lib.zkp4.identity.commit.IdentityToken;
  */
 
 /*An implementation of this interface should construct an object of IdentityToken from
-* a string representation.*/
+* a string representation and vice versa.*/
 public interface IdentityTokenEncoderDecoder {
 
     public Object encodeIdentityToken(IdentityToken identityToken) throws Exception;
