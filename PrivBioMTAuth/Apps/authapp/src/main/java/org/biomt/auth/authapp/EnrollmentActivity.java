@@ -79,6 +79,7 @@ public class EnrollmentActivity extends AppCompatActivity {
             EditText idpURLValue = (EditText) findViewById(R.id.editTextIDPURL);
 
             //create the IDT request
+            //TODO: Move the below stuff into IDTReqCreator.
             IDTRequest idtRequest = new IDTRequest();
             idtRequest.setAttributeName(AuthConstants.BIOMETRIC_ATTRIBUTE_NAME);
             idtRequest.setAttributeValue(identityValue.getText().toString());

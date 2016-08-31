@@ -1,11 +1,14 @@
 package lib.zkp4.identity.util;
 
+import lib.zkp4.identity.commit.IdentityToken;
 import lib.zkp4.identity.proof.IdentityProof;
 import org.crypto.lib.zero.knowledge.proof.PedersenCommitmentProof;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +20,8 @@ public class JSONIdentityProofEncoderDecoder implements IdentityProofEncoderDeco
 
         JSONObject proofContent = new JSONObject();
         proofContent.put(Constants.PROOF_TYPE_NAME, identityProof.getProofType());
-
+        proofContent.put(Constants.IDENTITY_TOKEN_NAME, identityProof.getIdentityTokenStringToBeProved());
+        //TODO: if identity token is present in object representation, encode it and put it in here.
         if (Constants.ZKP_I.equals(identityProof.getProofType())) {
 
             if (identityProof.getHelperCommitment() != null) {
@@ -61,6 +65,50 @@ public class JSONIdentityProofEncoderDecoder implements IdentityProofEncoderDeco
 
     @Override
     public IdentityProof decodeIdentityProof(String identityProofRepresentation) throws Exception {
-        return null;
+        JSONObject jsonProof = new JSONObject(new JSONTokener(identityProofRepresentation));
+        IdentityProof proof = new IdentityProof();
+        if (jsonProof.optString(Constants.IDENTITY_TOKEN_NAME)!=null){
+            IdentityToken IDT = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(
+                    jsonProof.optString(Constants.IDENTITY_TOKEN_NAME));
+            proof.setIdentityTokenToBeProved(IDT);
+        }
+        if (Constants.ZKP_I.equals(jsonProof.optString(Constants.PROOF_TYPE_NAME))) {
+            String helperCommitmentString = jsonProof.optString(Constants.HELPER_COMMITMENT_NAME);
+            if (helperCommitmentString != null) {
+                BigInteger helperCommitment = new BigInteger(helperCommitmentString);
+                proof.addHelperCommitment(helperCommitment);
+            }
+        }
+        if ((Constants.ZKP_NI.equals(jsonProof.optString(Constants.HELPER_COMMITMENT_NAME))) ||
+                (Constants.ZKP_NI_S.equals(jsonProof.optString(Constants.HELPER_COMMITMENT_NAME)))) {
+
+            JSONArray helperCommitmentsString = jsonProof.optJSONArray(Constants.HELPER_COMMITMENTS_NAME);
+
+            if (helperCommitmentsString != null && helperCommitmentsString.length() != 0) {
+                JSONArray uValuesString = jsonProof.optJSONArray(Constants.U_VALUES_NAME);
+                JSONArray vValuesString = jsonProof.optJSONArray(Constants.V_VALUES_NAME);
+                for (int i = 0; i < 3; i++) {
+                    proof.addHelperCommitment(new BigInteger(helperCommitmentsString.getString(i)));
+                    PedersenCommitmentProof idProof = new PedersenCommitmentProof();
+                    idProof.setU(new BigInteger(uValuesString.getString(i)));
+                    idProof.setV(new BigInteger(vValuesString.getString(i)));
+                    proof.addProof(idProof);
+                }
+            }
+            JSONArray challenges = jsonProof.optJSONArray(Constants.CHALLENGES_NAME);
+            if (challenges != null) {
+                List<BigInteger> challengeBIG = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    challengeBIG.add(new BigInteger(challenges.getString(i)));
+                }
+                proof.setChallenges(challengeBIG);
+            }
+            //String timestamp = proofContent.optString(Constants.TIMESTAMP_AT_PROOF_CREATION);
+            //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+            //Date date = df.parse(timestamp);
+            //Timestamp ts = new Timestamp(date.getTime());
+            //proof.setTimestampAtProofCreation(ts);
+        }
+        return proof;
     }
 }

@@ -7,6 +7,7 @@ package lib.zkp4.identity.proof;
  * Time: 1:02 PM
  */
 
+import lib.zkp4.identity.commit.IdentityToken;
 import org.crypto.lib.zero.knowledge.proof.PedersenCommitmentProof;
 
 import java.math.BigInteger;
@@ -20,10 +21,15 @@ import java.util.List;
 public class IdentityProof {
     //multiple helper commitments, proofs and challenges are included to support non-interactive proof if required.
     private String proofType;
-    List<BigInteger> helperCommitments = new ArrayList<>();
+    //string representation of the identity token
+    private String identityTokenStringToBeProved;
+    //actual representation of the identity token
+    private IdentityToken identityTokenToBeProved;
+    private List<BigInteger> helperCommitments = new ArrayList<>();
     private List<PedersenCommitmentProof> proofs = new ArrayList<>();
     private List<BigInteger> challenges = new ArrayList<>();
     private Timestamp timestampAtProofCreation;
+    private String messageToBeSigned;
 
     public List<BigInteger> getHelperCommitments() {
         return helperCommitments;
@@ -87,6 +93,30 @@ public class IdentityProof {
 
     public void setProofType(String proofType) {
         this.proofType = proofType;
+    }
+
+    public String getIdentityTokenStringToBeProved() {
+        return identityTokenStringToBeProved;
+    }
+
+    public void setIdentityTokenStringToBeProved(String identityTokenStringToBeProved) {
+        this.identityTokenStringToBeProved = identityTokenStringToBeProved;
+    }
+
+    public String getMessageToBeSigned() {
+        return messageToBeSigned;
+    }
+
+    public void setMessageToBeSigned(String messageToBeSigned) {
+        this.messageToBeSigned = messageToBeSigned;
+    }
+
+    public IdentityToken getIdentityTokenToBeProved() {
+        return identityTokenToBeProved;
+    }
+
+    public void setIdentityTokenToBeProved(IdentityToken identityTokenToBeProved) {
+        this.identityTokenToBeProved = identityTokenToBeProved;
     }
 
 }

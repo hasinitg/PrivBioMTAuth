@@ -13,9 +13,9 @@ public class IDTManager {
     public IdentityToken createIDT(IDTRequest idtRequest, String userName) throws BioMtAuthException {
         try {
             //TODO: IDP manager should call the classifier and generate the BID.
+            //TODO: IDTManager should distribute the different secrets derived from the same password to BID generator and IDTFactory.
             IdentityRetriever idRet = new IdentityRetriever();
-            //Todo: setting a dummy value for testing no.
-            idRet.setBID("hasi86@gmail.com");
+            idRet.setBID(idtRequest.getAttributeValue());
             IDPConfigImpl config = new IDPConfigImpl();
             config.setIdentityRetriever(idRet);
 

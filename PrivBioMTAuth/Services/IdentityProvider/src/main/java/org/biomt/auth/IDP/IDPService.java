@@ -5,11 +5,12 @@ import lib.zkp4.identity.commit.IdentityToken;
 import lib.zkp4.identity.util.Constants;
 import lib.zkp4.identity.util.JSONIDTRequestEncoderDecoder;
 import lib.zkp4.identity.util.JSONIdentityTokenEncoderDecoder;
-import org.crypto.lib.CryptoLibConstants;
-import org.crypto.lib.util.CryptoUtil;
 import org.json.JSONObject;
 
-import javax.ws.rs.*;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.security.NoSuchAlgorithmException;
@@ -53,14 +54,7 @@ public class IDPService {
     public Response enrollIdentity(@HeaderParam(Constants.USER_NAME) String userName, String payload) {
         IDTManager manager = new IDTManager();
         try {
-            /*IDTRequest idtRequest = new IDTRequest();
-            idtRequest.setAttributeName("email");
-            idtRequest.setFromField("hasini");
-            idtRequest.setEncryptedSecret(CryptoUtil.getCommittableThruHash("htghh",
-                    CryptoLibConstants.SECRET_BIT_LENGTH).toString());
-            idtRequest.setToField("abcbank");*/
-
-            //decode the payload into IDTRequest object
+            //TODO: move this to IDP_API class so that third party identity providers do not have to deal with the mechanics of ZKP4ID lib.
             IDTRequest idtRequest = new JSONIDTRequestEncoderDecoder().decodeIDTRequest(payload);
             //create IDT
             IdentityToken identityToken = manager.createIDT(idtRequest, userName);
@@ -70,13 +64,13 @@ public class IDPService {
             return Response.status(200).entity(idtJSON.toString()).build();
 
         } catch (BioMtAuthException e) {
-            return Response.status(500).entity(e).build();
+            return Response.status(500).entity(e.getMessage()).build();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return Response.status(500).entity(e).build();
+            return Response.status(500).entity(e.getMessage()).build();
         } catch (Exception e) {
             e.printStackTrace();
-            return Response.status(500).entity(e).build();
+            return Response.status(500).entity(e.getMessage()).build();
         }
     }
 

@@ -483,6 +483,9 @@ https://www.blackhat.com/presentations/bh-dc-09/Nguyen/BlackHat-DC-09-Nguyen-Fac
 
 \subsubsection*{Aug 19th:}
 Designed most of the end-to-end flow of the client and auth apps.
+I sketched the design.\\
+Implemented little things in the mobile app.\\
+An android activity can be with or without a view. http://stackoverflow.com/questions/17346102/must-every-activity-have-a-layout\\
 
 \subsubsection*{Aug 20th:}
 Saturday, I implemented the phone app based on the design I made.
@@ -608,6 +611,11 @@ I complete the IdentityTokenReadTask in the FilterActivity and then completing m
 the IDT obtained during enrollment.\\
 
 I need to complete ZKP with SP today somehow. :-)
+But I couldn't do it.
+
+\subsubsection*{Aug 29th:}
+I was working on completing the authentication phase, but it was slow - because I got very very sleepy in the morning, had TA meetings and was 
+nervous about the meeting with the Professor.\\ 
 
 \textbf{MyNexts:}\\
  1. Port the IDP client into mobile - DONE - Aug 24th.\\
@@ -615,6 +623,11 @@ I need to complete ZKP with SP today somehow. :-)
  3. Implement ZKP with SP\\
  4. Run performance tests\\
 
+ \texbf{Questions to solve:}\\
+ 1. What is the best way to authenticate to IDP, in order to get the tokens? What harm that could happen if that authentication mechanism is 
+compromised.\\
+Tenatative solution: password or certificate based mutual SSL, because no sensitive info. will be stored at the IDP about biometrics, bank account, 
+health care or credit card. But, how the IDP verifies that the correct owner is sending the biometrics is out of the scope of this project.\\
 
 \pagebreak
 \subsection*{To Dos:}
@@ -847,11 +860,20 @@ order to publish in top conferences, the student should be really hard working. 
 
 Notes to me: I should re-build HASINI.Inc. from the worn out tools and establish my identity.\\
 
-I sketched the design.\\
-Implemented little things in the mobile app.\\
-An android activity can be with or without a view. http://stackoverflow.com/questions/17346102/must-every-activity-have-a-layout\\
-
-
+\subsubsection*{August 28th:}
+It was not as bad as the previous meeting.\\
+I told that I completed the enrollment phase end-to-end. I studied about storage options and decided to go with the private database, because Android 
+doesn't allow us to use Trusted Execution Environment.\\
+\textbf{Then the professor said that I need to deeply analyze what it means to be private. How they guarantee that other apps can not access it.}\\
+I should find about this and write it in the paper.\\
+Professor also said that I need to measure the performance - that is actually my next big step.\\
+Professor said I am good in research although it take a while for me to get things done - I think that is why she still keeps me as a student, 
+although I didn't get any new publication for three semesters.\\
+She said if I make the paper very competetive, with lot of insights, we can submit to a top journal.\\
+She also asked me to analyze what other people have done and compare ours with them.\\
+My next big step will be to work on the PRF idea with Professor Dave Evans - I really really want to get this going this semester.\\
+I asked why the PRF was rejected - she said they do not give feedback - but asked me to trust my instincts.\\
+I should meet her on next Monday - with performance results and also with some insights about biometrics tests.\\
 
 \subsection*{Real world stories:}
 
