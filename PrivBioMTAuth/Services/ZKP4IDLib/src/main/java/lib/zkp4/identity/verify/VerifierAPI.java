@@ -1,10 +1,7 @@
 package lib.zkp4.identity.verify;
 
 import lib.zkp4.identity.proof.IdentityProof;
-import lib.zkp4.identity.util.Constants;
-import lib.zkp4.identity.util.JSONIdentityProofEncoderDecoder;
-import lib.zkp4.identity.util.JSONMiscEncoderDecoder;
-import lib.zkp4.identity.util.ZKP4IDException;
+import lib.zkp4.identity.util.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -29,22 +26,32 @@ public class VerifierAPI {
      * @return
      * @throws ZKP4IDException
      */
-    public String handleZeroKnowledgeProof(String identityProofString, String requestType, String sessionID) throws ZKP4IDException {
+    public VerifierResponsePackage handleZeroKnowledgeProof(String identityProofString, String requestType, String sessionID) throws ZKP4IDException {
         //TODO: signature verification and expiration timestamp verification.
-        //TODO: read from config which encoding decoding mech. is used. Assume JSON for now.
         try {
-            IdentityProof identityProof = new JSONIdentityProofEncoderDecoder().decodeIdentityProof(identityProofString);
+            //TODO: read from config which encoding decoding mech. is used. Assume JSON for now.
+            IdentityProofEncoderDecoder identityProofEncoderDecoder = new JSONIdentityProofEncoderDecoder();
+            MiscEncoderDecoder miscEncoderDecoder = new JSONMiscEncoderDecoder();
 
+            IdentityProof identityProof = identityProofEncoderDecoder.decodeIdentityProof(identityProofString);
             IdentityVerificationHandler verificationHandler = new IdentityVerificationHandler();
-            JSONMiscEncoderDecoder miscEncoderDecoder = new JSONMiscEncoderDecoder();
+
+            VerifierResponsePackage resp = new VerifierResponsePackage();
             //call identity verification handler which validates the token and verify the identity proof
             if (Constants.REQ_ZKP_I_INITIAL.equals(requestType)) {
                 ProofInfo proofInfo = verificationHandler.handleInitialZKPIRequest(identityProof);
-                return (String) miscEncoderDecoder.encodeChallengeMessage(proofInfo.getSessionID(),
+                String proofInfoString = (String) miscEncoderDecoder.encodeChallengeMessage(proofInfo.getSessionID(),
                         proofInfo.getChallengeValue().toString());
+                resp.setProofInfo(proofInfo);
+                resp.setResponseString(proofInfoString);
+                return resp;
             } else if (Constants.REQ_ZKP_I_CHALLENGE_RESPONSE.equals(requestType)) {
                 boolean verificationResult = verificationHandler.verifyZKPI(identityProof, sessionID);
-                return (String) miscEncoderDecoder.encodeAuthResult(verificationResult);
+                String result = (String) miscEncoderDecoder.encodeAuthResult(verificationResult);
+                resp.setAuthResult(verificationResult);
+                resp.setResponseString(result);
+                return resp;
+
             } /*else if (Constants.REQ_ZKP_NI.equals(requestType)) {
                 return verificationHandler.verifyZKPNI(identityProof);
             } else if (Constants.REQ_ZKP_NI_S.equals(requestType)) {
