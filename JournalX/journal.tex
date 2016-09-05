@@ -615,12 +615,28 @@ But I couldn't do it.
 
 \subsubsection*{Aug 29th:}
 I was working on completing the authentication phase, but it was slow - because I got very very sleepy in the morning, had TA meetings and was 
-nervous about the meeting with the Professor.\\ 
+nervous about the meeting with the Professor.
+Meeting with Prof. was ok and in the evening I read the paper by ATAP project and learned somethings. I worked until like 9.30pm\\ 
+
+\subsubsection*{Aug 30th:}
+I think I was late. I did the implementation. I had to implement the parts of ZKP4IDLib for authentication and service side and mobile client.\\
+I went to stewart library and worked until late night, I finally drew both the flows at class level.\\
+I was sad that I had a bad conv. with father. I cried and slept.\\
+
+\subsubsection*{Aug 31st:}
+Mostly in a bad mode, I setup appointments for doc etc, read the project charters and went to the TA meeting to pick teams. Came home early, got the 
+Water Filter from PVCC. Reconciled and told about my leg problem to parents.
+
+\subsubsection*{Sept 1st: Thursday}
+Graded project charters and sent emails to team, and worked on scheduling meetings with them.\\
+In the second half, I tested the phone app and services. Fortunately, the first phase of ZKP worked, but not the second phase.\\
+I think the way I invoked was wrong. Second invocation within the response of the first invocation.
 
 \textbf{MyNexts:}\\
  1. Port the IDP client into mobile - DONE - Aug 24th.\\
  2. Save the commitment in the mobile - DONE - Aug 25th\\
- 3. Implement ZKP with SP\\
+ 3. Implement ZKP with SP - almost done and tested on 1st Sept - the initial request goes and response received but there is a problem with 
+challenge-response.\\
  4. Run performance tests\\
 
  \texbf{Questions to solve:}\\
@@ -758,7 +774,8 @@ glasses, aging etc.).
 
 \item Apple Touch ID:
 Activates the scanner on contact which then takes a high-resolution picture of your fingerprint. That fingerprint is then converted into a 
-mathematical formula, encrypted, and carried over a hardware channel to a secure enclave on the Apple A7 chipset. If the fingerprint is recognized, a 
+mathematical formula, encrypted, and carried over a hardware channel to a secure enclave on the Apple A7 chipset. If the fingerprint is 
+recognized, a 
 "yes" token is released. If it's not, a "no" token is released.\\
 
 Secure Enclave: The A7 also includes an area called the "Secure Enclave" that stores and protects the data from the Touch ID fingerprint sensor on the 

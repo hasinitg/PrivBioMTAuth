@@ -20,12 +20,20 @@ public class AuthConstants {
 
     /*Intent Request Codes*/
     public static final int REQUEST_CODE_ENROLL = 1;
-    public static final int REQUEST_CODE_ZKP_AUTH = 2;
+    public static final int REQUEST_CODE_ZKP_INITIAL = 2;
+    public static final int REQUEST_CODE_ZKP_CHALLENGE_RESPONSE = 3;
 
-    /*Constants defining different information passed back and forth through different intents*/
+    /*Constants defining different information passed back and forth through different intents of AuthApp*/
     public static final String INFO_CODE_ENROLL_RESP = "ENROLL_RESPONSE";
-    public static final String INFO_CODE_AUTH_RESP = "AUTH_RESP";
-    public static final String INFO_CODE_ZKP_AUTH_RESP =  "";
+    public static final String INFO_CODE_AUTH_RESP_ZKP_I_INITIAL = "ZKP_I_INITIAL_RESPONSE";
+    public static final String INFO_CODE_AUTH_RESP_ZKP_I_CHALLENGE_RESPONSE =  "ZKP_I_CHALLENGE_RESPONSE";
+
+    public static final String INITIAL_ID_PROOF_NAME = "INITIAL_IDENTITY_PROOF_NAME";
+    public static final String HELPER_X_NAME = "HELPER_X";
+    public static final String HELPER_R_NAME = "HELPER_R";
+
+    /*Constant defining auth result information passed from auth app to client app*/
+    public static final String INFO_CODE_AUTH_RESP = "ZKP_AUTH_RESP";
 
     /*Result Codes*/
     public static final int SUCCESS = 11;

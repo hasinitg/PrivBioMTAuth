@@ -20,5 +20,6 @@
     <string name="button_text_enroll">Enroll</string>
 
     <string name="title_activity_filter">FilterActivity</string>
+    <string name="title_activity_auth_initial">AuthInitialActivity</string>
 
 </resources>

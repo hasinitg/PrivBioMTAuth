@@ -29,6 +29,7 @@ public class AuthService {
                                  @HeaderParam(Constants.USER_NAME) String userName,
                                  @HeaderParam(Constants.SESSION_ID_NAME) String sessionID, String payload) {
 
+        System.out.println("Auth call received.");
         try {
             VerifierAPI verifier = new VerifierAPI();
             VerifierResponsePackage responsePackage = null;
@@ -36,6 +37,7 @@ public class AuthService {
             SessionStoreManager sessionStoreManager = SessionStoreManager.getInstance();
 
             if (Constants.REQ_ZKP_I_INITIAL.equals(requestType)) {
+                System.out.println("ZKP_I_initial...");
                 responsePackage = verifier.handleZeroKnowledgeProof(payload, requestType, null);
                 responseString = responsePackage.getResponseString();
 
@@ -49,18 +51,23 @@ public class AuthService {
                 return Response.status(Constants.HTTP_CODE_OK).entity(responseString).build();
 
             } else if (Constants.REQ_ZKP_I_CHALLENGE_RESPONSE.equals(requestType) && (sessionID != null)) {
-
+                System.out.println("ZKP_I_Challenge_Response...");
                 SessionInfo sessionInfo = sessionStoreManager.getSessionInfo(userName);
                 if (sessionID.equals(sessionInfo.getSessionID())) {
                     responsePackage = verifier.handleZeroKnowledgeProof(payload, requestType, sessionID);
                     responseString = responsePackage.getResponseString();
                     if (responsePackage.getAuthResult()) {
+                        System.out.println("auth success..");
                         String spGenSessionID = UUID.randomUUID().toString();
                         sessionInfo.setSpGivenSessionID(spGenSessionID);
                         sessionInfo.setAuthStatus(true);
                         //add sp given session id to response string (this could have been done in the previous if statement as well)
                         JSONObject response = new JSONObject(new JSONTokener(responseString));
                         response.put(Constants.SESSION_ID_NAME, spGenSessionID);
+                        System.out.println("SP generated session id: " + spGenSessionID);
+                        responseString = response.toString();
+                    } else {
+                        System.out.println("Auth failure...");
                     }
                 }
                 return Response.status(Constants.HTTP_CODE_OK).entity(responseString).build();

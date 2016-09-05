@@ -1,5 +1,6 @@
 package org.biomt.auth.clientapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -47,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onAuthButtonClicked(View v){
+    public void onAuthButtonClicked(View v) {
 
         //check if the network connectivity is there
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (!(networkInfo!=null && networkInfo.isConnected())){
+        if (!(networkInfo != null && networkInfo.isConnected())) {
             Toast myToast = Toast.makeText(getApplicationContext(),
                     "Please connect to the internet first.", Toast.LENGTH_LONG);
             myToast.show();
@@ -74,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
         PackageManager pkgManager = getPackageManager();
         List intendedApps = pkgManager.queryIntentActivities(authIntent, PackageManager.MATCH_DEFAULT_ONLY);
         //TODO: verfify resolve info.
-        boolean isSafeIntent = intendedApps.size()==1;
+        boolean isSafeIntent = intendedApps.size() == 1;
 
         //start intent for result
-        if(isSafeIntent){
+        if (isSafeIntent) {
             startActivityForResult(authIntent, ClientConstants.REQUEST_CODE_ZKP_AUTH);
         }
 
@@ -86,13 +87,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
+        if (Activity.RESULT_OK == requestCode) {
+            //obtain the session from the returned activity
+            String sessionId = data.getStringExtra(ClientConstants.SESSION_ID_NAME);
 
-        //obtain the session from the returned activity
-        String sessionId = data.getStringExtra("Session_Id");
-
-        Toast myToast = Toast.makeText(getApplicationContext(),
-                "Auth Success_"+sessionId, Toast.LENGTH_LONG);
-        myToast.show();
+            Toast myToast = Toast.makeText(getApplicationContext(),
+                    "Auth Success: " + sessionId, Toast.LENGTH_LONG);
+            myToast.show();
+        } else {
+            Toast myToast = Toast.makeText(getApplicationContext(),
+                    "Auth Failure.. ", Toast.LENGTH_LONG);
+            myToast.show();
+        }
 
         //contact SP using the session and obtain the account information
 

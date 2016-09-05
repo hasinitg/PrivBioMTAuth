@@ -58,12 +58,13 @@ public class VerifierAPI {
                 return verificationHandler.verifyZKPNIS(identityProof);
             }*/
             throw new ZKP4IDException("Un-identified identity verification request.");
-        } catch (JSONException e) {
+        } /*catch (JSONException e) {
             e.printStackTrace();
             throw new ZKP4IDException("Error in decoding the identity verification request.");
-        } catch (Exception e) {
+        }*/ catch (Exception e) {
             e.printStackTrace();
-            throw new ZKP4IDException("Error in decoding the identity verification request.");        }
+            throw new ZKP4IDException("Error in decoding the identity verification request.");
+        }
     }
 
 }

@@ -11,11 +11,9 @@ import org.crypto.lib.exceptions.CryptoAlgorithmException;
 import org.crypto.lib.util.CryptoUtil;
 import org.crypto.lib.zero.knowledge.proof.PedersenCommitmentProof;
 import org.crypto.lib.zero.knowledge.proof.ZKPPedersenCommitment;
-import org.json.JSONException;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
-import java.util.UUID;
 
 /**
  * Created by hasini on 8/30/16.
@@ -47,7 +45,7 @@ public class IdentityProofCreator {
     }
 
     /*Creates initial request for interactive ZKPK - use this if the caller has object representation of the identity token*/
-    public IdentityProof createInitialProofForZKPI(IdentityToken identityToken) throws ZKP4IDException {
+    public IdentityProofPackage createInitialProofForZKPI(IdentityToken identityToken) throws ZKP4IDException {
         try {
 
             IdentityProof proof = new IdentityProof();
@@ -60,7 +58,13 @@ public class IdentityProofCreator {
             PedersenCommitment helperCommitment = ZKPK.createHelperProblem(null);
             proof.addHelperCommitment(helperCommitment.getCommitment());
 
-            return proof;
+            IdentityProofPackage identityProofPackage = new IdentityProofPackage();
+            identityProofPackage.setIdentityProof(proof);
+            identityProofPackage.setHelperX(helperCommitment.getX());
+            identityProofPackage.setHelperR(helperCommitment.getR());
+
+            return identityProofPackage;
+
         } catch (CryptoAlgorithmException e) {
             e.printStackTrace();
             throw new ZKP4IDException("Error in creating the initial interactive ZKPK.");
@@ -71,8 +75,8 @@ public class IdentityProofCreator {
     }
 
     /*Create the challenge response */
-    public IdentityProof createProofForZKPI(BigInteger challenge, String secret, String identity, IdentityToken identityToken,
-                                            IdentityProof initialIdentityProof) throws ZKP4IDException {
+    public IdentityProof createProofForZKPI(BigInteger challenge, String secret, String identity, String identityTokenString,
+                                            IdentityProof initialIdentityProof, String helperX, String helperR) throws ZKP4IDException {
         try {
             BigInteger secretBIG = CryptoUtil.getCommittableThruHash(secret, CryptoLibConstants.SECRET_BIT_LENGTH);
             BigInteger identityBIG = CryptoUtil.getCommittableThruHash(identity, CryptoLibConstants.SECRET_BIT_LENGTH);
@@ -83,12 +87,16 @@ public class IdentityProofCreator {
 
             PedersenCommitment helperCommitment = new PedersenCommitment();
             helperCommitment.setCommitment(initialIdentityProof.getHelperCommitment());
+            helperCommitment.setX(new BigInteger(helperX));
+            helperCommitment.setR(new BigInteger(helperR));
 
+            IdentityToken identityToken = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(identityTokenString);
             PedersenPublicParams pedersenPublicParams = identityToken.getPedersenParams();
             ZKPPedersenCommitment ZKPK = new ZKPPedersenCommitment(pedersenPublicParams);
 
             IdentityProof proof = new IdentityProof();
             proof.setProofType(Constants.ZKP_I);
+            proof.setIdentityTokenStringToBeProved(identityTokenString);
             PedersenCommitmentProof commitmentProof = ZKPK.createProofForInteractiveZKP(pedersenCommitment, helperCommitment, challenge);
             proof.addProof(commitmentProof);
 
@@ -100,6 +108,9 @@ public class IdentityProofCreator {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             throw new ZKP4IDException("Error in creating the identity proof");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ZKP4IDException("Error in decoding the identity token used for proof.");
         }
     }
 }

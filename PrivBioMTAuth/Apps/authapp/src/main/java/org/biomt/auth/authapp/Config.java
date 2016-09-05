@@ -5,7 +5,7 @@ package org.biomt.auth.authapp;
  */
 public class Config {
     /*IDP URL*/
-    public static final String IDP_URL = "http://10.186.95.62:8080/idp/enroll/post";
+    public static final String IDP_URL = "http://10.186.83.83:8080/idp/enroll/post";
 
-    public static final String TEST_URL = "http://10.186.95.62:8080/abcbank/account";
+    public static final String TEST_URL = "http://10.186.83.83:8080/abcbank/auth";
 }

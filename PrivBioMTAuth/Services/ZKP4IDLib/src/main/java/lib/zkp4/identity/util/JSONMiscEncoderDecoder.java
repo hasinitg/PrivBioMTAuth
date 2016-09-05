@@ -1,5 +1,6 @@
 package lib.zkp4.identity.util;
 
+import lib.zkp4.identity.verify.AuthResult;
 import lib.zkp4.identity.verify.ProofInfo;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -22,9 +23,12 @@ public class JSONMiscEncoderDecoder implements MiscEncoderDecoder {
     }
 
     @Override
-    public boolean decodeAuthResult(String authResultString) throws Exception {
+    public AuthResult decodeAuthResult(String authResultString) throws Exception {
         JSONObject authResultObject = new JSONObject(new JSONTokener(authResultString));
-        return Boolean.valueOf(authResultObject.optString(Constants.AUTH_RESULT_NAME));
+        AuthResult authResult = new AuthResult();
+        authResult.setSessionID(authResultObject.optString(Constants.SESSION_ID_NAME));
+        authResult.setAuthResult(Boolean.valueOf(authResultObject.optString(Constants.AUTH_RESULT_NAME)));
+        return authResult;
     }
 
     @Override

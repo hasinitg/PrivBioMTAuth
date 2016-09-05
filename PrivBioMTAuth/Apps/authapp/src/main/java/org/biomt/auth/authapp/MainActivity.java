@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(authIntent, AuthConstants.REQUEST_CODE_ZKP_AUTH);*/
 
         //invoke filter activity just like it is done by the client app, for the debug purposes
+        EditText userName = (EditText) findViewById(R.id.editText);
         Intent enrollmentIntent = new Intent(this, FilterActivity.class);
-        enrollmentIntent.putExtra(AuthConstants.SP_URL_NAME, "whatever");
-        enrollmentIntent.putExtra(AuthConstants.USER_NAME_NAME, "whatever");
+        enrollmentIntent.putExtra(AuthConstants.SP_URL_NAME, Config.TEST_URL);
+        enrollmentIntent.putExtra(AuthConstants.USER_NAME_NAME, userName.getText().toString());
         startActivityForResult(enrollmentIntent, AuthConstants.REQUEST_CODE_ENROLL);
     }
 
