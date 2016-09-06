@@ -50,6 +50,7 @@ public class IdentityProofCreator {
 
             IdentityProof proof = new IdentityProof();
             proof.setProofType(Constants.ZKP_I);
+            /*We set the identity token to be proved only in the initial proof in ZKP_I*/
             proof.setIdentityTokenStringToBeProved(new JSONIdentityTokenEncoderDecoder().encodeIdentityToken(identityToken).toString());
 
             PedersenPublicParams pedersenPublicParams = identityToken.getPedersenParams();
@@ -58,6 +59,8 @@ public class IdentityProofCreator {
             PedersenCommitment helperCommitment = ZKPK.createHelperProblem(null);
             proof.addHelperCommitment(helperCommitment.getCommitment());
 
+            /*We use identity proof package because we do not want to send the X and R values used to create the helper commitment
+            * to verifier, still we need to give them to the prover.*/
             IdentityProofPackage identityProofPackage = new IdentityProofPackage();
             identityProofPackage.setIdentityProof(proof);
             identityProofPackage.setHelperX(helperCommitment.getX());
@@ -96,7 +99,7 @@ public class IdentityProofCreator {
 
             IdentityProof proof = new IdentityProof();
             proof.setProofType(Constants.ZKP_I);
-            proof.setIdentityTokenStringToBeProved(identityTokenString);
+            //proof.setIdentityTokenStringToBeProved(identityTokenString);
             PedersenCommitmentProof commitmentProof = ZKPK.createProofForInteractiveZKP(pedersenCommitment, helperCommitment, challenge);
             proof.addProof(commitmentProof);
 

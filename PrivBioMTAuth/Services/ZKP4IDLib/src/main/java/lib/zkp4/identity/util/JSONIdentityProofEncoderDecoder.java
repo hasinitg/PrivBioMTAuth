@@ -67,16 +67,28 @@ public class JSONIdentityProofEncoderDecoder implements IdentityProofEncoderDeco
     public IdentityProof decodeIdentityProof(String identityProofRepresentation) throws Exception {
         JSONObject jsonProof = new JSONObject(new JSONTokener(identityProofRepresentation));
         IdentityProof proof = new IdentityProof();
-        if (jsonProof.optString(Constants.IDENTITY_TOKEN_NAME)!=null){
-            IdentityToken IDT = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(
-                    jsonProof.optString(Constants.IDENTITY_TOKEN_NAME));
+        String identityToken = jsonProof.optString(Constants.IDENTITY_TOKEN_NAME);
+        if ((identityToken != null) && (!identityToken.isEmpty())) {
+            IdentityToken IDT = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(jsonProof.optString(
+                    Constants.IDENTITY_TOKEN_NAME));
             proof.setIdentityTokenToBeProved(IDT);
         }
         if (Constants.ZKP_I.equals(jsonProof.optString(Constants.PROOF_TYPE_NAME))) {
+            //decode helper commitment if exists
             String helperCommitmentString = jsonProof.optString(Constants.HELPER_COMMITMENT_NAME);
-            if (helperCommitmentString != null) {
+            if ((helperCommitmentString != null) && (!helperCommitmentString.isEmpty())) {
                 BigInteger helperCommitment = new BigInteger(helperCommitmentString);
                 proof.addHelperCommitment(helperCommitment);
+            }
+            //decode commitment proof if exists
+            String uValueString = jsonProof.optString(Constants.U_VALUE_NAME);
+            String vValueString = jsonProof.optString(Constants.V_VALUE_NAME);
+            if ((uValueString != null) && (!uValueString.isEmpty()) && (vValueString != null) && (!vValueString.isEmpty())) {
+
+                PedersenCommitmentProof idProof = new PedersenCommitmentProof();
+                idProof.setU(new BigInteger(uValueString));
+                idProof.setV(new BigInteger(vValueString));
+                proof.addProof(idProof);
             }
         }
         if ((Constants.ZKP_NI.equals(jsonProof.optString(Constants.HELPER_COMMITMENT_NAME))) ||

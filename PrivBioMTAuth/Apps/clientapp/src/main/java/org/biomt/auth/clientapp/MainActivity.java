@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super.onActivityResult(requestCode, resultCode, data);
-        if (Activity.RESULT_OK == requestCode) {
+        if (Activity.RESULT_OK == resultCode) {
             //obtain the session from the returned activity
             String sessionId = data.getStringExtra(ClientConstants.SESSION_ID_NAME);
 

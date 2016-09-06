@@ -114,13 +114,14 @@ public class FilterActivity extends AppCompatActivity {
                     String authResp = data.getStringExtra(AuthConstants.INFO_CODE_AUTH_RESP_ZKP_I_CHALLENGE_RESPONSE);
                     AuthResult authResult = new JSONMiscEncoderDecoder().decodeAuthResult(authResp);
 
-                    Intent authResultIntent = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
                     if (authResult.getAuthResult()) {
+                        Intent authResultIntent = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
                         authResultIntent.putExtra(Constants.SESSION_ID_NAME, authResult.getSessionID());
                         setResult(Activity.RESULT_OK, authResultIntent);
                         finish();
 
                     } else {
+                        Intent authResultIntent = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
                         setResult(Activity.RESULT_CANCELED, authResultIntent);
                         finish();
                     }

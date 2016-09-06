@@ -58,8 +58,8 @@ public class Constants {
     public static final int IDENTITY_VERIFICATION_PENDING = 0;
 
     public static final String AUTH_RESULT_NAME = "Auth_Result";
-    public static final String AUTH_SUCCESS = "Auth_Success";
-    public static final String AUTH_FAILURE = "Auth_Failure";
+    public static final String AUTH_SUCCESS = "true";
+    public static final String AUTH_FAILURE = "false";
 
     /*Constants related with proof store*/
     public static final int MAX_SIZE_PROOF_MAP_IN_MEMORY = 10000;
