@@ -632,11 +632,35 @@ Graded project charters and sent emails to team, and worked on scheduling meetin
 In the second half, I tested the phone app and services. Fortunately, the first phase of ZKP worked, but not the second phase.\\
 I think the way I invoked was wrong. Second invocation within the response of the first invocation.
 
+\subsubsection*{Sept 2nd: Friday}
+Couldn't do much as I was replying emails, updating the CV and preparing and meeting with three teams.\\
+However, I tried to change the flow s.t after AuthActivity invokes the initial ZKP, I return the result to Filter activity along with the password 
+etc., so that Filter activity can invoke the SP Auth service for the final auth call. I couldn't complete implementing though.
+
+\subsubsection*{Sept 3rd: Saturday}
+Literally NO WORK AT ALL.
+
+\subsubsection*{Sept 4th: Sunday}
+I realized that rather than getting the AuthActivity to to the initial ZKP call, let FilterActivity do it and if it is successful only, rediret the 
+user to the AuthActivity, so that I do not have to pass the credentials back and forth.\\
+However, the initial way I did it was wrong-violating the asynchronacy.\\
+
+\subsubsection*{Sept 5th: Monday}
+This is the most important and new lesson I learned today: 
+http://blog.trifork.com/2014/07/14/how-to-remotely-debug-application-running-on-tomcat-from-within-intellij-idea/\\
+How to JAVA debugging works:\\
+External libraries implementing debugger functionality (agents) is passed to remote JVM through java debugger wire protocol (jdwp).\\
+This is related to the remote debugging options that we enable in the jvm: -agentlib:libname[=options] format\\
+E.g: -agentlib:jdwp=transport=dt_socket,address=1043,server=y,suspend=n\\
+
+Finally finally finally - the long awaited static identity zero knwoledge proof working end-to-end.\\
+
 \textbf{MyNexts:}\\
  1. Port the IDP client into mobile - DONE - Aug 24th.\\
  2. Save the commitment in the mobile - DONE - Aug 25th\\
  3. Implement ZKP with SP - almost done and tested on 1st Sept - the initial request goes and response received but there is a problem with 
-challenge-response.\\
+challenge-response. - completely done end-to-end - on 5th Sept.\\
+3.2. Polish the app (When I click back from activities, it shouldn't try to connect etc.).
  4. Run performance tests\\
 
  \texbf{Questions to solve:}\\
