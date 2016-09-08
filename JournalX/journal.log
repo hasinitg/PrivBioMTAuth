@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  23 AUG 2016 11:48
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  6 SEP 2016 13:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -804,205 +804,456 @@ Underfull \hbox (badness 10000) in paragraph at lines 481--483
  []
 
 
-Overfull \hbox (61.98543pt too wide) in paragraph at lines 491--497
-\OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/19044670/should-i-use-and
-roid-async-http-client-in-dobackground-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 491--497
-
- []
-
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 498--503
-
- []
-
-[17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 549--556
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 557--561
-
- []
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 562--565
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 575--577
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 579--583
-
- []
-
-
-Overfull \hbox (4.86292pt too wide) in paragraph at lines 586--588
-[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2016/03/15/amazon-wants-to-r
-eplace-passwords-with-
- []
-
-
-Overfull \hbox (10.15547pt too wide) in paragraph at lines 588--590
-[]\OT1/cmr/m/n/10.95 https://thestack.com/cloud/2016/03/03/google-hands-free-fa
-cial-recognition-trial-san-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 588--590
-
- []
-
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 591--592
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 593--595
-
- []
-
-
-Overfull \hbox (42.15387pt too wide) in paragraph at lines 599--601
-[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2015/03/16/alibaba-demonstra
-tes-facial-recognition-payment-
- []
-
-
-Overfull \hbox (17.57716pt too wide) in paragraph at lines 602--604
-[]\OT1/cmr/m/n/10.95 https://thestack.com/iot/2016/02/22/mastercard-rolls-out-s
-elfie-verification-for-mobile-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 602--604
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 605--607
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 608--610
-
- []
-
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ô in font cmr10!
-
-Underfull \hbox (badness 10000) in paragraph at lines 611--614
-
- []
-
-
-Overfull \hbox (1.30423pt too wide) in paragraph at lines 615--616
-[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/banks-e
-mbrace-biometrics-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 615--616
-
- []
-
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 617--618
-
- []
-
-
-Overfull \hbox (13.988pt too wide) in paragraph at lines 619--620
-[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/biometr
-ic-tipping-point-usaa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 619--620
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 621--625
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 626--628
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 632--636
-
- []
-
-
-Overfull \hbox (162.71968pt too wide) in paragraph at lines 640--646
-[]\OT1/cmr/m/n/10.95 ARM's Trust-Zone: Wikipedia: https://en.wikipedia.org/wiki
-/ARM[]architecture#Security[]extensions[].28TrustZone.29 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 650--651
-
- []
-
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 652--653
-
- []
-
-[23]
-Overfull \hbox (155.88081pt too wide) in paragraph at lines 662--669
-\OT1/cmr/m/n/10.95 Today (18th March), I found this pa-per on that topic: http:
-//ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6686139 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 671--672
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 681--683
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 686--690
-
- []
-
-[24] [25]
-Underfull \hbox (badness 10000) in paragraph at lines 728--733
-
- []
-
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 734--735
-
- []
-
-
-Overfull \hbox (60.84998pt too wide) in paragraph at lines 736--739
+Overfull \hbox (60.84998pt too wide) in paragraph at lines 485--489
 \OT1/cmr/m/n/10.95 An an-droid ac-tiv-ity can be with or with-out a view. http:
 //stackoverflow.com/questions/17346102/must-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 736--739
+Underfull \hbox (badness 10000) in paragraph at lines 485--489
+
+ []
+
+
+Overfull \hbox (61.98543pt too wide) in paragraph at lines 494--500
+\OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/19044670/should-i-use-and
+roid-async-http-client-in-dobackground-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 494--500
+
+ []
+
+[16]
+Overfull \hbox (196.5388pt too wide) in paragraph at lines 502--509
+\OT1/cmr/m/n/10.95 Porting the en-roll-ment client to an-droid. How to to a pos
+t from asynchttp-client: http://stackoverflow.com/questions/30594572/send-
+ []
+
+
+Overfull \hbox (165.52269pt too wide) in paragraph at lines 502--509
+\OT1/cmr/m/n/10.95 I also needed to add my li-braries as de-pen-den-cies into t
+he an-droid project: http://stackoverflow.com/questions/31463908/how-
+ []
+
+
+Overfull \hbox (90.91179pt too wide) in paragraph at lines 502--509
+\OT1/cmr/m/n/10.95 How to sync an-droid project with up-dated gra-dle files: ht
+tp://stackoverflow.com/questions/19932793/syncing-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 502--509
+
+ []
+
+
+Overfull \hbox (60.12996pt too wide) in paragraph at lines 510--513
+\OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/30594572/send-json-as-a-p
+ost-request-to-server-by-asynchttpclient 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 510--513
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--521
+
+ []
+
+
+Overfull \hbox (103.25981pt too wide) in paragraph at lines 522--525
+[]\OT1/cmr/m/n/10.95 Then I was read-ing how to run gra-dle from command-line: 
+https://developer.android.com/studio/build/building-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 522--525
+
+ []
+
+[17]
+Overfull \hbox (2.52089pt too wide) in paragraph at lines 529--532
+\OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/10098088/dalvik-vm-error-
+exception-found-javax-xml-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--532
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 534--536
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 537--540
+
+ []
+
+
+Overfull \hbox (10.52052pt too wide) in paragraph at lines 541--544
+\OT1/cmr/m/n/10.95 overview of an-droid stor-age op-tions: https://developer.an
+droid.com/guide/topics/data/data-
+ []
+
+
+Overfull \hbox (5.8276pt too wide) in paragraph at lines 541--544
+\OT1/cmr/bx/n/10.95 article from de-vel-oper.com \OT1/cmr/m/n/10.95 http://www.
+developer.com/ws/android/storing-app-related-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 541--544
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--548
+
+ []
+
+
+Overfull \hbox (152.8403pt too wide) in paragraph at lines 549--558
+\OT1/cmr/m/n/10.95 This is a very com-pre-hen-sive ex-am-ple on stor-ing data i
+n the database: https://developer.android.com/training/basics/data-
+ []
+
+
+Overfull \hbox (8.78679pt too wide) in paragraph at lines 549--558
+\OT1/cmr/m/n/10.95 But they say it is rec-om-mended to use Async-Task to getWri
+t-table and ge-tRead-able databases.
+ []
+
+
+Overfull \hbox (203.81726pt too wide) in paragraph at lines 549--558
+\OT1/cmr/bx/n/10.95 This is a SO thread that talks about semaphores us-age with
+ sqlite db: \OT1/cmr/m/n/10.95 http://stackoverflow.com/questions/2647542/andro
+id-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 549--558
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 560--567
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 568--571
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 572--575
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 576--578
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 579--581
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--583
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 584--587
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 589--591
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 592--595
+
+ []
+
+
+Overfull \hbox (130.78221pt too wide) in paragraph at lines 596--602
+\OT1/cmr/m/n/10.95 ((Activity) ap-p-Con-text).startActivityForResult(authActivi
+tyIntent, Au-th-Con-stants.REQUEST[]CODE[]ZKP[]AUTH); 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 596--602
+
+ []
+
+
+Overfull \hbox (11.28087pt too wide) in paragraph at lines 603--605
+\OT1/cmr/m/n/10.95 How to write query: http://www.mysamplecode.com/2011/10/andr
+oid-sqlite-query-example-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 603--605
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--612
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 617--620
+
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 622--625
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 644--648
+
+ []
+
+[21]
+Overfull \hbox (46.13725pt too wide) in paragraph at lines 650--656
+\OT1/cmr/m/n/10.95 This is the most im-por-tant and new les-son I learned to-da
+y: http://blog.trifork.com/2014/07/14/how-
+ []
+
+
+Overfull \hbox (49.05852pt too wide) in paragraph at lines 650--656
+\OT1/cmr/m/n/10.95 This is re-lated to the re-mote de-bug-ging op-tions that we
+ en-able in the jvm: -agentlib:libname[=options]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--656
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 657--658
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 660--661
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 663--670
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 671--677
+
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 680--681
+
+ []
+
+[23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 727--734
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 735--739
+
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 740--743
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 753--755
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 757--761
+
+ []
+
+
+Overfull \hbox (4.86292pt too wide) in paragraph at lines 764--766
+[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2016/03/15/amazon-wants-to-r
+eplace-passwords-with-
+ []
+
+
+Overfull \hbox (10.15547pt too wide) in paragraph at lines 766--768
+[]\OT1/cmr/m/n/10.95 https://thestack.com/cloud/2016/03/03/google-hands-free-fa
+cial-recognition-trial-san-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 766--768
+
+ []
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 769--770
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 771--773
+
+ []
+
+
+Overfull \hbox (42.15387pt too wide) in paragraph at lines 777--779
+[]\OT1/cmr/m/n/10.95 https://thestack.com/security/2015/03/16/alibaba-demonstra
+tes-facial-recognition-payment-
+ []
+
+
+Overfull \hbox (17.57716pt too wide) in paragraph at lines 780--782
+[]\OT1/cmr/m/n/10.95 https://thestack.com/iot/2016/02/22/mastercard-rolls-out-s
+elfie-verification-for-mobile-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 780--782
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 783--785
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 786--788
+
+ []
+
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 789--792
+
+ []
+
+
+Overfull \hbox (1.30423pt too wide) in paragraph at lines 793--794
+[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/banks-e
+mbrace-biometrics-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 793--794
+
+ []
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 795--796
+
+ []
+
+
+Overfull \hbox (13.988pt too wide) in paragraph at lines 797--798
+[]\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/biometr
+ic-tipping-point-usaa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 797--798
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 799--803
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 804--806
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 810--815
+
+ []
+
+
+Overfull \hbox (162.71968pt too wide) in paragraph at lines 819--825
+[]\OT1/cmr/m/n/10.95 ARM's Trust-Zone: Wikipedia: https://en.wikipedia.org/wiki
+/ARM[]architecture#Security[]extensions[].28TrustZone.29 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 829--830
+
+ []
+
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 831--832
+
+ []
+
+[29]
+Overfull \hbox (155.88081pt too wide) in paragraph at lines 841--848
+\OT1/cmr/m/n/10.95 Today (18th March), I found this pa-per on that topic: http:
+//ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6686139 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 850--851
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 860--862
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 865--869
+
+ []
+
+[30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 907--912
+
+ []
+
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 913--914
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 916--929
 
  []
 
@@ -1019,22 +1270,23 @@ Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
 
-Overfull \hbox (29.86552pt too wide) in paragraph at lines 746--752
+Overfull \hbox (29.86552pt too wide) in paragraph at lines 934--940
 []\OT1/cmr/m/n/10.95 From: https://thestack.com/security/2015/03/16/alibaba-dem
 onstrates-facial-recognition-
  []
 
 
-Overfull \hbox (8.02632pt too wide) in paragraph at lines 746--752
+Overfull \hbox (8.02632pt too wide) in paragraph at lines 934--940
 \OT1/cmr/m/n/10.95 New York City Uni-ver-si-tys Cen-ter for Catas-tro-phe Pre-p
 ared-ness and Re-sponse (CCPR)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 746--752
+Underfull \hbox (badness 10000) in paragraph at lines 934--940
 
  []
 
+[33]
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ò in font cmr10!
@@ -1048,7 +1300,7 @@ Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 753--756
+Underfull \hbox (badness 10000) in paragraph at lines 941--944
 
  []
 
@@ -1056,7 +1308,7 @@ Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 757--760
+Underfull \hbox (badness 10000) in paragraph at lines 945--948
 
  []
 
@@ -1072,42 +1324,42 @@ Missing character: There is no ú in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ù in font cmr10!
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 766--767
+
+Underfull \hbox (badness 10000) in paragraph at lines 954--955
 
  []
 
-
-Overfull \hbox (20.74052pt too wide) in paragraph at lines 778--780
+[34]
+Overfull \hbox (20.74052pt too wide) in paragraph at lines 966--968
 \OT1/cmr/m/n/10.95 edge (same au-thors) (http://www.lsv.ens-cachan.fr/Publis/PA
 PERS/PDF/BKSST-
  []
 
 
-Overfull \hbox (181.18864pt too wide) in paragraph at lines 780--782
+Overfull \hbox (181.18864pt too wide) in paragraph at lines 968--970
 []\OT1/cmr/m/n/10.95 An im-ple-men-ta-tion of zero knowl-edge au-then-ti-ca-tio
 n (NAR-WHAL): https://courses.csail.mit.edu/6.857/2014/files/15-
  []
 
 
-Overfull \hbox (267.785pt too wide) in paragraph at lines 782--783
+Overfull \hbox (267.785pt too wide) in paragraph at lines 970--971
 []\OT1/cmr/m/n/10.95 Implementation and Eval-u-a-tion of Zero-Knowledge Proofs 
 of Knowl-edge (https://securewww.esat.kuleuven.be/cosic/publications/thesis-
  []
 
-[28]
-Overfull \hbox (66.30481pt too wide) in paragraph at lines 799--801
+
+Overfull \hbox (66.30481pt too wide) in paragraph at lines 987--989
 \OT1/cmr/m/n/10.95 Jonathan Din-er-stein, and Dan Ven-tura (http://axon.cs.byu.
 edu/papers/dinerstein.smc07.pdf) 
  []
 
 
-Overfull \hbox (210.3279pt too wide) in paragraph at lines 801--802
+Overfull \hbox (210.3279pt too wide) in paragraph at lines 989--990
 []\OT1/cmr/m/n/10.95 An En-sem-ble Ap-proach to Ro-bust Bio-met-rics Fu-sion : 
 http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1640496 
  []
 
-[29] (./journal.aux) ) 
+[35] (./journal.aux) ) 
 Here is how much of TeX's memory you used:
  2946 strings out of 495028
  39441 string characters out of 6181498
@@ -1115,7 +1367,7 @@ Here is how much of TeX's memory you used:
  6111 multiletter control sequences out of 15000+600000
  10707 words of font info for 40 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,26p,248b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,26p,248b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
@@ -1123,10 +1375,10 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on journal.pdf (29 pages, 160550 bytes).
+Output written on journal.pdf (35 pages, 173158 bytes).
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
+ 144 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

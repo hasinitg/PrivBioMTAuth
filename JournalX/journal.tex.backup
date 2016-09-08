@@ -433,11 +433,309 @@ integer format is changed due to some reason.
 \item Then I wrote encoding also mannually, to be used at the server side, then only it actually worked.
 \end{enumerate}
 
+\subsubsection*{June 19th:}
+This is the difference between privacy and security: 
+https://www.ghostery.com/intelligence/business-blog/privacy/understanding-the-differences-between-privacy-and-/
+
+\subsubsection*{July 6th, July 14th}
+I went through my diary, tried to recap my work and tried get the setup working. I could access the tomcat service through the web browser but 
+couldn't run the phone app. When I was debugging, Android studio suddenly gave the device not found error. This is where I am, trying to get out of 
+it.
+
+\subsubsection*{July 18th}
+Too bad I didn't do anything during the weekend. 
+Oh the problem is that USB debuggins is disabled. When I re-enabled it, it listed the USB device. \\
+Commands for the adb and USB device:\\
+1. adb devices\\
+2. lsusb\\
+3. ls -l /dev/bus/usb/002 (the device id)\\
+
+\subsubsection*{July 23rd}
+I worked in the coffee bar. It is a very nice place. I tried to get the mobile app connected to my server. But it didn't work. Could be a problem 
+with the network. So I switched to planning what I need to do.
+I found certain ways to do performance testing of the mobile app:\\
+http://www.developer.com/ws/android/development-tools/android-app-performance-testing-an-end-to-end-approach.html\\
+https://developer.android.com/studio/profile/index.html\\
+http://stackoverflow.com/questions/1957135/how-to-test-the-performance-of-an-android-application\\
+
+I also found about the async tasks which I should use when invoking remote services from the mobile app:\\
+https://developer.android.com/training/basics/network-ops/connecting.html\#http-client
+
+Android suggests to use HttpURLConnection client. But I already use some other client:
+https://developer.android.com/reference/java/net/HttpURLConnection.html
+
+\subsubsection*{July 30th}
+I was looking for a face dataset.\\
+This seems to be for the algorithms to detect frontal face images - http://vasc.ri.cmu.edu/idb/html/face/frontal\_images/ \\
+Which is not so useful to me.\\
+
+This contains a list of datasets:\\
+http://www.face-rec.org/databases/\\
+
+This is a very good tutorial on fisher faces and SVM multi-class classification:\\
+https://github.com/JaimeIvanCervantes/FaceRecognition\\
+
+It gives mixed feelings to find this paper published based on Google ATAP project:\\
+http://www.cse.msu.edu/rgroups/biometrics/Publications/Face/Crouseetal\_ContinuousAuthMobileFace\_ICB15.pdf\\
+
+Another paper from blackhat:\\
+https://www.blackhat.com/presentations/bh-dc-09/Nguyen/BlackHat-DC-09-Nguyen-Face-not-your-password.pdf\\
+
+\subsubsection*{Aug 19th:}
+Designed most of the end-to-end flow of the client and auth apps.
+I sketched the design.\\
+Implemented little things in the mobile app.\\
+An android activity can be with or without a view. http://stackoverflow.com/questions/17346102/must-every-activity-have-a-layout\\
+
+\subsubsection*{Aug 20th:}
+Saturday, I implemented the phone app based on the design I made.
+
+\subsubsection*{Aug 22nd:}
+I implemented the test client with Async tasks. But it didn't work!! Either I have done it wrong, or Async task is not for what I want to do. :(\\
+I was right, according to this SO thread, \\
+http://stackoverflow.com/questions/19044670/should-i-use-android-async-http-client-in-dobackground-of-async-task\\
+I do not need to use Async Task if I use asynchttpclient.\\
+So I need to revert the change and continue from there.\\
+Also, I might need to increase the default timeout of async http client if needed.\\
+
+\subsubsection*{Aug 23rd:}
+Reverted the async task.\\
+Porting the enrollment client to android. How to to a post from asynchttpclient: 
+http://stackoverflow.com/questions/30594572/send-json-as-a-post-request-to-server-by-asynchttpclient\\
+I also needed to add my libraries as dependencies into the android project: 
+http://stackoverflow.com/questions/31463908/how-to-import-a-maven-module-to-an-android-studio-project\\
+If it is an external maven module use `mavenCentral' in the repositories instead.\\
+How to sync android project with updated gradle files: http://stackoverflow.com/questions/19932793/syncing-android-studio-project-with-gradle-files\\
+
+Enrollment client was implemented. Two important links from which I learned how to do a post from asynchttpclient:\\
+http://stackoverflow.com/questions/30594572/send-json-as-a-post-request-to-server-by-asynchttpclient\\
+https://github.com/loopj/android-async-http/issues/642\\
+
+When building from command line in debug mode, I got an error: \\
+Exception is: org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':authapp:preDexDebug'.\\
+There were several SO threads with the same issue, but no body has answered.\\
+When I built from the android studio, it built fine - but later I found out there is no .apk built - I should not trust android studio build, with 
+warnings-saying that my maven dependencies are in a higher java version. 
+Then I noticed that android studio is pointing to java 1.7 - I upgraded it -warnings went away.\textbf{This is not Good, as I later read, android 
+studio supports Java 1.7}\\
+
+Then I was reading how to run gradle from command-line: https://developer.android.com/studio/build/building-cmdline.html\\
+There are two build types : debugMode and releaseMode. In debug mode, the .apk file is signed using a temp. debug key and in releaseMode, we need to 
+sign it using our private key by specifying its details in gradle script.\\
+
+\textbf{Like python wrapper, there is a gradle wrapper as well. Need to include the gradle wrapper files in the git repo so that others can use them 
+as well.}
+
+I was further debugging the issue. I noticed that when failing, gradle complains about javax.xml stuff, when I searched about the error, it seemed 
+that I should not conflict with android core libraries, when adding dependencies to the android app.\\
+http://stackoverflow.com/questions/10098088/dalvik-vm-error-exception-found-javax-xml-namespace-qname-class\\
+
+\subsubsection*{Aug 24th:}
+Then I removed jersy libraries from ZKP4ID and downgraded the java version of the libraries to 1.7 and of android studio - then it was built fine. 
+But let's see how it goes when running the app.\\
+
+OMG, OMG, Finally, Finally, I was able to port the enrollment client to the mobile app and run it successfully and get the result.
+\textbf{It was afer almost three and half months from I first invoked the IDP from desktop client, that I was able to invoke IDP from mobile client. 
+Somehow I did it. Yeah... :)}\\
+
+Then I was looking at how to store the enrollment data in the app. This gives a very good overview of android storage options: 
+https://developer.android.com/guide/topics/data/data-storage.html\\
+\textbf{article from developer.com} http://www.developer.com/ws/android/storing-app-related-data-in-your-android-apps.html\\
+
+Options for me:\\
+Internal Storage for files: classifier, classifier parameters, private keys etc.\\
+SQLite DB for commitment data.\\
+
+\textbf{SQLite DB:}\\
+This is a very comprehensive example on storing data in the database: https://developer.android.com/training/basics/data-storage/databases.html\\
+First create a contract class.\\
+Then create the DBManager class which is a subclass of SQLiteOpenHelper, which is used to instantiate and obtain getWrittable and getReadable 
+database.\\
+But they say it is recommended to use AsyncTask to getWrittable and getReadable databases. Then what happens is, when we run performance test, there 
+will be multiple threads trying to read and write from/to the database and there can be problems. So we have to use locks - like semaphores.\\
+\textbf{This is a SO thread that talks about semaphores usage with sqlite db:} 
+http://stackoverflow.com/questions/2647542/android-threading-and-database-locking\\
+
+\subsubsection*{Aug 25th:}
+Following are the recommended things to do to avoid issues when multiple threads accessing database:\\
+1. Keep db instances local.\\
+2. call close() on db in the same method it opened - in finally block.\\
+3. call close on the cursors got from the db - in finally block.\\
+4. Db wrapper that aquires/releases a global semaphore your DB access will be thread safe. Indeed this means that you could get a bootleneck because 
+you are queueing the access to the DB. So in addition you could only wrap the access using semaphores if it's an operation that alters the database, 
+so while you are alterin the db no one will be able to access it and wait until the write process has been completed.\\
+
+I finished implementing the persistance of IDTs based on what I read and thought was correct. But when I ran the app, all sorts of problems.\\
+1. I get an error: Unfortunately, authApp has stopped working, every now and then.\\
+2. When I tried to debug the app, it doesn't go beyond FilterActivity.\\
+
+Then I got to know about logCat. Let's see if it can help me. Yes, I found it, it was because FilterActivity had a theme as NoDisplay, when I changed 
+it to a normal theme, it worked. Well, now FilterActivity is visible. \\
+\textbf{I might want to make filter activity a nice landing page of the authApp when it is invoked from other apps.}\\
+
+Then I have done a very stupid mistake which ate my time a lot. Rather than using the intent object passed into the callback method: 
+onActivityResult, I have done getIntent. It was so stupid. If I was in the present moment well, I would have detected it better.\\
+
+Now, with that solved, execution proceeds to DBCode, but get an error due to the SQL query of : create table.\\
+OK, that is solved. Lesson learned: you shouldn't have SQL keywords in column names\\
+
+And now, the token gets stored in the DB. Yeah.... :)\\
+
+Then I spend a little bit time desinging the next steps---to forward to AuthActivity from FilterActivity.\\
+Then I had to find out how to pass IDT. It is by serialization. Then I serialized IDT class in ZKP4IDLib.\\
+Now let's see what happens.\\
+
+\subsubsection*{Aug 26th:}
+Well, serializig IdentityToken didn't work, because of the attribute Public Pedersen Params.\\
+It is ok, I will just pass the identity token string and decode it from there.\\
+
+Yeah.. I got the flow of the two app working end-to-end, given that enrollment is performed everytime.\\
+Next steps:\\
+In filter activity, if an appropriate token is there in the database, skip enrollment and proceed to authentication. \\
+
+\textbf{Note:}\\
+To start an activity from an AsyncTask:\\
+- instantiate the AsyncTask class with the Context passed as a contructor argument, from the first (current) activity.\\
+- call the second activity as this:\\
+((Activity) appContext).startActivityForResult(authActivityIntent, AuthConstants.REQUEST\_CODE\_ZKP\_AUTH);\\
+- the result from the second activity will be returned to the onActivityResult method of the first activity.\\
+
+Then I wrote the code for retrieving information from the SQLite database.\\
+How to write query: http://www.mysamplecode.com/2011/10/android-sqlite-query-example-selection.html\\
+
+\subsubsection*{Aug 27th:}
+I didn't do any work because I went to temple.\\
+
+\subsubsection*{Aug 28th:}
+I complete the IdentityTokenReadTask in the FilterActivity and then completing missing parts in ZKP4Lib and writing AuthClient to fulfill ZKPK with 
+the IDT obtained during enrollment.\\
+
+I need to complete ZKP with SP today somehow. :-)
+But I couldn't do it.
+
+\subsubsection*{Aug 29th:}
+I was working on completing the authentication phase, but it was slow - because I got very very sleepy in the morning, had TA meetings and was 
+nervous about the meeting with the Professor.
+Meeting with Prof. was ok and in the evening I read the paper by ATAP project and learned somethings. I worked until like 9.30pm\\ 
+
+\subsubsection*{Aug 30th:}
+I think I was late. I did the implementation. I had to implement the parts of ZKP4IDLib for authentication and service side and mobile client.\\
+I went to stewart library and worked until late night, I finally drew both the flows at class level.\\
+I was sad that I had a bad conv. with father. I cried and slept.\\
+
+\subsubsection*{Aug 31st:}
+Mostly in a bad mode, I setup appointments for doc etc, read the project charters and went to the TA meeting to pick teams. Came home early, got the 
+Water Filter from PVCC. Reconciled and told about my leg problem to parents.
+
+\subsubsection*{Sept 1st: Thursday}
+Graded project charters and sent emails to team, and worked on scheduling meetings with them.\\
+In the second half, I tested the phone app and services. Fortunately, the first phase of ZKP worked, but not the second phase.\\
+I think the way I invoked was wrong. Second invocation within the response of the first invocation.
+
+\subsubsection*{Sept 2nd: Friday}
+Couldn't do much as I was replying emails, updating the CV and preparing and meeting with three teams.\\
+However, I tried to change the flow s.t after AuthActivity invokes the initial ZKP, I return the result to Filter activity along with the password 
+etc., so that Filter activity can invoke the SP Auth service for the final auth call. I couldn't complete implementing though.
+
+\subsubsection*{Sept 3rd: Saturday}
+Literally NO WORK AT ALL.
+
+\subsubsection*{Sept 4th: Sunday}
+Worked only in the evening at the PVCC.
+I realized that rather than getting the AuthActivity to to the initial ZKP call, let FilterActivity do it and if it is successful only, rediret the 
+user to the AuthActivity, so that I do not have to pass the credentials back and forth.\\
+However, the initial way I did it was wrong-violating the asynchronacy.\\
+
+\subsubsection*{Sept 5th: Monday}
+This is the most important and new lesson I learned today: 
+http://blog.trifork.com/2014/07/14/how-to-remotely-debug-application-running-on-tomcat-from-within-intellij-idea/\\
+How to JAVA debugging works:\\
+External libraries implementing debugger functionality (agents) is passed to remote JVM through java debugger wire protocol (jdwp).\\
+This is related to the remote debugging options that we enable in the jvm: -agentlib:libname[=options] format\\
+E.g: -agentlib:jdwp=transport=dt\_socket,address=1043,server=y,suspend=n\\
+
+Remote debugging worked after I changed the port to 80.\\
+
+Finally finally finally - the long awaited static identity zero knwoledge proof working end-to-end.\\
+
+\subsubsection*{Sept 6th: Tuesday}
+Started working at 11.20am.\\
+
+Tips for polishing the apps: \\
+1. Material Design: https://developer.android.com/training/material/get-started.html#ApplyTheme \\
+2. Performance best practices: https://developer.android.com/training/best-performance.html\\
+3. Testing for the app: https://developer.android.com/studio/test/index.html\\
+4. Getting started with testing: https://developer.android.com/training/testing/start/index.html\\
+5. Best practices for security and privacy: https://developer.android.com/training/best-security.html\\
+6. Android studio overview: Profile your app: https://developer.android.com/studio/profile/index.html\\
+
+For performance testing:\\
+General end-to-end approach: http://www.devx.com/wireless/Article/48170\\
+Important thing I learned from this is: there exists hybrid mobile applications in addition to web based and native mobile applications.\\
+
+Android specific example: http://www.developer.com/ws/android/development-tools/android-app-performance-testing-an-end-to-end-approach.html\\
+
+Most search results I got was pointing towards using JMeter to capture screens like in webapp testing and running them against the server. But it was 
+not what I wanted to do.\\
+
+Important things I found: Android device monitor and its parts will be very useful for me.
+
+\subsubsection*{Sept 7th: Wednesday}
+I am starting almost at 12noon.\\
+I found this really good tutorial in code labs: https://codelabs.developers.google.com/codelabs/android-perf-testing/index.html\\
+It seems to be exactly what I need. But let's see. \\
+
+There are two types of tests for android: unit tests and instrument tests.\\
+
+Systrace helps monitor performance: https://developer.android.com/studio/profile/systrace-commandline.html\\
+
+The Espressolibrary is used to assist with Android instrumental tests: 
+https://developer.android.com/topic/libraries/testing-support-library/index.html#Espresso\\
+
+This is in testing support library: https://developer.android.com/topic/libraries/testing-support-library/index.html\\
+
+According to the above tutorial, we can write a perf test, run its gradle task so that what we mannually execute will be executed by that test. Very 
+cool.\\
+
+I read part of the Prof. Dave Evans paper I should work towards that goal for at least 2hours every day.\\
+I read another remote biometrics authentication work in IEEE Info Sec and forensics journal. It has references for other works. I should read them 
+for my related work.\\
+
+From the pointers I found from the above tutorial, I further read developper docs on android test support library and its components such as 
+Espresso.\\
+I gues these two tutorials will be helpful: \\
+https://developer.android.com/training/testing/ui-testing/espresso-testing.html\\
+https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html\\
+
+UI thread syncronization is handled by the Espresso framework, so that we do not have to put sleeps.\\
+
+\subsubsection*{Sept 8th: Thursday}
+I started work at 11pm.
+
 \textbf{MyNexts:}\\
- 1. Port the IDP client into mobile.\\
- 2. Save the commitment in the mobile\\
- 3. Implement ZKP with SP\\
- 4. Run performance tests\\
+ 1. Port the IDP client into mobile - DONE - Aug 24th.\\
+ 2. Save the commitment in the mobile - DONE - Aug 25th\\
+ 3. Implement ZKP with SP - almost done and tested on 1st Sept - the initial request goes and response received but there is a problem with 
+challenge-response. - completely done end-to-end - on 5th Sept.\\
+3.2. Polish the app (When I click back from activities, it shouldn't try to connect etc.).
+ 4. Run performance tests - create a performance test harness which can be re-used.\\
+
+\textbf{Questions to solve:}\\
+ 1. What is the best way to authenticate to IDP, in order to get the tokens? What harm that could happen if that authentication mechanism is 
+compromised.\\
+Tenatative solution: password or certificate based mutual SSL, because no sensitive info. will be stored at the IDP about biometrics, bank account, 
+health care or credit card. But, how the IDP verifies that the correct owner is sending the biometrics is out of the scope of this project.
+May be that each time the user obtains/renew/revoke, they need to be physically present at the IDP with a photo ID. \\
+
+Non-of the information can be accessed just by logging into the IDP account.
+
+2. Revocation:\\
+Push based revocation.\\
+
+3. How to secure the data passed between apps:\\
+i.e: session id s\\
+
+4. How to write a formal security proof:\\
 
 
 \pagebreak
@@ -458,6 +756,7 @@ This commercial product : sedicii (https://www.sedicii.com), seem to be doing ex
 They say that they do credit card authorization as well as biometrics authorization in ZKP - exactly my two works.
 They have not described how they do biometrics authentication in ZKP, however, it should be similar to their website loging scenario:
 I have written how their credit card authorization is comparable to ours in my RahasNym journal.
+\pagebreak
 
 \subsection*{Brain Storming:}
 
@@ -568,7 +867,8 @@ glasses, aging etc.).
 
 \item Apple Touch ID:
 Activates the scanner on contact which then takes a high-resolution picture of your fingerprint. That fingerprint is then converted into a 
-mathematical formula, encrypted, and carried over a hardware channel to a secure enclave on the Apple A7 chipset. If the fingerprint is recognized, a 
+mathematical formula, encrypted, and carried over a hardware channel to a secure enclave on the Apple A7 chipset. If the fingerprint is 
+recognized, a 
 "yes" token is released. If it's not, a "no" token is released.\\
 
 Secure Enclave: The A7 also includes an area called the "Secure Enclave" that stores and protects the data from the Touch ID fingerprint sensor on the 
@@ -589,57 +889,6 @@ I wrote PFR proposal. It takes lot of time to write.\\
 Professor liked the proposal very much.\\
 
 She said that she is very confident that I could do the prelim early this Fall.
-
-\subsubsection*{June 19th:}
-This is the difference between privacy and security: 
-https://www.ghostery.com/intelligence/business-blog/privacy/understanding-the-differences-between-privacy-and-/
-
-\subsubsection*{July 6th, July 14th}
-I went through my diary, tried to recap my work and tried get the setup working. I could access the tomcat service through the web browser but 
-couldn't run the phone app. When I was debugging, Android studio suddenly gave the device not found error. This is where I am, trying to get out of 
-it.
-
-\subsubsection*{July 18th}
-Too bad I didn't do anything during the weekend. 
-Oh the problem is that USB debuggins is disabled. When I re-enabled it, it listed the USB device. \\
-Commands for the adb and USB device:\\
-1. adb devices\\
-2. lsusb\\
-3. ls -l /dev/bus/usb/002 (the device id)\\
-
-\subsubsection*{July 23rd}
-I worked in the coffee bar. It is a very nice place. I tried to get the mobile app connected to my server. But it didn't work. Could be a problem 
-with the network. So I switched to planning what I need to do.
-I found certain ways to do performance testing of the mobile app:\\
-http://www.developer.com/ws/android/development-tools/android-app-performance-testing-an-end-to-end-approach.html\\
-https://developer.android.com/studio/profile/index.html\\
-http://stackoverflow.com/questions/1957135/how-to-test-the-performance-of-an-android-application\\
-
-I also found about the async tasks which I should use when invoking remote services from the mobile app:\\
-https://developer.android.com/training/basics/network-ops/connecting.html\#http-client
-
-Android suggests to use HttpURLConnection client. But I already use some other client:
-https://developer.android.com/reference/java/net/HttpURLConnection.html
-
-\subsubsection*{July 30th}
-I was looking for a face dataset.\\
-This seems to be for the algorithms to detect frontal face images - http://vasc.ri.cmu.edu/idb/html/face/frontal_images/ Which is not so useful to 
-me.\\
-
-This contains a list of datasets:\\
-http://www.face-rec.org/databases/\\
-
-This is a very good tutorial on fisher faces and SVM multi-class classification:\\
-https://github.com/JaimeIvanCervantes/FaceRecognition\\
-
-It gives mixed feelings to find this paper published based on Google ATAP project:\\
-http://www.cse.msu.edu/rgroups/biometrics/Publications/Face/Crouseetal_ContinuousAuthMobileFace_ICB15.pdf\\
-
-Another paper from blackhat:\\
-https://www.blackhat.com/presentations/bh-dc-09/Nguyen/BlackHat-DC-09-Nguyen-Face-not-your-password.pdf\\
-
-
-
 \pagebreak
 
 \section*{New Ideas:}
@@ -721,10 +970,20 @@ order to publish in top conferences, the student should be really hard working. 
 
 Notes to me: I should re-build HASINI.Inc. from the worn out tools and establish my identity.\\
 
-I sketched the design.\\
-Implemented little things in the mobile app.\\
-An android activity can be with or without a view. http://stackoverflow.com/questions/17346102/must-every-activity-have-a-layout\\
-
+\subsubsection*{August 28th:}
+It was not as bad as the previous meeting.\\
+I told that I completed the enrollment phase end-to-end. I studied about storage options and decided to go with the private database, because Android 
+doesn't allow us to use Trusted Execution Environment.\\
+\textbf{Then the professor said that I need to deeply analyze what it means to be private. How they guarantee that other apps can not access it.}\\
+I should find about this and write it in the paper.\\
+Professor also said that I need to measure the performance - that is actually my next big step.\\
+Professor said I am good in research although it take a while for me to get things done - I think that is why she still keeps me as a student, 
+although I didn't get any new publication for three semesters.\\
+She said if I make the paper very competetive, with lot of insights, we can submit to a top journal.\\
+She also asked me to analyze what other people have done and compare ours with them.\\
+My next big step will be to work on the PRF idea with Professor Dave Evans - I really really want to get this going this semester.\\
+I asked why the PRF was rejected - she said they do not give feedback - but asked me to trust my instincts.\\
+I should meet her on next Monday - with performance results and also with some insights about biometrics tests.\\
 
 \subsection*{Real world stories:}
 
