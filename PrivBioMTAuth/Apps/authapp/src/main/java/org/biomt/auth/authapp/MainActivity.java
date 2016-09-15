@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(authIntent, AuthConstants.REQUEST_CODE_ZKP_AUTH);*/
 
         //invoke filter activity just like it is done by the client app, for the debug purposes
-        EditText userName = (EditText) findViewById(R.id.editText);
+        EditText userName = (EditText) findViewById(R.id.main_editText);
         Intent enrollmentIntent = new Intent(this, FilterActivity.class);
         enrollmentIntent.putExtra(AuthConstants.SP_URL_NAME, Config.TEST_URL);
         enrollmentIntent.putExtra(AuthConstants.USER_NAME_NAME, userName.getText().toString());

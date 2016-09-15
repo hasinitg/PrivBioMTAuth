@@ -2,8 +2,10 @@ package org.biomt.auth.authapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.TrafficStats;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,13 +38,13 @@ public class EnrollmentActivity extends AppCompatActivity {
         String userName = enrollActivityIntent.getStringExtra(AuthConstants.USER_NAME_NAME);
 
         //set the values in the UI components
-        EditText fromText = (EditText) findViewById(R.id.editTextFrom);
+        EditText fromText = (EditText) findViewById(R.id.enroll_editTextFrom);
         fromText.setText(userName);
 
-        EditText toText = (EditText) findViewById(R.id.editTextTo);
+        EditText toText = (EditText) findViewById(R.id.enroll_editTextTo);
         toText.setText(spURL);
 
-        EditText idpURLText = (EditText) findViewById(R.id.editTextIDPURL);
+        EditText idpURLText = (EditText) findViewById(R.id.enroll_editTextIDPURL);
         idpURLText.setText(Config.IDP_URL);
 
     }
@@ -70,13 +72,14 @@ public class EnrollmentActivity extends AppCompatActivity {
     }
 
     public void onEnrollButtonClicked(View v) {
+        TrafficStats.setThreadStatsTag(0xF00A);
         try {
             //get the information from the UI
-            EditText identityValue = (EditText) findViewById(R.id.editTextIdentity);
-            EditText passwordValue = (EditText) findViewById(R.id.editTextPassword);
-            EditText fromValue = (EditText) findViewById(R.id.editTextFrom);
-            EditText toValue = (EditText) findViewById(R.id.editTextTo);
-            EditText idpURLValue = (EditText) findViewById(R.id.editTextIDPURL);
+            EditText identityValue = (EditText) findViewById(R.id.enroll_editTextIdentity);
+            EditText passwordValue = (EditText) findViewById(R.id.enroll_editTextPassword);
+            EditText fromValue = (EditText) findViewById(R.id.enroll_editTextFrom);
+            EditText toValue = (EditText) findViewById(R.id.enroll_editTextTo);
+            EditText idpURLValue = (EditText) findViewById(R.id.enroll_editTextIDPURL);
 
             //create the IDT request
             //TODO: Move the below stuff into IDTReqCreator.
@@ -97,15 +100,16 @@ public class EnrollmentActivity extends AppCompatActivity {
             AuthRESTClient idpClient = new AuthRESTClient();
             final String[] responseMsg = {null};
 
+            Log.i(Config.TAG_MAIN, Config.TAG_START_IDT_REQ + Config.LOG_DELIMITTER + String.valueOf(System.currentTimeMillis()));
+
             //TODO: send the user name (and the authentication details) with the IDP in the headers
             idpClient.post(this, idpURLValue.getText().toString(), null, new StringEntity(encodedIDTRequest,
                     AuthConstants.ENCODING), AuthConstants.CONTENT_TYPE_JSON, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    //print the response in a toast for now
-                    /*Toast responseToast = Toast.makeText(getApplicationContext(), response.toString(),
-                            Toast.LENGTH_LONG);
-                    responseToast.show();*/
+
+                    Log.i(Config.TAG_MAIN, Config.TAG_INT_IDT_REQ + Config.LOG_DELIMITTER + String.valueOf(System.currentTimeMillis()));
+
                     Intent responseIntent = new Intent(AuthConstants.ACTION_RESULT_ENROLLMENT);
                     responseMsg[0] = response.toString();
                     responseIntent.putExtra(AuthConstants.INFO_CODE_ENROLL_RESP, responseMsg[0]);
@@ -142,6 +146,8 @@ public class EnrollmentActivity extends AppCompatActivity {
             Toast errorToast = Toast.makeText(getApplicationContext(),
                     "Error in encoding IDT request.", Toast.LENGTH_LONG);
             errorToast.show();
+        } finally {
+            TrafficStats.clearThreadStatsTag();
         }
     }
 }

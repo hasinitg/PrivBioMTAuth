@@ -698,8 +698,8 @@ The article also explains how to install it.\\
 According to the above tutorial, we can write a perf test, run its gradle task so that what we mannually execute will be executed by that test. Very 
 cool.\\
 
-I read part of the Prof. Dave Evans paper I should work towards that goal for at least 2hours every day.\\
-I read another remote biometrics authentication work in IEEE Info Sec and forensics journal. It has references for other works. I should read them 
+I read part of the Prof. Dave Evans paper I should work towards that goal for at least 2 hours every day.\\
+I read another remote biometrics authentication work in IEEE Info. Sec and forensics journal. It has references for other works. I should read them 
 for my related work.\\
 
 From the pointers I found from the above tutorial, I further read developper docs on android test support library and its components such as 
@@ -716,7 +716,8 @@ I started work at 11pm. \\
 Read Prof Evan's paper till 12.20 - understood basic privacy preserving euclidean distance protocol and their improved protocol.\\
 
 TODO on that direction:\\
-Learn homomorphic encryption better, read pailler and try to implement a small program using that.\\
+Learn homomorphic encryption better, read pailler and try to implement a small program using that. I could do a benchmark on that in my journal 
+paper.\\
 Learn packing, statistical hiding and perfect hiding\\
 
 \textbf{List of resources for testing:}
@@ -737,17 +738,126 @@ Learn packing, statistical hiding and perfect hiding\\
  \item Testing multiple apps using UI automater: https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html
  \item How to repeat tests: http://stackoverflow.com/questions/39193268/run-espresso-test-multiple-times, 
 http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over
+ \item Test Assertions: https://developer.android.com/training/testing/start/index.html#AssertionClasses
+ \item HamCrest for matching: https://github.com/hamcrest
 \end{enumerate}
 
+Yay.. I wrote and ran my first instrumentation test.\\
+Steps for the blog:\\
+1. Download the sdk and test support libraries.\\
+2. add dependencies\\
+3. set JUNIT Runner the default runner\\
+4. Write the test\\
+5. Run the connectedCheck gradle task (from android studio or ./gradlew :app:connectedCheck)\\
+6. Run multiple times with @RunWith parameterized class.\\
+6. Add logs.\\
+7. Collect logs via Android Device Monitor.\\
+
+I was really hurting my leg. Even after giving accupuncture. I actually came home to go to PVCC and work, with the great momentum I had. But there is 
+always some force holding me back. I thought I should give my leg a rest. So I slept. Slept so much that I felt better the next day.
+
+\subsubsection*{Sept. 9th: Friday}
+I did zero work on my research. I was preparing for a stupid ineterview, which didn't work out at all.\\
+Washed the clothes, searched for flights to go to GHC.\\
+Walked to Indian shop. I felt everything was so dry. Everything around me.. Everything in my life..\\
+I think I should not loose focus on work. If I keep myself busy with work, everything will be fine.\\
+Then I tried to watch chef table. It started to thunder. Then I ate bread+egg coz I was hungry.\\
+I was preparing to cook - then there came the tornado warning - siren went off three times - it was so scary. I went to the basement and came back.\\
+I stayed in the bed - reading the book - I read read and read like crazy. It was so addicting.\\
+
+\subsubsection*{Sept 10th: Saturday}
+Spellbound again - despite the fact that amma and surprisingly, Thilina called me, I slept again and again and missed my accupuncture session which 
+is bad. I don't know. My instincts say that I should go back to physical therapy - which is scientifically proven and have worked for people I know 
+of - and they are covered by insurance.\\
+
+I started reading the paper sent by Prof. Bertino in PVCC at about 8pm past. Then amma called and I came home to call.
+
+\subsubsection*{Sept 11th: Sunday}
+I went to Hicks, emailed teams, and started to read the rest of the paper. It is in vain that I put lot of time reading that paper. I came home by 
+10pm bus. Didn't even talk with Thil since he went to see a patient.
+
+\subsection*{Sept 12th: Monday}
+I was in a very bad mode as I got up at 5.30am and slept again and woke up at 8.20am. I was wondering what's worng with me to sleep that much, even 
+when I have a meeting with the advisor at 10am.
+Anyway, I made it early enough for the meeting, was in a bad mode after the meeting due to Pu akka's reply and chatted with Nangi about our plans.\\
+Started reading and grading product backlogs at about 12 past, went to the TA meeting and then went to career fair. Useless.\\
+Went to the apt, did exercises, ate, talked with Thil, amma, thaththa. Slept.\\
+
+\subsubsection*{Sept 13th: Tuesday}
+Today was very very good. I wish eveyday is like today. I got up with my alarm at 5.30am and slept again. Amma called me at 6.30am and stayed w/o 
+going back to bed again. And it worked. I cooked, did PT and came walking at 7.30 since I had a meeting at TA meeting at 8am. I was so happy that I 
+was able to teach them something.\\
+Read Prof. Evan's paper for 1hour - understood their circuit.\\
+Did grading.\\
+Now back to my research work.\\
+
+Tip : name the input field in the activities with the activity name as prefix so that it is easy in instrument tests.\\
+
+I faced an issue that the button click didn't work in instrumentation. The reason is that I haven't cleared the soft keyboard after entering the last 
+text.\\
+Then again I faced an issue of not being able to get the auth activity fields. The issue was solved after deleting the toast.\\
+
+Yay... I was able to instrument the auth app until it reaches the auth activity.\\
+
+Not loading the auth activity soon enough gives issues intermittently. Therefore, I added a Thread.sleep(x). But the more elegant approach seems to 
+be in: http://stackoverflow.com/questions/21417954/espresso-thread-sleep\\
+
+Yay... I got the complete flow automated... and ran multiple times. Then I read about how to print logs and collect them via Device monitor.\\
+Logs: https://developer.android.com/studio/debug/am-logcat.html\\
+Device Monitor: https://developer.android.com/studio/profile/monitor.html\\
 
 
-\textbf{MyNexts:}\\
+\subsubsection*{Sept 14th: Wednesday}
+I got up very hard very very hard at 8 o'clock and quickly got ready and went to Cline Clinic. I missed the bus while seeing it. Went to payless, 
+bought some suff, came to the next bus just in time. I was so hungry, called amma and started cooking. Before that, I graded the one last team.
+It took a while to cook and made a huge mess. Anyway, I ate and came to lab at 1.30 past. I was idling till and in between I meet teams.
+Then I came to the stewart library at about 6.00, ate and started to read Dr. Dave Evan's paper. Read for half hour and then slept sitting for half 
+hour. Grabbed a coffee. Got lost in searching stuff. Back to project work at 8.40pm.\\
+
+\textbf{HOW CAN I MAKE PROGRESS BY WORKING LIKE THIS}\\
+
+I put logs in several locations. But sleep time was not enough and all the logs of the complete flow is not printed.
+
+\subsubsection*{Spet 15th: Thursday}
+WOW.. today is good. Got up at 6.30am. PT, called mamma, came to lab at 8.30am.\\
+
+Even 100ms of sleep is not enough to run the complete flow. So I increased to 200ms, then only it ran the complete flow all the iterations.\\
+I need to implement the correct way of waiting as in: http://stackoverflow.com/questions/21417954/espresso-thread-sleep\\
+
+Dalvik Debug Monitor Server (DDMS). \\
+
+This is a very nice explaination on how DDMS interacts with VMs running different apps, via adb: 
+https://developer.android.com/studio/profile/ddms.html\\
+``When DDMS starts, it connects to adb. When a device is connected, a VM monitoring service is created between adb and DDMS, which notifies DDMS when 
+a VM on the device is started or terminated. Once a VM is running, DDMS retrieves the VM's process ID (pid), via adb, and opens a connection to the 
+VM's debugger, through the adb daemon (adbd) on the device. DDMS can now talk to the VM using a custom wire protocol''.\\
+
+How to measure memory: In Device Monitor, select the device -> select the process -> select `update heap' -> cause GC.\\
+Network: Can measure Tx and Rx bytes and packets. There is a way to tag the sockets used for each operation and get network stats for each of them 
+as per the aforementioned tutorial. However, it is only possible with android's default http client - URL connection.\\
+CPU:
+
+Next steps in static identity:\\
+1. Run it multiple times - Yay.. @3.33 on Sept 13th, I automated it 10 times using @RunWith Parameterized.class as mentioned in: 
+http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over\\
+2. Collect the logs. - DONE: 15th Sept.\\
+3. CPU, MEMMORY, Network Usage - DONE: 15th Sept.\\
+3. Re-factor the flows.\\
+4. Inter-app instrumentation\\
+4. benchmark, benchmark, benchmark\\
+
+
+\textbf{MyNexts in end:}\\
  1. Port the IDP client into mobile - DONE - Aug 24th.\\
  2. Save the commitment in the mobile - DONE - Aug 25th\\
  3. Implement ZKP with SP - almost done and tested on 1st Sept - the initial request goes and response received but there is a problem with 
 challenge-response. - completely done end-to-end - on 5th Sept.\\
 3.2. Polish the app (When I click back from activities, it shouldn't try to connect etc.).
- 4. Run performance tests - create a performance test harness which can be re-used.\\
+ 4. Run performance tests - create a performance test harness which can be re-used. Wrote my first instrument test on Sept 8th.\\
+ Standard deviation and 99th percentile rank and statistical tests when reporting.\\
+ 5. Integrate BIOMETRICS.\\
+ 6. Implement correct way of sleeping in the end product: 
+http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over\\
 
 \textbf{Questions to solve:}\\
  1. What is the best way to authenticate to IDP, in order to get the tokens? What harm that could happen if that authentication mechanism is 
@@ -762,7 +872,7 @@ Non-of the information can be accessed just by logging into the IDP account.
 Push based revocation.\\
 
 3. How to secure the data passed between apps:\\
-i.e: session id s\\
+i.e: session id s - use encryption.\\
 
 4. How to write a formal security proof:\\
 
@@ -999,7 +1109,7 @@ order to publish in top conferences, the student should be really hard working. 
 
 Notes to me: I should re-build HASINI.Inc. from the worn out tools and establish my identity.\\
 
-\subsubsection*{August 28th:}
+\subsubsection*{August 29th:}
 It was not as bad as the previous meeting.\\
 I told that I completed the enrollment phase end-to-end. I studied about storage options and decided to go with the private database, because Android 
 doesn't allow us to use Trusted Execution Environment.\\
@@ -1014,6 +1124,16 @@ My next big step will be to work on the PRF idea with Professor Dave Evans - I r
 I asked why the PRF was rejected - she said they do not give feedback - but asked me to trust my instincts.\\
 I should meet her on next Monday - with performance results and also with some insights about biometrics tests.\\
 
+\subsubsection*{Sept 5th:}
+I sent an email to Prof. Bertino that I completed ZKP end-to-end and asked for a meeting time on Thursday. She only replied that we can meet on next 
+Monday.
+
+\subsubsection*{Sept 12th:}
+Met Prof. Bertino. She was not in a good mood. I said about the implementation - she doesn't care about the implementation details at all. 
+Then I said that I changed the flow a little bit to get tokens with To: identity as SP identity. She said that then we are back to the case where IDP 
+is involved in the loop and asked to get the SP to sign the challenge. But it actually doesn't work when I later thought about it.\\
+Anyway, she said that I can do the prelim once the journal paper is accepted. \\
+I also said that I read the paper she sent. She also said that it is very badly written.\\
 \subsection*{Real world stories:}
 
 \subsubsection*{Biometrics:}

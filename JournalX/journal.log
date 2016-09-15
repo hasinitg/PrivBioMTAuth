@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  6 SEP 2016 13:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.9)  11 SEP 2016 21:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1057,101 +1057,340 @@ Underfull \hbox (badness 10000) in paragraph at lines 657--658
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 660--661
+Underfull \hbox (badness 10000) in paragraph at lines 659--660
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 663--670
+Underfull \hbox (badness 10000) in paragraph at lines 662--663
+
+ []
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.665 ...d.com/training/material/get-started.html#
+                                                  ApplyTheme \\
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Overfull \hbox (44.30338pt too wide) in paragraph at lines 664--671
+\OT1/cmr/m/n/10.95 1. Ma-te-rial De-sign: https://developer.android.com/trainin
+g/material/get-started.htmlApplyTheme 
+ []
+
+
+Overfull \hbox (19.48328pt too wide) in paragraph at lines 664--671
+\OT1/cmr/m/n/10.95 2. Per-for-mance best prac-tices: https://developer.android.
+com/training/best-performance.html 
+ []
+
+
+Overfull \hbox (33.06445pt too wide) in paragraph at lines 664--671
+\OT1/cmr/m/n/10.95 4. Get-ting started with test-ing: https://developer.android
+.com/training/testing/start/index.html 
+ []
+
+
+Overfull \hbox (60.15045pt too wide) in paragraph at lines 664--671
+\OT1/cmr/m/n/10.95 6. An-droid stu-dio overview: Pro-file your app: https://dev
+eloper.android.com/studio/profile/index.html 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 664--671
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 671--677
+Underfull \hbox (badness 10000) in paragraph at lines 672--675
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 680--681
-
- []
-
-[23] [24]
-Underfull \hbox (badness 10000) in paragraph at lines 727--734
-
+Overfull \hbox (21.37926pt too wide) in paragraph at lines 676--677
+[]\OT1/cmr/m/n/10.95 Android spe-cific ex-am-ple: http://www.developer.com/ws/a
+ndroid/development-tools/android-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 735--739
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--680
+
+ []
+
+
+Overfull \hbox (59.88562pt too wide) in paragraph at lines 684--687
+\OT1/cmr/m/n/10.95 I found this re-ally good tu-to-rial in code labs: https://c
+odelabs.developers.google.com/codelabs/android-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 684--687
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--689
+
+ []
+
+
+Overfull \hbox (9.21263pt too wide) in paragraph at lines 690--691
+[]\OT1/cmr/m/n/10.95 Systrace helps mon-i-tor per-for-mance: https://developer.
+android.com/studio/profile/systrace-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 690--691
+
+ []
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.693 ...aries/testing-support-library/index.html#
+                                                  Espresso\\
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Overfull \hbox (161.66113pt too wide) in paragraph at lines 692--694
+[]\OT1/cmr/m/n/10.95 The Espresso li-brary is used to as-sist with An-droid in-
+stru-men-tal tests: https://developer.android.com/topic/libraries/testing-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--694
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 695--697
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 698--700
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 701--704
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 705--710
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 711--712
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 714--715
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 716--717
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 718--721
+
+ []
+
+
+Overfull \hbox (14.68765pt too wide) in paragraph at lines 724--726
+[]\OT1/cmr/m/n/10.95 Testing sup-port li-brary: https://developer.android.com/t
+opic/libraries/testing-support-
+ []
+
+! You can't use `macro parameter character #' in horizontal mode.
+l.727 ...id.com/training/testing/start/index.html#
+                                                  config-instrumented-tests\\
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Overfull \hbox (79.0951pt too wide) in paragraph at lines 727--728
+[]\OT1/cmr/m/n/10.95 Getting started with test-ing: https://developer.android.c
+om/training/testing/start/index.htmlconfig-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 727--728
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 729--731
+
+ []
+
+
+Overfull \hbox (9.72968pt too wide) in paragraph at lines 735--736
+[]\OT1/cmr/m/n/10.95 Testing sin-gle apps us-ing Espresso: https://developer.an
+droid.com/training/testing/ui-
+ []
+
+
+Overfull \hbox (141.5557pt too wide) in paragraph at lines 736--737
+[]\OT1/cmr/m/n/10.95 Advanced - com-plete Espresso: https://google.github.io/an
+droid-testing-support-library/docs/espresso/index.html 
+ []
+
+
+Overfull \hbox (44.92062pt too wide) in paragraph at lines 737--738
+[]\OT1/cmr/m/n/10.95 Testing mul-ti-ple apps us-ing UI au-to-mater: https://dev
+eloper.android.com/training/testing/ui-
+ []
+
+
+Overfull \hbox (3.18999pt too wide) in paragraph at lines 738--740
+[]\OT1/cmr/m/n/10.95 How to re-peat tests: http://stackoverflow.com/questions/3
+9193268/run-espresso-test-
+ []
+
+
+Overfull \hbox (8.90833pt too wide) in paragraph at lines 738--740
+\OT1/cmr/m/n/10.95 multiple-times, http://stackoverflow.com/questions/1492856/e
+asy-way-of-running-the-
+ []
+
+[24]
+! You can't use `macro parameter character #' in horizontal mode.
+l.740 ...id.com/training/testing/start/index.html#
+                                                  AssertionClasses
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Overfull \hbox (67.6127pt too wide) in paragraph at lines 740--741
+[]\OT1/cmr/m/n/10.95 Test As-ser-tions: https://developer.android.com/training/
+testing/start/index.htmlAssertionClasses 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 756--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 765--768
 
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 740--743
+Underfull \hbox (badness 10000) in paragraph at lines 779--785
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 753--755
+Underfull \hbox (badness 10000) in paragraph at lines 788--790
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 757--761
+Underfull \hbox (badness 10000) in paragraph at lines 791--793
 
  []
 
 
-Overfull \hbox (4.86292pt too wide) in paragraph at lines 764--766
+Underfull \hbox (badness 10000) in paragraph at lines 794--795
+
+ []
+
+[26] [27]
+Underfull \hbox (badness 10000) in paragraph at lines 841--848
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 849--853
+
+ []
+
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 854--857
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 867--869
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 871--875
+
+ []
+
+
+Overfull \hbox (4.86292pt too wide) in paragraph at lines 878--880
 []\OT1/cmr/m/n/10.95 https://thestack.com/security/2016/03/15/amazon-wants-to-r
 eplace-passwords-with-
  []
 
 
-Overfull \hbox (10.15547pt too wide) in paragraph at lines 766--768
+Overfull \hbox (10.15547pt too wide) in paragraph at lines 880--882
 []\OT1/cmr/m/n/10.95 https://thestack.com/cloud/2016/03/03/google-hands-free-fa
 cial-recognition-trial-san-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 766--768
+Underfull \hbox (badness 10000) in paragraph at lines 880--882
 
  []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 769--770
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 771--773
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 883--884
 
  []
 
 
-Overfull \hbox (42.15387pt too wide) in paragraph at lines 777--779
+Underfull \hbox (badness 10000) in paragraph at lines 885--887
+
+ []
+
+
+Overfull \hbox (42.15387pt too wide) in paragraph at lines 891--893
 []\OT1/cmr/m/n/10.95 https://thestack.com/security/2015/03/16/alibaba-demonstra
 tes-facial-recognition-payment-
  []
 
 
-Overfull \hbox (17.57716pt too wide) in paragraph at lines 780--782
+Overfull \hbox (17.57716pt too wide) in paragraph at lines 894--896
 []\OT1/cmr/m/n/10.95 https://thestack.com/iot/2016/02/22/mastercard-rolls-out-s
 elfie-verification-for-mobile-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 780--782
+Underfull \hbox (badness 10000) in paragraph at lines 894--896
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 783--785
+Underfull \hbox (badness 10000) in paragraph at lines 897--899
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 786--788
+Underfull \hbox (badness 10000) in paragraph at lines 900--902
 
  []
 
@@ -1159,101 +1398,101 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 789--792
+Underfull \hbox (badness 10000) in paragraph at lines 903--906
 
  []
 
 
-Overfull \hbox (1.30423pt too wide) in paragraph at lines 793--794
+Overfull \hbox (1.30423pt too wide) in paragraph at lines 907--908
 []\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/banks-e
 mbrace-biometrics-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 793--794
+Underfull \hbox (badness 10000) in paragraph at lines 907--908
 
  []
 
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 795--796
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 909--910
 
  []
 
 
-Overfull \hbox (13.988pt too wide) in paragraph at lines 797--798
+Overfull \hbox (13.988pt too wide) in paragraph at lines 911--912
 []\OT1/cmr/m/n/10.95 http://www.americanbanker.com/news/bank-technology/biometr
 ic-tipping-point-usaa-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 797--798
+Underfull \hbox (badness 10000) in paragraph at lines 911--912
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 799--803
+Underfull \hbox (badness 10000) in paragraph at lines 913--917
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 804--806
+Underfull \hbox (badness 10000) in paragraph at lines 918--920
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 810--815
+Underfull \hbox (badness 10000) in paragraph at lines 924--929
 
  []
 
 
-Overfull \hbox (162.71968pt too wide) in paragraph at lines 819--825
+Overfull \hbox (162.71968pt too wide) in paragraph at lines 933--939
 []\OT1/cmr/m/n/10.95 ARM's Trust-Zone: Wikipedia: https://en.wikipedia.org/wiki
 /ARM[]architecture#Security[]extensions[].28TrustZone.29 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 829--830
+Underfull \hbox (badness 10000) in paragraph at lines 943--944
 
  []
 
-[28]
-Underfull \hbox (badness 10000) in paragraph at lines 831--832
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 945--946
 
  []
 
-[29]
-Overfull \hbox (155.88081pt too wide) in paragraph at lines 841--848
+[32]
+Overfull \hbox (155.88081pt too wide) in paragraph at lines 955--962
 \OT1/cmr/m/n/10.95 Today (18th March), I found this pa-per on that topic: http:
 //ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6686139 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--851
+Underfull \hbox (badness 10000) in paragraph at lines 964--965
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 860--862
+Underfull \hbox (badness 10000) in paragraph at lines 974--976
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 865--869
+Underfull \hbox (badness 10000) in paragraph at lines 979--983
 
  []
 
-[30] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 907--912
+[33] [34]
+Underfull \hbox (badness 10000) in paragraph at lines 1021--1026
 
  []
 
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 913--914
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 1027--1028
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 916--929
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1043
 
  []
 
@@ -1270,23 +1509,23 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 
-Overfull \hbox (29.86552pt too wide) in paragraph at lines 934--940
+Overfull \hbox (29.86552pt too wide) in paragraph at lines 1048--1054
 []\OT1/cmr/m/n/10.95 From: https://thestack.com/security/2015/03/16/alibaba-dem
 onstrates-facial-recognition-
  []
 
 
-Overfull \hbox (8.02632pt too wide) in paragraph at lines 934--940
+Overfull \hbox (8.02632pt too wide) in paragraph at lines 1048--1054
 \OT1/cmr/m/n/10.95 New York City Uni-ver-si-tys Cen-ter for Catas-tro-phe Pre-p
 ared-ness and Re-sponse (CCPR)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 934--940
+Underfull \hbox (badness 10000) in paragraph at lines 1048--1054
 
  []
 
-[33]
+[36]
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ˜ in font cmr10!
@@ -1300,7 +1539,7 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 941--944
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1058
 
  []
 
@@ -1308,7 +1547,7 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 945--948
+Underfull \hbox (badness 10000) in paragraph at lines 1059--1062
 
  []
 
@@ -1325,41 +1564,41 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no  in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 954--955
+Underfull \hbox (badness 10000) in paragraph at lines 1068--1069
 
  []
 
-[34]
-Overfull \hbox (20.74052pt too wide) in paragraph at lines 966--968
+[37]
+Overfull \hbox (20.74052pt too wide) in paragraph at lines 1080--1082
 \OT1/cmr/m/n/10.95 edge (same au-thors) (http://www.lsv.ens-cachan.fr/Publis/PA
 PERS/PDF/BKSST-
  []
 
 
-Overfull \hbox (181.18864pt too wide) in paragraph at lines 968--970
+Overfull \hbox (181.18864pt too wide) in paragraph at lines 1082--1084
 []\OT1/cmr/m/n/10.95 An im-ple-men-ta-tion of zero knowl-edge au-then-ti-ca-tio
 n (NAR-WHAL): https://courses.csail.mit.edu/6.857/2014/files/15-
  []
 
 
-Overfull \hbox (267.785pt too wide) in paragraph at lines 970--971
+Overfull \hbox (267.785pt too wide) in paragraph at lines 1084--1085
 []\OT1/cmr/m/n/10.95 Implementation and Eval-u-a-tion of Zero-Knowledge Proofs 
 of Knowl-edge (https://securewww.esat.kuleuven.be/cosic/publications/thesis-
  []
 
 
-Overfull \hbox (66.30481pt too wide) in paragraph at lines 987--989
+Overfull \hbox (66.30481pt too wide) in paragraph at lines 1101--1103
 \OT1/cmr/m/n/10.95 Jonathan Din-er-stein, and Dan Ven-tura (http://axon.cs.byu.
 edu/papers/dinerstein.smc07.pdf) 
  []
 
 
-Overfull \hbox (210.3279pt too wide) in paragraph at lines 989--990
+Overfull \hbox (210.3279pt too wide) in paragraph at lines 1103--1104
 []\OT1/cmr/m/n/10.95 An En-sem-ble Ap-proach to Ro-bust Bio-met-rics Fu-sion : 
 http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1640496 
  []
 
-[35] (./journal.aux) ) 
+[38] (./journal.aux) ) 
 Here is how much of TeX's memory you used:
  2946 strings out of 495028
  39441 string characters out of 6181498
@@ -1375,10 +1614,10 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on journal.pdf (35 pages, 173158 bytes).
+Output written on journal.pdf (38 pages, 179429 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
+ 157 PDF objects out of 1000 (max. 8388607)
+ 108 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

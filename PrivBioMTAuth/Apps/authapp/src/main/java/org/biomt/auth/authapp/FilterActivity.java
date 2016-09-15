@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -75,8 +77,8 @@ public class FilterActivity extends AppCompatActivity {
                 try {
                     //extract the response, save the artifacts and redirects to authentication
                     identityTokenString = data.getStringExtra(AuthConstants.INFO_CODE_ENROLL_RESP);
-                    Toast respToast = Toast.makeText(this, identityTokenString, Toast.LENGTH_LONG);
-                    respToast.show();
+                    //Toast respToast = Toast.makeText(this, identityTokenString, Toast.LENGTH_LONG);
+                    //respToast.show();
                     new IdentityTokenWriteTask(this).execute();
 
                 } catch (Exception e) {
@@ -180,6 +182,9 @@ public class FilterActivity extends AppCompatActivity {
                 identityToken = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(identityTokenString);
                 DatabaseAccessManager databaseAccessManager = new DatabaseAccessManager();
                 String insertedRowID = databaseAccessManager.writeToIdentityTokenTable(appContext, identityTokenString, identityToken);
+
+                Log.i(Config.TAG_MAIN, Config.TAG_END_IDT_REQ + Config.LOG_DELIMITTER + String.valueOf(System.currentTimeMillis()));
+
                 return AuthConstants.SUCCESS_NAME + "IDT saved successfully." + insertedRowID;
             } catch (Exception e) {
                 return AuthConstants.ERROR_NAME + e.getMessage();
@@ -188,9 +193,7 @@ public class FilterActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            //Show result of the database write task in a toast.
-            Toast resultToast = Toast.makeText(appContext, result, Toast.LENGTH_LONG);
-            resultToast.show();
+
             //Create an intent and invoke the AuthActivity.
             if (result.contains(AuthConstants.SUCCESS_NAME)) {
                 continueWithZKP_I_Auth();
