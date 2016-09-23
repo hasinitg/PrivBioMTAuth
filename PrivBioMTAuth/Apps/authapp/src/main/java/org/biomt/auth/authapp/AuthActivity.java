@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.TrafficStats;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,12 +23,10 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
-import lib.zkp4.identity.commit.IdentityToken;
 import lib.zkp4.identity.proof.IdentityProof;
 import lib.zkp4.identity.proof.IdentityProofCreator;
 import lib.zkp4.identity.util.Constants;
 import lib.zkp4.identity.util.JSONIdentityProofEncoderDecoder;
-import lib.zkp4.identity.util.JSONIdentityTokenEncoderDecoder;
 import lib.zkp4.identity.util.JSONMiscEncoderDecoder;
 import lib.zkp4.identity.util.ZKP4IDException;
 import lib.zkp4.identity.verify.ProofInfo;
@@ -40,6 +41,12 @@ public class AuthActivity extends AppCompatActivity {
     private String helperX;
     private String helperR;
 
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        //after returning, we do not need it to be in memory
+        onDestroy();
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,19 +95,23 @@ public class AuthActivity extends AppCompatActivity {
 
     public void onAuthButtonClicked(View v) {
 
-        final EditText identityText = (EditText) findViewById(R.id.identityText);
+        final EditText identityText = (EditText) findViewById(R.id.auth_identityText);
         final String identityValue = identityText.getText().toString();
-        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
+        final EditText passwordText = (EditText) findViewById(R.id.auth_passwordText);
         final String passwordValue = passwordText.getText().toString();
         //TODO: check if the above values exist, if not give an error.
 
         //Toast testToast = Toast.makeText(this, challengeString, Toast.LENGTH_LONG);
         //testToast.show();
+        TrafficStats.setThreadStatsTag(0xF00C);
         try {
             //invoke the auth service with challenge-response.
             ProofInfo proofInfo = new JSONMiscEncoderDecoder().decodeChallengeMessage(responseZKP_I_Initial);
             IdentityProof initialIdentityProof = new JSONIdentityProofEncoderDecoder().decodeIdentityProof(initialIdentityProofString);
             //IdentityToken identityToken = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(identityTokenString);
+
+            Log.i(Config.TAG_MAIN, Config.TAG_START_PROOF + Config.LOG_DELIMITTER + String.valueOf(System.currentTimeMillis()));
+
             IdentityProof identityProof = new IdentityProofCreator().createProofForZKPI(proofInfo.getChallengeValue(),
                     passwordValue, identityValue, identityTokenString, initialIdentityProof, helperX, helperR);
             JSONObject encodedIdentityProof = new JSONIdentityProofEncoderDecoder().encodeIdentityProof(identityProof);
@@ -114,9 +125,11 @@ public class AuthActivity extends AppCompatActivity {
                     AuthConstants.CONTENT_TYPE_JSON, new JsonHttpResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                            Toast respToast = Toast.makeText(getApplicationContext(), String.valueOf(statusCode) +
+                            /*Toast respToast = Toast.makeText(getApplicationContext(), String.valueOf(statusCode) +
                                     response.toString(), Toast.LENGTH_LONG);
-                            respToast.show();
+                            respToast.show();*/
+                            Log.i(Config.TAG_MAIN, Config.TAG_END_AUTH + Config.LOG_DELIMITTER + System.currentTimeMillis());
+
                             Intent authRespIntent = new Intent(AuthConstants.ACTION_RESULT_AUTH_ZKP);
                             authRespIntent.putExtra(AuthConstants.INFO_CODE_AUTH_RESP_ZKP_I_CHALLENGE_RESPONSE, response.toString());
                             setResult(Activity.RESULT_OK, authRespIntent);
@@ -144,6 +157,8 @@ public class AuthActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            TrafficStats.clearThreadStatsTag();
         }
 
         /*client.get(testURLX.getText().toString(), null, new JsonHttpResponseHandler() {

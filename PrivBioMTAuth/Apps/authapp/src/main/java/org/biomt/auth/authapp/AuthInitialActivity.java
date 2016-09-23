@@ -2,8 +2,10 @@ package org.biomt.auth.authapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.TrafficStats;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -28,6 +30,12 @@ public class AuthInitialActivity extends AppCompatActivity {
     private String userName = null;
     private String spURL = null;
     private String identityTokenString = null;
+
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        onDestroy();
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +73,13 @@ public class AuthInitialActivity extends AppCompatActivity {
     }
 
     private void requestZKPAuthInitial() {
+        TrafficStats.setThreadStatsTag(0xF00B);
         try {
             //decode the identity token from string
             IdentityToken IDT = new JSONIdentityTokenEncoderDecoder().decodeIdentityToken(identityTokenString);
+
+            Log.i(Config.TAG_MAIN, Config.TAG_START_AUTH + Config.LOG_DELIMITTER + System.currentTimeMillis());
+
             IdentityProofPackage identityProofPackage = new IdentityProofCreator().createInitialProofForZKPI(IDT);
             IdentityProof initialIdentityProof = identityProofPackage.getIdentityProof();
 
@@ -88,9 +100,12 @@ public class AuthInitialActivity extends AppCompatActivity {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    Toast respToast = Toast.makeText(getApplicationContext(), String.valueOf(statusCode) +
+
+                    Log.i(Config.TAG_MAIN, Config.TAG_CHALLENGE_RECEIVED + Config.LOG_DELIMITTER + String.valueOf(System.currentTimeMillis()));
+
+                    /*Toast respToast = Toast.makeText(getApplicationContext(), String.valueOf(statusCode) +
                             response.toString(), Toast.LENGTH_LONG);
-                    respToast.show();
+                    respToast.show();*/
 
                     String respString = response.toString();
 
