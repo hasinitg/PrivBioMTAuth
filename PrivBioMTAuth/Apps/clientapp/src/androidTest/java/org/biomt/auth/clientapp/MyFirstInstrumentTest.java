@@ -90,7 +90,7 @@ public class MyFirstInstrumentTest {
         Context context = InstrumentationRegistry.getContext();
         final Intent intent = context.getPackageManager().getLaunchIntentForPackage("org.biomt.auth.clientapp");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
+        
     }
 
 }
