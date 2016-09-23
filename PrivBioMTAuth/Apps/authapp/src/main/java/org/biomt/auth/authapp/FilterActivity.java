@@ -26,6 +26,12 @@ public class FilterActivity extends AppCompatActivity {
     private String userName = null;
     private String identityTokenString = null;
 
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        onDestroy();
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -27,6 +27,11 @@ import lib.zkp4.identity.util.JSONIDTRequestEncoderDecoder;
 import lib.zkp4.identity.util.ZKP4IDException;
 
 public class EnrollmentActivity extends AppCompatActivity {
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        onDestroy();
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

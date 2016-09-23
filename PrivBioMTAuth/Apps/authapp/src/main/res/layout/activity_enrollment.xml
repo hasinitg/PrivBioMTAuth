@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/enroll_editTextIdentity"
+        android:hint="@string/hint_identity"
         android:layout_alignBottom="@+id/textViewIdentity"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -26,7 +27,9 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="10"
         android:id="@+id/enroll_editTextPassword"
+        android:hint="@string/hint_password"
         android:layout_alignBottom="@+id/textViewPassword"
         android:layout_alignLeft="@+id/enroll_editTextIdentity"
         android:layout_alignStart="@+id/enroll_editTextIdentity"

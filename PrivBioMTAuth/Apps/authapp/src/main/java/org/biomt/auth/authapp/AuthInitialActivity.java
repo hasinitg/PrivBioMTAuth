@@ -31,6 +31,12 @@ public class AuthInitialActivity extends AppCompatActivity {
     private String spURL = null;
     private String identityTokenString = null;
 
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        onDestroy();
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

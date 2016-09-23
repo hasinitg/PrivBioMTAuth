@@ -17,7 +17,9 @@ My Journal on My Research Work}
 \maketitle
 
 \section*{RahasNym}
-Until 12th Feb, I mostly worked on improving the paper to be submitted to SACMAT.
+Until 12th Feb, I mostly worked on improving the paper to be submitted to SACMAT.\\
+Compare computation complexity with Camenish Lysyankaya signature scheme.\\
+If we can come up with the key exchange protocol, we do not have to worry about having the To: field.\\
 
 \pagebreak
 
@@ -662,7 +664,7 @@ Finally finally finally - the long awaited static identity zero knwoledge proof 
 Started working at 11.20am.\\
 
 Tips for polishing the apps: \\
-1. Material Design: https://developer.android.com/training/material/get-started.html#ApplyTheme \\
+1. Material Design: https://developer.android.com/training/material/get-started.html\#ApplyTheme \\
 2. Performance best practices: https://developer.android.com/training/best-performance.html\\
 3. Testing for the app: https://developer.android.com/studio/test/index.html\\
 4. Getting started with testing: https://developer.android.com/training/testing/start/index.html\\
@@ -690,7 +692,7 @@ There are two types of tests for android: unit tests and instrument tests.\\
 Systrace helps monitor performance: https://developer.android.com/studio/profile/systrace-commandline.html\\
 
 The Espresso library is used to assist with Android instrumental tests: 
-https://developer.android.com/topic/libraries/testing-support-library/index.html#Espresso\\
+https://developer.android.com/topic/libraries/testing-support-library/index.html\#Espresso\\
 
 This is in testing support library: https://developer.android.com/topic/libraries/testing-support-library/index.html\\
 The article also explains how to install it.\\
@@ -725,7 +727,7 @@ Learn packing, statistical hiding and perfect hiding\\
  \item Testing support library: https://developer.android.com/topic/libraries/testing-support-library/index.html
  Mentions which dependencies should be added in order to use it.
  
- \item Getting started with testing: https://developer.android.com/training/testing/start/index.html#config-instrumented-tests\\
+ \item Getting started with testing: https://developer.android.com/training/testing/start/index.html\#config-instrumented-tests\\
  
  Instrumented tests are built into an APK that runs on the device alongside your app under test. The system runs your test APK and your app under 
  tests in the same process, so your tests can invoke methods and modify fields in the app, and automate user interaction with your app.\\
@@ -738,7 +740,7 @@ Learn packing, statistical hiding and perfect hiding\\
  \item Testing multiple apps using UI automater: https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html
  \item How to repeat tests: http://stackoverflow.com/questions/39193268/run-espresso-test-multiple-times, 
 http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-test-over-and-over
- \item Test Assertions: https://developer.android.com/training/testing/start/index.html#AssertionClasses
+ \item Test Assertions: https://developer.android.com/training/testing/start/index.html\#AssertionClasses
  \item HamCrest for matching: https://github.com/hamcrest
 \end{enumerate}
 
@@ -752,6 +754,7 @@ Steps for the blog:\\
 6. Run multiple times with @RunWith parameterized class.\\
 6. Add logs.\\
 7. Collect logs via Android Device Monitor.\\
+8. Measure Memory, CPU and Network stats using android device monitor or android monitor.\\
 
 I was really hurting my leg. Even after giving accupuncture. I actually came home to go to PVCC and work, with the great momentum I had. But there is 
 always some force holding me back. I thought I should give my leg a rest. So I slept. Slept so much that I felt better the next day.
@@ -832,10 +835,59 @@ https://developer.android.com/studio/profile/ddms.html\\
 a VM on the device is started or terminated. Once a VM is running, DDMS retrieves the VM's process ID (pid), via adb, and opens a connection to the 
 VM's debugger, through the adb daemon (adbd) on the device. DDMS can now talk to the VM using a custom wire protocol''.\\
 
-How to measure memory: In Device Monitor, select the device -> select the process -> select `update heap' -> cause GC.\\
-Network: Can measure Tx and Rx bytes and packets. There is a way to tag the sockets used for each operation and get network stats for each of them 
-as per the aforementioned tutorial. However, it is only possible with android's default http client - URL connection.\\
-CPU:
+How to measure:\\
+\textbf{Memory}: In Device Monitor, select the device $\longrightarrow$ select the process $\longrightarrow$ select `update heap' 
+$\longrightarrow$ cause GC.\\
+There is a separate tutorial on RAM profiling which I didn't look into: https://developer.android.com/studio/profile/investigate-ram.html\\
+
+\textbf{Network}: Can measure Tx and Rx bytes and packets. There is a way to tag the sockets used for each operation and get network stats for each 
+of them as per the aforementioned tutorial. However, it is only possible with android's default http client - URL connection.\\
+
+\textbf{CPU}: For this, I used Android Monitor. \\
+Setting up: https://developer.android.com/studio/profile/am-basics.html\#byb\\
+Running CPU monitor: https://developer.android.com/studio/profile/am-cpu.html?utm\_medium=android-studio\\
+
+I think we can better measure from Android Device Monitor's System Information tab.\\
+
+Related: \\
+Capture screen : https://developer.android.com/studio/debug/am-screenshot.html\\
+System Info: https://developer.android.com/studio/profile/am-sysinfo.html\\
+
+\textbf{Important thing I learned today:} Usage and difference between Android Device Monitor and Android Monitor.\\
+
+I worked effectively only half a day. I was hungry, but I went to fountain to read Prof. Evan's paper, then went to stewart. Was very hungry. Got a 
+stupid sandwich from Flatbread. Ate and came to lab. and started reading Naked Security news letter. Slept on the desk for about 45 mins. Got up, 
+read it again. Found some interesting things related to security, most importantly, the TV series. Then I was idling, Manisha called, went home, 
+cooked, watched the 1hr tv series. Talked with Amma only over phone, Thil and Thil's amma. Then wrote an email to Nirosh and went to sleep.
+
+\subsubsection*{September 16th: Friday}
+Today is very bad again. Woke up at 9.30. Came to lab at 11.30. Started work at 12noon.\\
+
+Read Prof. Evan's paper for about 2hours.\\
+
+\textbf{Note:} I should write the difference between biometrics authentication and biometrics identification at least in the paper that I am going to 
+do next and say that there are PP approaches for identification but not for authentication.\\
+
+Now back to project.\\
+
+I am learning how to do cross-app UI automation: https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html\\
+For that, I need to use UI automator API compared to the espresso API.\\
+
+When I added uiautomator dependency to client app's build.gradle, I got an error. I got the same error for auth app as well. But I do not remember 
+what was the fix.Then I compared the two build files and found that minSdkVersion should be 18.\\
+
+In order to do cross app testing, I need to make sure that the UI component is accessible to the testing framework.
+
+
+\subsubsection*{September 23rd: Friday}
+I was able to run the instrumented test such that client app invoked the auth app and performed enrollment and authentication successfully.\\
+However, there is an issue in running it multiple times.\\
+
+I read what happens when a particular intent returns. It seems that only `onStop()' method is called and the intent is kept in the memory. So I want 
+to destroy it. This is the tutorial that describes activity lifecycle: 
+https://developer.android.com/training/basics/activity-lifecycle/stopping.html\\
+
+Anyway, it worked without destroying the activity.\\
 
 Next steps in static identity:\\
 1. Run it multiple times - Yay.. @3.33 on Sept 13th, I automated it 10 times using @RunWith Parameterized.class as mentioned in: 
@@ -843,11 +895,11 @@ http://stackoverflow.com/questions/1492856/easy-way-of-running-the-same-junit-te
 2. Collect the logs. - DONE: 15th Sept.\\
 3. CPU, MEMMORY, Network Usage - DONE: 15th Sept.\\
 3. Re-factor the flows.\\
-4. Inter-app instrumentation\\
+4. Inter-app instrumentation - DONE on 23rd Sept.\\
 4. benchmark, benchmark, benchmark\\
 
 
-\textbf{MyNexts in end:}\\
+\textbf{MyNexts in end project:}\\
  1. Port the IDP client into mobile - DONE - Aug 24th.\\
  2. Save the commitment in the mobile - DONE - Aug 25th\\
  3. Implement ZKP with SP - almost done and tested on 1st Sept - the initial request goes and response received but there is a problem with 

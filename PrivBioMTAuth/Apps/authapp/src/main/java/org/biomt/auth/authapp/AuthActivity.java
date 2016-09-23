@@ -41,6 +41,12 @@ public class AuthActivity extends AppCompatActivity {
     private String helperX;
     private String helperR;
 
+    /*@Override
+    protected void onStop() {
+        super.onStop();
+        //after returning, we do not need it to be in memory
+        onDestroy();
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
