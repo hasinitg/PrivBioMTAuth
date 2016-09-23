@@ -19,6 +19,11 @@
     <string name="label_text_idp_url">IDP URL</string>
     <string name="button_text_enroll">Enroll</string>
 
+    <!--Hints-->
+    <string name="hint_identity">hasi@abc.com</string>
+    <string name="hint_password">abc</string>
+
+
     <string name="title_activity_filter">FilterActivity</string>
     <string name="title_activity_auth_initial">AuthInitialActivity</string>
 

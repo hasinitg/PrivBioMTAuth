@@ -16,7 +16,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextIdentity"
+        android:id="@+id/enroll_editTextIdentity"
+        android:hint="@string/hint_identity"
         android:layout_alignBottom="@+id/textViewIdentity"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -26,20 +27,22 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextPassword"
+        android:ems="10"
+        android:id="@+id/enroll_editTextPassword"
+        android:hint="@string/hint_password"
         android:layout_alignBottom="@+id/textViewPassword"
-        android:layout_alignLeft="@+id/editTextIdentity"
-        android:layout_alignStart="@+id/editTextIdentity"
+        android:layout_alignLeft="@+id/enroll_editTextIdentity"
+        android:layout_alignStart="@+id/enroll_editTextIdentity"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextFrom"
+        android:id="@+id/enroll_editTextFrom"
         android:layout_below="@+id/textViewPassword"
-        android:layout_alignLeft="@+id/editTextPassword"
-        android:layout_alignStart="@+id/editTextPassword"
+        android:layout_alignLeft="@+id/enroll_editTextPassword"
+        android:layout_alignStart="@+id/enroll_editTextPassword"
         android:layout_marginTop="29dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -47,21 +50,21 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextTo"
+        android:id="@+id/enroll_editTextTo"
         android:layout_marginTop="29dp"
-        android:layout_below="@+id/editTextFrom"
-        android:layout_alignLeft="@+id/editTextFrom"
-        android:layout_alignStart="@+id/editTextFrom"
+        android:layout_below="@+id/enroll_editTextFrom"
+        android:layout_alignLeft="@+id/enroll_editTextFrom"
+        android:layout_alignStart="@+id/enroll_editTextFrom"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextIDPURL"
-        android:layout_below="@+id/editTextTo"
-        android:layout_alignLeft="@+id/editTextTo"
-        android:layout_alignStart="@+id/editTextTo"
+        android:id="@+id/enroll_editTextIDPURL"
+        android:layout_below="@+id/enroll_editTextTo"
+        android:layout_alignLeft="@+id/enroll_editTextTo"
+        android:layout_alignStart="@+id/enroll_editTextTo"
         android:layout_marginTop="35dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -79,7 +82,7 @@
         android:layout_height="wrap_content"
         android:text="@string/label_text_from"
         android:id="@+id/textViewFrom"
-        android:layout_alignBottom="@+id/editTextFrom"
+        android:layout_alignBottom="@+id/enroll_editTextFrom"
         android:layout_alignLeft="@+id/textViewPassword"
         android:layout_alignStart="@+id/textViewPassword" />
 
@@ -88,7 +91,7 @@
         android:layout_height="wrap_content"
         android:text="@string/label_text_to"
         android:id="@+id/textViewTo"
-        android:layout_alignBottom="@+id/editTextTo"
+        android:layout_alignBottom="@+id/enroll_editTextTo"
         android:layout_alignLeft="@+id/textViewFrom"
         android:layout_alignStart="@+id/textViewFrom" />
 
@@ -97,7 +100,7 @@
         android:layout_height="wrap_content"
         android:text="@string/label_text_idp_url"
         android:id="@+id/textViewIDPURL"
-        android:layout_alignBottom="@+id/editTextIDPURL"
+        android:layout_alignBottom="@+id/enroll_editTextIDPURL"
         android:layout_alignLeft="@+id/textViewTo"
         android:layout_alignStart="@+id/textViewTo" />
 
@@ -105,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_text_enroll"
-        android:id="@+id/button"
+        android:id="@+id/enroll_button"
         android:layout_below="@+id/textViewIDPURL"
         android:layout_alignLeft="@+id/textViewIdentity"
         android:layout_alignStart="@+id/textViewIdentity"

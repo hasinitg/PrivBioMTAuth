@@ -28,9 +28,9 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/passwordText"
+        android:id="@+id/auth_passwordText"
+        android:hint="@string/hint_password"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -38,19 +38,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/identityText"
-        android:layout_alignLeft="@+id/passwordText"
-        android:layout_alignStart="@+id/passwordText"
+        android:id="@+id/auth_identityText"
+        android:hint="@string/hint_identity"
+        android:layout_alignLeft="@+id/auth_passwordText"
+        android:layout_alignStart="@+id/auth_passwordText"
         android:layout_alignBottom="@+id/identityLabel"
-        android:layout_alignRight="@+id/passwordText"
-        android:layout_alignEnd="@+id/passwordText" />
+        android:layout_alignRight="@+id/auth_passwordText"
+        android:layout_alignEnd="@+id/auth_passwordText" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_text_auth"
         android:id="@+id/auth_button"
-        android:layout_below="@+id/passwordText"
+        android:layout_below="@+id/auth_passwordText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
         android:onClick="onAuthButtonClicked"/>
