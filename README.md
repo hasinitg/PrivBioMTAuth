@@ -1,0 +1,3 @@
+# PrivBioMTAuth
+
+The first user-centric biometric authentication protocol enabling privacy preserving remote authentication from mobile phones. Users’ biometrics is not revealed to any service provider who is authenticating the users,  and the identity provider, with whom the user enrolls her biometrics, is not involved in the authentication. This preserves both biometric privacy and the transaction privacy of the user. The main building blocks are zero knowledge proofs (ZKP) and machine learning classification. An approach protecting the ZKP protocols from mafia attacks is proposed as an independent contribution.
